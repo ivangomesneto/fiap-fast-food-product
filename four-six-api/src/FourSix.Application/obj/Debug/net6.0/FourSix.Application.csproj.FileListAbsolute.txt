@@ -1,0 +1,11 @@
+C:\Pessoal\TechChallenge\fiap-fast-food\four-six-api\src\FourSix.Application\bin\Debug\net6.0\FourSix.Application.deps.json
+C:\Pessoal\TechChallenge\fiap-fast-food\four-six-api\src\FourSix.Application\bin\Debug\net6.0\FourSix.Application.dll
+C:\Pessoal\TechChallenge\fiap-fast-food\four-six-api\src\FourSix.Application\bin\Debug\net6.0\FourSix.Application.pdb
+C:\Pessoal\TechChallenge\fiap-fast-food\four-six-api\src\FourSix.Application\obj\Debug\net6.0\FourSix.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Pessoal\TechChallenge\fiap-fast-food\four-six-api\src\FourSix.Application\obj\Debug\net6.0\FourSix.Application.AssemblyInfoInputs.cache
+C:\Pessoal\TechChallenge\fiap-fast-food\four-six-api\src\FourSix.Application\obj\Debug\net6.0\FourSix.Application.AssemblyInfo.cs
+C:\Pessoal\TechChallenge\fiap-fast-food\four-six-api\src\FourSix.Application\obj\Debug\net6.0\FourSix.Application.csproj.CoreCompileInputs.cache
+C:\Pessoal\TechChallenge\fiap-fast-food\four-six-api\src\FourSix.Application\obj\Debug\net6.0\FourSix.Application.dll
+C:\Pessoal\TechChallenge\fiap-fast-food\four-six-api\src\FourSix.Application\obj\Debug\net6.0\refint\FourSix.Application.dll
+C:\Pessoal\TechChallenge\fiap-fast-food\four-six-api\src\FourSix.Application\obj\Debug\net6.0\FourSix.Application.pdb
+C:\Pessoal\TechChallenge\fiap-fast-food\four-six-api\src\FourSix.Application\obj\Debug\net6.0\ref\FourSix.Application.dll

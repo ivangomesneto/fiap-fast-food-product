@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "BictbenR5pvJXuTO9BmRGuWTi7LIhl50waUH16cg7m0q/uqltR2Ax0X1cKStGDCffuIsot7KAXcNgVTPxjwfnQ==",
+  "success": true,
+  "projectFilePath": "C:\\Pessoal\\TechChallenge\\fiap-fast-food\\four-six-api\\src\\FourSix.WebApi\\FourSix.WebApi.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\diego.franco\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\diego.franco\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\diego.franco\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.4\\microsoft.visualstudio.azure.containers.tools.targets.1.19.4.nupkg.sha512",
+    "C:\\Users\\diego.franco\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\diego.franco\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\diego.franco\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "C:\\Users\\diego.franco\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
