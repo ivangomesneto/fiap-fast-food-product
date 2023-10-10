@@ -1,45 +1,72 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "FourSix.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/FourSix.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FourSix.Domain.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "FourSix.Domain/1.0.0": {
+      "type": "project",
+      "path": "../FourSix.Domain/FourSix.Domain.csproj",
+      "msbuildProject": "../FourSix.Domain/FourSix.Domain.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "FourSix.Domain >= 1.0.0"
+    ]
   },
   "packageFolders": {
-    "C:\\Users\\diego.franco\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\HP ENVY\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Pessoal\\TechChallenge\\fiap-fast-food\\four-six-api\\src\\FourSix.Application\\FourSix.Application.csproj",
+      "projectUniqueName": "C:\\Projeto Estudo\\Pos\\fiap-fast-food\\four-six-api\\src\\FourSix.Application\\FourSix.Application.csproj",
       "projectName": "FourSix.Application",
-      "projectPath": "C:\\Pessoal\\TechChallenge\\fiap-fast-food\\four-six-api\\src\\FourSix.Application\\FourSix.Application.csproj",
-      "packagesPath": "C:\\Users\\diego.franco\\.nuget\\packages\\",
-      "outputPath": "C:\\Pessoal\\TechChallenge\\fiap-fast-food\\four-six-api\\src\\FourSix.Application\\obj\\",
+      "projectPath": "C:\\Projeto Estudo\\Pos\\fiap-fast-food\\four-six-api\\src\\FourSix.Application\\FourSix.Application.csproj",
+      "packagesPath": "C:\\Users\\HP ENVY\\.nuget\\packages\\",
+      "outputPath": "C:\\Projeto Estudo\\Pos\\fiap-fast-food\\four-six-api\\src\\FourSix.Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\diego.franco\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\HP ENVY\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Projeto Estudo\\Pos\\fiap-fast-food\\four-six-api\\src\\FourSix.Domain\\FourSix.Domain.csproj": {
+              "projectPath": "C:\\Projeto Estudo\\Pos\\fiap-fast-food\\four-six-api\\src\\FourSix.Domain\\FourSix.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -67,7 +94,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.414\\RuntimeIdentifierGraph.json"
       }
     }
   }

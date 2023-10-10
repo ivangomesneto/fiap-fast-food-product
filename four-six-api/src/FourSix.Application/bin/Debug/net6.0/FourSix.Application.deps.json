@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v6.0": {
       "FourSix.Application/1.0.0": {
+        "dependencies": {
+          "FourSix.Domain": "1.0.0"
+        },
         "runtime": {
           "FourSix.Application.dll": {}
+        }
+      },
+      "FourSix.Domain/1.0.0": {
+        "runtime": {
+          "FourSix.Domain.dll": {}
         }
       }
     }
   },
   "libraries": {
     "FourSix.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FourSix.Domain/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

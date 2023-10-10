@@ -9,8 +9,9 @@
 
     public class Produto : BaseEntity, IAggregateRoot
     {
-        public Produto(string nome, string descricao, CategoriaProduto categoria, decimal preco)
+        public Produto(Guid id, string nome, string descricao, CategoriaProduto categoria, decimal preco)
         {
+            Id = id;
             Nome = nome;
             Descricao = descricao;
             Categoria = categoria;

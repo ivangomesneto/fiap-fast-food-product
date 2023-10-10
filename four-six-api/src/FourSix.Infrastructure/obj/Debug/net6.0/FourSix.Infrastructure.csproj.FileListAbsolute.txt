@@ -9,3 +9,22 @@ C:\Pessoal\TechChallenge\fiap-fast-food\four-six-api\src\FourSix.Infrastructure\
 C:\Pessoal\TechChallenge\fiap-fast-food\four-six-api\src\FourSix.Infrastructure\obj\Debug\net6.0\refint\FourSix.Infrastructure.dll
 C:\Pessoal\TechChallenge\fiap-fast-food\four-six-api\src\FourSix.Infrastructure\obj\Debug\net6.0\FourSix.Infrastructure.pdb
 C:\Pessoal\TechChallenge\fiap-fast-food\four-six-api\src\FourSix.Infrastructure\obj\Debug\net6.0\ref\FourSix.Infrastructure.dll
+C:\Projeto Estudo\Pos\fiap-fast-food\four-six-api\src\FourSix.Infrastructure\bin\Debug\net6.0\FourSix.Infrastructure.deps.json
+C:\Projeto Estudo\Pos\fiap-fast-food\four-six-api\src\FourSix.Infrastructure\bin\Debug\net6.0\FourSix.Infrastructure.runtimeconfig.json
+C:\Projeto Estudo\Pos\fiap-fast-food\four-six-api\src\FourSix.Infrastructure\bin\Debug\net6.0\FourSix.Infrastructure.dll
+C:\Projeto Estudo\Pos\fiap-fast-food\four-six-api\src\FourSix.Infrastructure\bin\Debug\net6.0\ref\FourSix.Infrastructure.dll
+C:\Projeto Estudo\Pos\fiap-fast-food\four-six-api\src\FourSix.Infrastructure\bin\Debug\net6.0\FourSix.Infrastructure.pdb
+C:\Projeto Estudo\Pos\fiap-fast-food\four-six-api\src\FourSix.Infrastructure\obj\Debug\net6.0\FourSix.Infrastructure.csproj.AssemblyReference.cache
+C:\Projeto Estudo\Pos\fiap-fast-food\four-six-api\src\FourSix.Infrastructure\obj\Debug\net6.0\FourSix.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projeto Estudo\Pos\fiap-fast-food\four-six-api\src\FourSix.Infrastructure\obj\Debug\net6.0\FourSix.Infrastructure.AssemblyInfoInputs.cache
+C:\Projeto Estudo\Pos\fiap-fast-food\four-six-api\src\FourSix.Infrastructure\obj\Debug\net6.0\FourSix.Infrastructure.AssemblyInfo.cs
+C:\Projeto Estudo\Pos\fiap-fast-food\four-six-api\src\FourSix.Infrastructure\obj\Debug\net6.0\FourSix.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Projeto Estudo\Pos\fiap-fast-food\four-six-api\src\FourSix.Infrastructure\obj\Debug\net6.0\FourSix.Infrastructure.dll
+C:\Projeto Estudo\Pos\fiap-fast-food\four-six-api\src\FourSix.Infrastructure\obj\Debug\net6.0\ref\FourSix.Infrastructure.dll
+C:\Projeto Estudo\Pos\fiap-fast-food\four-six-api\src\FourSix.Infrastructure\obj\Debug\net6.0\FourSix.Infrastructure.pdb
+C:\Projeto Estudo\Pos\fiap-fast-food\four-six-api\src\FourSix.Infrastructure\obj\Debug\net6.0\FourSix.Infrastructure.genruntimeconfig.cache
+C:\Projeto Estudo\Pos\fiap-fast-food\four-six-api\src\FourSix.Infrastructure\bin\Debug\net6.0\FourSix.Application.dll
+C:\Projeto Estudo\Pos\fiap-fast-food\four-six-api\src\FourSix.Infrastructure\bin\Debug\net6.0\FourSix.Domain.dll
+C:\Projeto Estudo\Pos\fiap-fast-food\four-six-api\src\FourSix.Infrastructure\bin\Debug\net6.0\FourSix.Application.pdb
+C:\Projeto Estudo\Pos\fiap-fast-food\four-six-api\src\FourSix.Infrastructure\bin\Debug\net6.0\FourSix.Domain.pdb
+C:\Projeto Estudo\Pos\fiap-fast-food\four-six-api\src\FourSix.Infrastructure\obj\Debug\net6.0\FourSix.Infrastructure.csproj.CopyComplete

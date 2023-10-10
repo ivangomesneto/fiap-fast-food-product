@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yBiEu5+mZC3MR47geLSmZPkWfbEgGgEGllDh9b9kn93ovmd8VS6z9j/KQvijTOHvUN3ARZ4KhkGSnnVhgnmdtA==",
+  "dgSpecHash": "QWpq1xQeLxoEiBRdNqfJlx5NgYkeAGgG80RQISCxtCRh3syI3drh/So/ZdWp/MRI0XDp+oTROwut5NscYht4EQ==",
   "success": true,
-  "projectFilePath": "C:\\Pessoal\\TechChallenge\\fiap-fast-food\\four-six-api\\src\\FourSix.Domain\\FourSix.Domain.csproj",
+  "projectFilePath": "C:\\Projeto Estudo\\Pos\\fiap-fast-food\\four-six-api\\src\\FourSix.Domain\\FourSix.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
