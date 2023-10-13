@@ -1,6 +1,6 @@
 ﻿namespace FourSix.Domain.Entities
 {
-    internal interface IProdutoRepository
+    public interface IProdutoRepository : IGetRepository<Produto>, ISetRepository<Produto>
     {
     }
 }
