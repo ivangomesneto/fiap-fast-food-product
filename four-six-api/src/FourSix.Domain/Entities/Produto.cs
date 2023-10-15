@@ -1,15 +1,15 @@
 ﻿namespace FourSix.Domain.Entities
 {
-    public enum CategoriaProduto
+    public enum EnumCategoriaProduto
     {
         Lanche,
         Acompanhamento,
         Sobremesa
     }
 
-    public class Produto : BaseEntity, IAggregateRoot
+    public class Produto : BaseEntity, IAggregateRoot, IBaseEntity
     {
-        public Produto(Guid id, string nome, string descricao, CategoriaProduto categoria, decimal preco)
+        public Produto(Guid id, string nome, string descricao, EnumCategoriaProduto categoria, decimal preco)
         {
             Id = id;
             Nome = nome;
@@ -20,7 +20,7 @@
 
         public string Nome { get; }
         public string Descricao { get; } 
-        public CategoriaProduto Categoria { get; }
+        public EnumCategoriaProduto Categoria { get; }
         public decimal Preco { get; }
     }
 }

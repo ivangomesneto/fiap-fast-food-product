@@ -2,8 +2,9 @@
 {
     public interface ISetRepository<T> where T : class
     {
-        int Incluir(T produto);
-        int Alterar(T produto);
-        int Excluir(Guid id);
+        Task Incluir(T entidade);
+        Task Alterar(T entidade);
+        Task Excluir(Guid id);
+        Task<int> Salvar();
     }
 }

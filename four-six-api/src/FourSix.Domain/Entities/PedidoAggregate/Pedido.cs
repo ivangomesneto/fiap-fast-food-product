@@ -1,7 +1,7 @@
 ﻿
 namespace FourSix.Domain.Entities.PedidoAggregate
 {
-    public class Pedido : BaseEntity, IAggregateRoot
+    public class Pedido : BaseEntity, IAggregateRoot, IBaseEntity
     {
         public Pedido(Guid id, string numeroPedido, Guid clienteId, DateTime dataPedido)
         {

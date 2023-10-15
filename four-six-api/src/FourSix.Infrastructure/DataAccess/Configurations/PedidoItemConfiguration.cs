@@ -17,7 +17,7 @@ namespace FourSix.Infrastructure.DataAccess.Configurations
             builder.ToTable("PedidoItem");
             builder.Property(b => b.PedidoId).IsRequired().ValueGeneratedOnAdd();
             builder.Property(b => b.ItemPedidoId).IsRequired();
-            builder.Property(b => b.ValorUnitario).IsRequired();
+            builder.Property(b => b.ValorUnitario).IsRequired().HasPrecision(6, 2);
             builder.Property(b => b.Quantidade).IsRequired();
             builder.Property(b => b.Observacao).IsRequired();
 

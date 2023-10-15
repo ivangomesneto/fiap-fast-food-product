@@ -1,6 +1,6 @@
 ﻿namespace FourSix.Domain.Entities
 {
-    public class Cliente : BaseEntity, IAggregateRoot
+    public class Cliente : BaseEntity, IAggregateRoot, IBaseEntity
     {
         public Cliente(Guid id, string cpf, string nome, string email)
         {
