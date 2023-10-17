@@ -1,4 +1,4 @@
-﻿namespace FourSix.Domain.Entities
+﻿namespace FourSix.Domain.Entities.ClienteAggregate
 {
     public class Cliente : BaseEntity, IAggregateRoot, IBaseEntity
     {

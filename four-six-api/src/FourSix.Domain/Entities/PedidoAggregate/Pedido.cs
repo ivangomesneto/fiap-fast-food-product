@@ -1,4 +1,6 @@
 ﻿
+using FourSix.Domain.Entities.ClienteAggregate;
+
 namespace FourSix.Domain.Entities.PedidoAggregate
 {
     public class Pedido : BaseEntity, IAggregateRoot, IBaseEntity
