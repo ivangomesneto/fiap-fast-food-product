@@ -2,5 +2,6 @@
 {
     public class Pagamento : BaseEntity, IAggregateRoot, IBaseEntity
     {
+        public Pagamento(){}
     }
 }

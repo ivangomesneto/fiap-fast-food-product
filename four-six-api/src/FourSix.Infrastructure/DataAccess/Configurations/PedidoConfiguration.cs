@@ -15,12 +15,25 @@ namespace FourSix.Infrastructure.DataAccess.Configurations
             }
 
             builder.ToTable("Pedido");
-            builder.Property(b => b.Id).IsRequired().ValueGeneratedOnAdd();
-            builder.Property(b => b.ClientId).IsRequired();
-            builder.Property(b => b.NumeroPedido).IsRequired();
-            builder.Property(b => b.DataPedido).IsRequired();
+            builder.HasKey(e => e.Id);
+            builder.Property(b => b.Id)
+                .IsRequired()
+                .ValueGeneratedOnAdd()
+                .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
 
-            builder.HasOne(x => x.Cliente).WithMany().HasForeignKey(b => b.ClientId).OnDelete(DeleteBehavior.Cascade);
+            builder.Property(b => b.ClienteId)
+                .IsRequired()
+                .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
+
+            builder.Property(b => b.NumeroPedido)
+                .IsRequired()
+                .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
+
+            builder.Property(b => b.DataPedido)
+                .IsRequired()
+                .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
+
+            builder.HasOne(x => x.Cliente).WithMany().HasForeignKey(b => b.ClienteId).OnDelete(DeleteBehavior.Cascade);
             builder.HasMany(x => x.PedidoItens).WithOne().HasForeignKey(b => b.PedidoId).OnDelete(DeleteBehavior.Cascade);
         }
     }

@@ -15,13 +15,7 @@ namespace FourSix.Infrastructure.DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string projectPath = AppDomain.CurrentDomain.BaseDirectory.Split(new String[] { @"bin\" }, StringSplitOptions.None)[0];
-            IConfigurationRoot configuration = new ConfigurationBuilder()
-                .SetBasePath(projectPath)
-                .AddJsonFile("appsettings.json").Build();
-            string? connectionString = configuration.GetConnectionString("SeguroAuto");
-
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseSqlServer(ReadDefaultConnectionStringFromAppSettings());
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -32,6 +26,21 @@ namespace FourSix.Infrastructure.DataAccess
             modelBuilder.ApplyConfiguration(new PagamentoConfiguration());
             modelBuilder.ApplyConfiguration(new PedidoConfiguration());
             modelBuilder.ApplyConfiguration(new PedidoItemConfiguration());
+        }
+
+        private static string ReadDefaultConnectionStringFromAppSettings()
+        {
+            string envName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory()))
+                .AddJsonFile("appsettings.json", false)
+                .AddJsonFile($"appsettings.{envName}.json", false)
+                .AddEnvironmentVariables()
+                .Build();
+            //P@$$w0rd
+            string connectionString = configuration.GetValue<string>("PersistenceModule:DefaultConnection");
+            return connectionString;
         }
     }
 }

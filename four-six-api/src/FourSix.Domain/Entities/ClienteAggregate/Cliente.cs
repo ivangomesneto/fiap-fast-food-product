@@ -2,6 +2,7 @@
 {
     public class Cliente : BaseEntity, IAggregateRoot, IBaseEntity
     {
+        public Cliente(){}    
         public Cliente(Guid id, string cpf, string nome, string email)
         {
             this.Id = Id;

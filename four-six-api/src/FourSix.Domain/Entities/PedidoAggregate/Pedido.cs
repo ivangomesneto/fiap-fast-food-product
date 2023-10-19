@@ -5,16 +5,17 @@ namespace FourSix.Domain.Entities.PedidoAggregate
 {
     public class Pedido : BaseEntity, IAggregateRoot, IBaseEntity
     {
+        public Pedido() { }         
         public Pedido(Guid id, string numeroPedido, Guid clienteId, DateTime dataPedido)
         {
             Id = id;
             NumeroPedido = numeroPedido;
-            ClientId = clienteId;
+            ClienteId = clienteId;
             DataPedido = dataPedido;
         }
 
         public string NumeroPedido { get; }
-        public Guid ClientId { get; set; }
+        public Guid ClienteId { get; }
 
         public DateTime DataPedido { get; }
 
@@ -27,7 +28,7 @@ namespace FourSix.Domain.Entities.PedidoAggregate
         {
             if (!PedidoItens.Any(i => i.ItemPedido.Id == produto.Id))
             {
-                _pedidoItens.Add(new PedidoItem(produto, Id, valorUnitario, quantidade, observacao));
+                _pedidoItens.Add(new PedidoItem(Id, produto.Id, valorUnitario, quantidade, observacao));
                 return;
             }
             var itemExistente = PedidoItens.First(i => i.ItemPedido.Id == produto.Id);

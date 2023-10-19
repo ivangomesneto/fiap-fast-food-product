@@ -9,7 +9,8 @@
 
     public class Produto : BaseEntity, IAggregateRoot, IBaseEntity
     {
-        public Produto(Guid id, string nome, string descricao, EnumCategoriaProduto categoria, decimal preco)
+        public Produto(){}
+        public Produto(Guid id, string nome, string descricao, int categoria, decimal preco)
         {
             Id = id;
             Nome = nome;
@@ -20,7 +21,7 @@
 
         public string Nome { get; }
         public string Descricao { get; } 
-        public EnumCategoriaProduto Categoria { get; }
+        public int Categoria { get; }
         public decimal Preco { get; }
     }
 }

@@ -9,14 +9,10 @@ namespace FourSix.WebApi.Modules
     public static class SQLServerExtensions
     {
         public static IServiceCollection AddSQLServer(
-        this IServiceCollection services,
-        IConfiguration configuration)
+        this IServiceCollection services)
         {
-                          services.AddDbContext<Context>(
-                    options => options.UseSqlServer(
-                        configuration.GetValue<string>("PersistenceModule:DefaultConnection")));
+                services.AddDbContext<Context>();
                 services.AddScoped<IUnitOfWork, UnitOfWork>();
-
                 services.AddScoped<IClienteRepository, ClienteRepository>();
 
             return services;

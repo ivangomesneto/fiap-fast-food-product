@@ -15,7 +15,10 @@ namespace FourSix.Infrastructure.DataAccess.Configurations
             }
 
             builder.ToTable("Pagamento");
-            builder.Property(b => b.Id).IsRequired().ValueGeneratedOnAdd();
+            builder.HasKey(e => e.Id);
+            builder.Property(b => b.Id).IsRequired()
+                .ValueGeneratedOnAdd()
+                .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
         }
     }
 }

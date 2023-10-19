@@ -16,10 +16,29 @@ namespace FourSix.Infrastructure.DataAccess.Configurations
             }
 
             builder.ToTable("Cliente");
-            builder.Property(b => b.Id).IsRequired().ValueGeneratedOnAdd();
-            builder.Property(b => b.Cpf).IsRequired().HasMaxLength(11);
-            builder.Property(b => b.Nome).IsRequired().HasMaxLength(50);
-            builder.Property(b => b.Email).IsRequired().HasMaxLength(100);
+            builder.HasKey(e => e.Id);
+            builder.Property(b => b.Id)
+                .IsRequired()
+                .ValueGeneratedOnAdd()
+                .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
+            
+            builder.Property(b => b.Cpf)
+                .IsRequired()
+                .HasMaxLength(11)
+                .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
+
+            builder.Property(b => b.Nome)
+                .IsRequired()
+                .HasMaxLength(50)
+                .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
+
+            builder.Property(b => b.Email)
+            .IsRequired()
+            .HasMaxLength(100)
+            .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
+
+
+
         }
     }
 }

@@ -2,23 +2,22 @@
 {
     public class PedidoItem
     {
-        public PedidoItem(Produto itemPedido, Guid pedidoId, decimal precoUnitario, int quantidade, string? observacao)
+        public PedidoItem() { }
+        public PedidoItem(Guid pedidoId, Guid ItemPedidoId, decimal valorUnitario, int quantidade, string? observacao)
         {
             PedidoId = pedidoId;
-            ItemPedido = itemPedido;
-            ValorUnitario = precoUnitario;
+            ItemPedidoId = ItemPedidoId;
+            ValorUnitario = valorUnitario;
             Quantidade = quantidade;
             Observacao = observacao;
         }
 
-        public Guid PedidoId { get; set; }
-        public Guid ItemPedidoId { get; set; }
+        public Guid PedidoId { get; }
+        public Guid ItemPedidoId { get; }
         public decimal ValorUnitario { get; }
         public int Quantidade { get; private set; }
         public string? Observacao { get; }
-
-        //public Pedido Pedido { get; set; }
-        public Produto ItemPedido { get; }
+        public Produto ItemPedido { get; set; }
 
 
         public void AdicionarQuantidade(int quantidade)

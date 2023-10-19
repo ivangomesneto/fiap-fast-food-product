@@ -15,11 +15,29 @@ namespace FourSix.Infrastructure.DataAccess.Configurations
             }
 
             builder.ToTable("Produto");
-            builder.Property(b => b.Id).IsRequired().ValueGeneratedOnAdd();
-            builder.Property(b => b.Nome).IsRequired().HasMaxLength(50);
-            builder.Property(b => b.Descricao).HasMaxLength(200);
-            builder.Property(b => b.Categoria).IsRequired();
-            builder.Property(b => b.Preco).IsRequired().HasPrecision(6, 2);
+            builder.HasKey(e => e.Id);
+            builder.Property(b => b.Id)
+                .IsRequired()
+                .ValueGeneratedOnAdd()
+                .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
+
+            builder.Property(b => b.Nome)
+                .IsRequired()
+                .HasMaxLength(50)
+                .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
+
+            builder.Property(b => b.Descricao)
+                .HasMaxLength(200)
+                .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
+
+            builder.Property(b => b.Categoria)
+                .IsRequired()
+                .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
+
+            builder.Property(b => b.Preco)
+                .IsRequired()
+                .HasPrecision(6, 2)
+                .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
         }
     }
 }

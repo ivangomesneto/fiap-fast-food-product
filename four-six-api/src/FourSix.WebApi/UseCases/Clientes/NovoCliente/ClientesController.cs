@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FourSix.WebApi.UseCases.Clientes.NovoCliente
 {
+    [ApiController]
+    [Route("[controller]")]
+    [Produces("application/json")]
     public class ClientesController : Controller, IOutputPort
     {
         private readonly Notification _notification;
@@ -40,11 +43,13 @@ namespace FourSix.WebApi.UseCases.Clientes.NovoCliente
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(NovoClienteResponse))]
         [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Post))]
 #pragma warning disable SCS0016 // Controller method is potentially vulnerable to Cross Site Request Forgery (CSRF).
-        public async Task<IActionResult> Post(ClienteModel model)
+        public async Task<IActionResult> Post([FromForm] string cpf,
+            [FromForm] string nome,
+            [FromForm] string email)
         {
             _useCase.SetOutputPort(this);
 
-            await _useCase.Execute(model.Cpf, model.Nome, model.Email)
+            await _useCase.Execute(cpf, nome, email)
                 .ConfigureAwait(false);
 
             return this._viewModel!;
