@@ -42,7 +42,7 @@ namespace FourSix.WebApi.UseCases.Clientes.NovoCliente
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(NovoClienteResponse))]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(NovoClienteResponse))]
         [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Post))]
-#pragma warning disable SCS0016 // Controller method is potentially vulnerable to Cross Site Request Forgery (CSRF).
+        #pragma warning disable SCS0016 // Controller method is potentially vulnerable to Cross Site Request Forgery (CSRF).
         public async Task<IActionResult> Post([FromForm] string cpf,
             [FromForm] string nome,
             [FromForm] string email)

@@ -7,3 +7,28 @@ services:
       POSTGRES_PASSWORD: "fiap2023"
     ports:
       - "5432:5432"
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=P@$$w0rd
+    ports:
+      - "1433:1433"
+    container_name: sql1
+    hostname: sql1
+    restart: always
+    networks:
+      - app-network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - sqlserver
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
