@@ -23,13 +23,17 @@ namespace FourSix.Application.UseCases.Clientes.NovoCliente
 
         public async Task Execute(string cpf, string nomeCompleto, string email)
         {
-            if (String.IsNullOrEmpty(cpf))
+            if (string.IsNullOrEmpty(cpf))
                 this._notification
-                    .Add(nameof(cpf), "CPF é obrigatório.");
+                    .Add(nameof(cpf), $"{nameof(cpf)} é obrigatório.");
 
-            if (String.IsNullOrEmpty(nomeCompleto))
+            if (string.IsNullOrEmpty(nomeCompleto))
                 this._notification
-                    .Add(nameof(nomeCompleto), "Nome é obrigatório.");
+                    .Add(nameof(nomeCompleto), $"{nameof(nomeCompleto)} é obrigatório.");
+
+            if (string.IsNullOrEmpty(email))
+                this._notification
+                    .Add(nameof(email), $"{nameof(email)} é obrigatório.");
 
             if (this._notification
             .IsInvalid)

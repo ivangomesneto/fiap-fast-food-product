@@ -2,7 +2,7 @@
 {
     public interface IGetRepository<T> where T : class
     {
-        Task<IQueryable<T>> Listar();
-        Task<T> Obter(Guid id);
+        IQueryable<T> Listar();
+        T Obter(Guid id);
     }
 }

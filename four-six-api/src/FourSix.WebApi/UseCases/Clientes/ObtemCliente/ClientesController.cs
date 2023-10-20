@@ -1,27 +1,27 @@
 ﻿using FourSix.Application.Services;
-using FourSix.Application.UseCases.Clientes.NovoCliente;
+using FourSix.Application.UseCases.Clientes.ObtemCliente;
 using FourSix.Domain.Entities.ClienteAggregate;
 using FourSix.WebApi.Modules.Commons;
 using FourSix.WebApi.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using System.ComponentModel.DataAnnotations;
 
-namespace FourSix.WebApi.UseCases.Clientes.NovoCliente
+namespace FourSix.WebApi.UseCases.Clientes.ObtemCliente
 {
     [ApiController]
     [Route("[controller]")]
     [Produces("application/json")]
-    [SwaggerTag("Criar, Obter, Editar and Excluir Clientes")]
     public class ClientesController : Controller, IOutputPort
     {
         private readonly Notification _notification;
 
         private IActionResult _viewModel;
-        private readonly INovoClienteUseCase _useCase;
+        private readonly IObtemClienteUseCase _useCase;
 
         public ClientesController(Notification notification,
-            INovoClienteUseCase useCase)
+            IObtemClienteUseCase useCase)
         {
             this._useCase = useCase;
             this._notification = notification;
@@ -36,25 +36,24 @@ namespace FourSix.WebApi.UseCases.Clientes.NovoCliente
         void IOutputPort.NotFound() => this._viewModel = this.NotFound();
 
         void IOutputPort.Ok(Cliente cliente) =>
-            this._viewModel = this.Ok(new NovoClienteResponse(new ClienteModel(cliente)));
+            this._viewModel = this.Ok(new ObtemClienteResponse(new ClienteModel(cliente)));
 
-        void IOutputPort.Exist() => this._viewModel = this.BadRequest("Cliente já existe");
 
         /// <summary>
-        /// Cria novo cliente
+        /// Obtém cliente
         /// </summary>
-        /// <param name="cliente">Dados do Cliente</param>
+        /// <param name="cpf"></param>
         /// <returns></returns>
         [AllowAnonymous]
-        [HttpPost]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(NovoClienteResponse))]
-        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(NovoClienteResponse))]
-        [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Post))]
-        public async Task<IActionResult> Post([FromBody] NovoClienteRequest cliente)
+        [HttpGet("{cpf}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ObtemClienteResponse))]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(ObtemClienteResponse))]
+        [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Find))]
+        public async Task<IActionResult> Get([FromRoute][Required] string cpf)
         {
             _useCase.SetOutputPort(this);
 
-            await _useCase.Execute(cliente.Cpf, cliente.NomeCompleto, cliente.Email)
+            await _useCase.Execute(cpf)
                 .ConfigureAwait(false);
 
             return this._viewModel!;

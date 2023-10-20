@@ -18,5 +18,10 @@ namespace FourSix.Application.UseCases.Clientes.NovoCliente
         /// Entrada inválida
         /// </summary>
         void Invalid();
+
+        /// <summary>
+        /// Entrada inválida
+        /// </summary>
+        void Exist();
     }
 }

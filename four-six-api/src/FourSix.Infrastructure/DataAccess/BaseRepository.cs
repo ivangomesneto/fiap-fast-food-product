@@ -13,14 +13,14 @@ namespace FourSix.Infrastructure.DataAccess
             _context = context;
         }
 
-        public async Task<T> Obter(Guid id)
+        public T Obter(Guid id)
         {
-            return await _context.Set<T>().FirstAsync(f => f.Id == id);
+            return _context.Set<T>().First(f => f.Id == id);
         }
 
-        public Task<IQueryable<T>> Listar()
+        public IQueryable<T> Listar()
         {
-            return Task.FromResult(_context.Set<T>().AsQueryable());
+            return _context.Set<T>().AsQueryable();
         }
 
         public async Task Incluir(T entidade)

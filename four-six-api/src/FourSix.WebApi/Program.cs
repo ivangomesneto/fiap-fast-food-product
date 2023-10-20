@@ -14,6 +14,7 @@ builder.Services.AddSQLServer();
 builder.Services.AddUseCases();
 builder.Services.AddCustomControllers();
 builder.Services.AddCustomCors();
+builder.Services.AddSwaggerConfig();
 
 var app = builder.Build();
 
@@ -21,7 +22,12 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(
+                    options =>
+                    {
+                        var swaggerEndpoint = $"/swagger/v1/swagger.json";
+                        options.SwaggerEndpoint(swaggerEndpoint, "v1");
+                    });
 }
 
 app.UseAuthorization();
