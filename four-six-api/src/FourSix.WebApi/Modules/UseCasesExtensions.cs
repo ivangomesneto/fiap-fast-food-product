@@ -2,6 +2,7 @@
 using FourSix.Application.UseCases.Clientes.NovoCliente;
 using FourSix.Application.UseCases.Clientes.ObtemCliente;
 using FourSix.Application.UseCases.Produtos.AlteraProduto;
+using FourSix.Application.UseCases.Produtos.ObtemProdutos;
 
 namespace FourSix.WebApi.Modules
 {
@@ -19,6 +20,9 @@ namespace FourSix.WebApi.Modules
 
             services.AddScoped<IAlteraProdutoUseCase, AlteraProdutoUseCase>();
             services.Decorate<IAlteraProdutoUseCase, AlteraProdutoValidationUseCase>();
+
+            services.AddScoped<IObtemProdutosUseCase, ObtemProdutosUseCase>();
+            services.Decorate<IObtemProdutosUseCase, ObtemProdutosValidationUseCase>();
 
             return services;
         }

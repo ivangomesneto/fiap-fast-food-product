@@ -8,9 +8,6 @@ namespace FourSix.Application.UseCases.Clientes.ObtemCliente
         private readonly IObtemClienteUseCase _useCase;
         private IOutputPort _outputPort;
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="GetAccountValidationUseCase" /> class.
-        /// </summary>
         public ObtemClienteValidationUseCase(IObtemClienteUseCase useCase, Notification notification)
         {
             this._useCase = useCase;
@@ -18,14 +15,12 @@ namespace FourSix.Application.UseCases.Clientes.ObtemCliente
             this._outputPort = new ObtemClientePresenter();
         }
 
-        /// <inheritdoc />
         public void SetOutputPort(IOutputPort outputPort)
         {
             this._outputPort = outputPort;
             this._useCase.SetOutputPort(outputPort);
         }
 
-        /// <inheritdoc />
         public async Task Execute(string cpf)
         {
             if (string.IsNullOrEmpty(cpf))
