@@ -1,8 +1,8 @@
 ﻿using FourSix.Domain.Entities.ProdutoAggregate;
 
-namespace FourSix.Application.UseCases.Produtos.ObtemProduto
+namespace FourSix.Application.UseCases.Produtos.ObtemProdutos
 {
-    public class ObtemProdutoUseCase : IObtemProdutoUseCase
+    public class ObtemProdutosUseCase : IObtemProdutosUseCase
     {
         private readonly IProdutoRepository _produtoRepository;
         private IOutputPort _outputPort;
@@ -10,22 +10,22 @@ namespace FourSix.Application.UseCases.Produtos.ObtemProduto
         public ObtemProdutosUseCase(IProdutoRepository produtoRepository)
         {
             this._produtoRepository = produtoRepository;
-            this._outputPort = new ObtemProdutoPresenter();
+            this._outputPort = new ObtemProdutosPresenter();
         }
 
         public void SetOutputPort(IOutputPort outputPort) => this._outputPort = outputPort;
 
-        public Task Execute(string id) =>
-            this.ObtemProduto(id);
+        public Task Execute() =>
+            this.ObtemProdutos();
 
-        private async Task ObtemProduto(string id)
+        private async Task ObtemProdutos()
         {
-            var produto = this._produtoRepository
-                  .Listar().Where(x => x.id == id).FirstOrDefault();
+            var produtos = this._produtoRepository
+                .Listar().ToList();
 
-            if (produto != null)
+            if (produtos != null)
             {
-                this._outputPort.Ok(produto);
+                this._outputPort.Ok(produtos);
                 return;
             }
 

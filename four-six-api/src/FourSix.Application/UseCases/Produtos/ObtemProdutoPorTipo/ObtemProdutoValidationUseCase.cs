@@ -1,19 +1,18 @@
 ﻿using FourSix.Application.Services;
 
-namespace FourSix.Application.UseCases.Produtos.ObtemProduto
+namespace FourSix.Application.UseCases.Produtos.ObtemProdutos
 {
-    // entender onde isso é usado.
-    public class ObtemProdutoValidationUseCase : IObtemProdutoUseCase
+    public class ObtemProdutosValidationUseCase : IObtemProdutosUseCase
     {
         private readonly Notification _notification;
-        private readonly IObtemProdutoUseCase _useCase;
+        private readonly IObtemProdutosUseCase _useCase;
         private IOutputPort _outputPort;
 
-        public ObtemProdutoValidationUseCase(IObtemProdutosUseCase useCase, Notification notification)
+        public ObtemProdutosValidationUseCase(IObtemProdutosUseCase useCase, Notification notification)
         {
             this._useCase = useCase;
             this._notification = notification;
-            this._outputPort = new ObtemProdutoPresenter();
+            this._outputPort = new ObtemProdutosPresenter();
         }
 
         public void SetOutputPort(IOutputPort outputPort)

@@ -1,10 +1,10 @@
 ﻿using FourSix.WebApi.ViewModels;
 
-namespace FourSix.WebApi.UseCases.Produtos.ObtemProdutos
+namespace FourSix.WebApi.UseCases.Produtos.ObtemProduto
 {
-    public class ObtemProdutosResponse
+    public class ObtemProdutoResponse
     {
-        public ObtemProdutosResponse(IList<ProdutoModel> produtosModel) => this.Produtos = produtosModel;
-        public IList<ProdutoModel> Produtos { get; }
+        public ObtemProdutoResponse(ProdutoModel produtoModel) => this.Produto = produtoModel;
+        public ProdutoModel Produto { get; }
     }
 }

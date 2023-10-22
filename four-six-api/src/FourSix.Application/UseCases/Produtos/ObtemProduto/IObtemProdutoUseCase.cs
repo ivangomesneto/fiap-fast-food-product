@@ -1,8 +1,8 @@
-﻿namespace FourSix.Application.UseCases.Produtos.ObtemProdutos
+﻿namespace FourSix.Application.UseCases.Produtos.ObtemProduto
 {
-    public interface IObtemProdutosUseCase
+    public interface IObtemProdutoUseCase
     {
-        Task Execute();
+        Task Execute(string id);
         void SetOutputPort(IOutputPort outputPort);
     }
 }
