@@ -1,5 +1,6 @@
 ﻿
 using FourSix.Domain.Entities.ClienteAggregate;
+using FourSix.Domain.Entities.ProdutoAggregate;
 
 namespace FourSix.Domain.Entities.PedidoAggregate
 {

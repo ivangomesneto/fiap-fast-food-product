@@ -1,11 +1,13 @@
-﻿namespace FourSix.Application.UseCases.Clientes.NovoCliente
+﻿using FourSix.Domain.Entities.ProdutoAggregate;
+
+namespace FourSix.Application.UseCases.Produtos.AlteraProduto
 {
-    public interface INovoClienteUseCase
+    public interface IAlteraProdutoUseCase
     {
         /// <summary>
         /// Executa o Caso de Uso
         /// </summary>
-        Task Execute(string cpf, string nomeCompleto, string email);
+        Task Execute(string nome, string descricao, EnumCategoriaProduto categoria, decimal preco);
 
         /// <summary>
         /// Define a porta de saída

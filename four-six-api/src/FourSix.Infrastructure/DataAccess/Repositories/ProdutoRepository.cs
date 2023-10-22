@@ -1,8 +1,8 @@
-﻿using FourSix.Domain.Entities;
+﻿using FourSix.Domain.Entities.ProdutoAggregate;
 
 namespace FourSix.Infrastructure.DataAccess.Repositories
 {
-    internal class ProdutoRepository : BaseRepository<Produto>, IProdutoRepository
+    public class ProdutoRepository : BaseRepository<Produto>, IProdutoRepository
     {
         public ProdutoRepository(Context context) : base(context)
         {

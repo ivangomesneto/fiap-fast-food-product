@@ -1,4 +1,4 @@
-﻿namespace FourSix.Domain.Entities
+﻿namespace FourSix.Domain.Entities.ProdutoAggregate
 {
     public enum EnumCategoriaProduto
     {
@@ -10,7 +10,7 @@
     public class Produto : BaseEntity, IAggregateRoot, IBaseEntity
     {
         public Produto(){}
-        public Produto(Guid id, string nome, string descricao, int categoria, decimal preco)
+        public Produto(Guid id, string nome, string descricao, EnumCategoriaProduto categoria, decimal preco)
         {
             Id = id;
             Nome = nome;
@@ -21,7 +21,7 @@
 
         public string Nome { get; }
         public string Descricao { get; } 
-        public int Categoria { get; }
+        public EnumCategoriaProduto Categoria { get; }
         public decimal Preco { get; }
     }
 }

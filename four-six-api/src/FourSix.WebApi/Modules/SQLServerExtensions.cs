@@ -1,8 +1,8 @@
 ﻿using FourSix.Application.Services;
 using FourSix.Domain.Entities.ClienteAggregate;
+using FourSix.Domain.Entities.ProdutoAggregate;
 using FourSix.Infrastructure.DataAccess;
 using FourSix.Infrastructure.DataAccess.Repositories;
-using Microsoft.EntityFrameworkCore;
 
 namespace FourSix.WebApi.Modules
 {
@@ -14,6 +14,7 @@ namespace FourSix.WebApi.Modules
                 services.AddDbContext<Context>();
                 services.AddScoped<IUnitOfWork, UnitOfWork>();
                 services.AddScoped<IClienteRepository, ClienteRepository>();
+                services.AddScoped<IProdutoRepository, ProdutoRepository>();
 
             return services;
         }

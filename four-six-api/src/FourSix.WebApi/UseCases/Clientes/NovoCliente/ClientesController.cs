@@ -49,8 +49,8 @@ namespace FourSix.WebApi.UseCases.Clientes.NovoCliente
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(NovoClienteResponse))]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(NovoClienteResponse))]
-        [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Post))]
-        public async Task<IActionResult> Post([FromBody] NovoClienteRequest cliente)
+        [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Create))]
+        public async Task<IActionResult> Create([FromBody] NovoClienteRequest cliente)
         {
             _useCase.SetOutputPort(this);
 

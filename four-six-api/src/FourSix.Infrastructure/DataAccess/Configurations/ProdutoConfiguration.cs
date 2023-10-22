@@ -1,4 +1,4 @@
-﻿using FourSix.Domain.Entities;
+﻿using FourSix.Domain.Entities.ProdutoAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

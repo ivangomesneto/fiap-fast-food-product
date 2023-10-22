@@ -1,9 +1,4 @@
 ﻿using FourSix.Domain.Entities.ClienteAggregate;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FourSix.Application.UseCases.Clientes.ObtemCliente
 {

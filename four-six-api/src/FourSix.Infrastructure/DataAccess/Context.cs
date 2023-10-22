@@ -1,6 +1,6 @@
-﻿using FourSix.Domain.Entities;
-using FourSix.Domain.Entities.ClienteAggregate;
+﻿using FourSix.Domain.Entities.ClienteAggregate;
 using FourSix.Domain.Entities.PedidoAggregate;
+using FourSix.Domain.Entities.ProdutoAggregate;
 using FourSix.Infrastructure.DataAccess.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

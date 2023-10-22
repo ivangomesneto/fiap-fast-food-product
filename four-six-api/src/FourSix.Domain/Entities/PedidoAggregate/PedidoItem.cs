@@ -1,4 +1,6 @@
-﻿namespace FourSix.Domain.Entities.PedidoAggregate
+﻿using FourSix.Domain.Entities.ProdutoAggregate;
+
+namespace FourSix.Domain.Entities.PedidoAggregate
 {
     public class PedidoItem
     {

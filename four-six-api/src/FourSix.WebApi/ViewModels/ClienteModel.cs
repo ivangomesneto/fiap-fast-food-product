@@ -11,7 +11,7 @@ namespace FourSix.WebApi.ViewModels
             Nome = cliente.Nome;
             Email = cliente.Email;
         }
-        public Guid Id { get; set; }
+        public Guid Id { get; }
         public string Cpf { get; }
         public string Nome { get; }
         public string Email { get; }
