@@ -9,7 +9,7 @@ namespace FourSix.Application.UseCases.Produtos.ObtemProduto
         private readonly IObtemProdutoUseCase _useCase;
         private IOutputPort _outputPort;
 
-        public ObtemProdutoValidationUseCase(IObtemProdutosUseCase useCase, Notification notification)
+        public ObtemProdutoValidationUseCase(IObtemProdutoUseCase useCase, Notification notification)
         {
             this._useCase = useCase;
             this._notification = notification;

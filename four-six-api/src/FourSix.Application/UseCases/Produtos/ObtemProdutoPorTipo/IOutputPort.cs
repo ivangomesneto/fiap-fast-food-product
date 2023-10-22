@@ -6,6 +6,6 @@ namespace FourSix.Application.UseCases.Produtos.ObtemProdutoPorTipo
     {
         void Invalid();
         void NotFound();
-        void Ok(IList<Produto> produtos);
+        void Ok(Produto produtos);
     }
 }
