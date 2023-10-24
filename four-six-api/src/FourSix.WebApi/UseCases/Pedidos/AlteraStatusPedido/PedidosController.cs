@@ -1,5 +1,6 @@
 ﻿using FourSix.Application.Services;
 using FourSix.Application.UseCases;
+using FourSix.Application.UseCases.Pedidos.AlteraStatusPedido;
 using FourSix.Application.UseCases.Pedidos.NovoPedido;
 using FourSix.Domain.Entities.PedidoAggregate;
 using FourSix.WebApi.Modules.Commons;
@@ -8,21 +9,21 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace FourSix.WebApi.UseCases.Pedidos.NovoPedido
+namespace FourSix.WebApi.UseCases.Pedidos.AlteraStatusPedido
 {
     [ApiController]
     [Route("[controller]")]
     [Produces("application/json")]
-    [SwaggerTag("Criar, Obter, Alterar Status e Cancelar Pedidos")]
+    [SwaggerTag("Criar, Obter, Alterar e Cancelar Pedidos")]
     public class PedidosController : Controller, IOutputPort<Pedido>
     {
         private readonly Notification _notification;
 
         private IActionResult _viewModel;
-        private readonly INovoPedidoUseCase _useCase;
+        private readonly IAlteraStatusPedidoUseCase _useCase;
 
         public PedidosController(Notification notification,
-            INovoPedidoUseCase useCase)
+            IAlteraStatusPedidoUseCase useCase)
         {
             _useCase = useCase;
             _notification = notification;
@@ -37,25 +38,25 @@ namespace FourSix.WebApi.UseCases.Pedidos.NovoPedido
         void IOutputPort<Pedido>.NotFound() => _viewModel = NotFound();
 
         void IOutputPort<Pedido>.Ok(Pedido pedido) =>
-            _viewModel = Ok(new NovoPedidoResponse(new PedidoModel(pedido)));
+            _viewModel = Ok(new AlteraStatusPedidoResponse(new PedidoModel(pedido)));
 
         void IOutputPort<Pedido>.Exist() => _viewModel = BadRequest("Pedido já existe");
 
         /// <summary>
-        /// Cria novo pedido
+        /// Altera status do pedido
         /// </summary>
-        /// <param name="pedido">Dados do Pedido</param>
+        /// <param name="pedidoStatus">Dados do Status do Pedido</param>
         /// <returns></returns>
         [AllowAnonymous]
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(NovoPedidoResponse))]
-        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(NovoPedidoResponse))]
-        [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Create))]
-        public async Task<IActionResult> Create([FromBody] NovoPedidoRequest pedido)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(AlteraStatusPedidoResponse))]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(AlteraStatusPedidoResponse))]
+        [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Update))]
+        public async Task<IActionResult> Alterar([FromBody] AlteraStatusPedidoRequest pedidoStatus)
         {
             _useCase.SetOutputPort(this);
 
-            await _useCase.Execute(pedido.NumeroPedido, pedido.DataPedido, pedido.ClienteId)
+            await _useCase.Execute(pedidoStatus.PedidoId, pedidoStatus.StatusId, pedidoStatus.DataStatus)
                 .ConfigureAwait(false);
 
             return _viewModel!;

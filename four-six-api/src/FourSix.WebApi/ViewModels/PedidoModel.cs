@@ -12,7 +12,7 @@ namespace FourSix.WebApi.ViewModels
             DataPedido = pedido.DataPedido;
             TotalItens = pedido.TotalItens;
             ValorTotal = pedido.ValorTotal;
-            PedidoItens = pedido.PedidoItens.Select(s => new PedidoItemModel(s)).ToList();
+            PedidoItens = pedido.Itens.Select(s => new PedidoItemModel(s)).ToList();
         }
 
         Guid Id { get; }

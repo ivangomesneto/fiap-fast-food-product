@@ -7,7 +7,7 @@ namespace FourSix.Application.UseCases.Pedidos.NovoPedido
     {
         private readonly IPedidoRepository _pedidoRepository;
         private readonly IUnitOfWork _unitOfWork;
-        private IOutputPort _outputPort;
+        private IOutputPort<Pedido> _outputPort;
 
         public NovoPedidoUseCase(
             IPedidoRepository pedidoRepository,
@@ -19,7 +19,7 @@ namespace FourSix.Application.UseCases.Pedidos.NovoPedido
         }
 
         /// <inheritdoc />
-        public void SetOutputPort(IOutputPort outputPort) => this._outputPort = outputPort;
+        public void SetOutputPort(IOutputPort<Pedido> outputPort) => this._outputPort = outputPort;
 
         /// <inheritdoc />
         public Task Execute(string numeroPedido, DateTime dataPedido, Guid? clienteId) =>

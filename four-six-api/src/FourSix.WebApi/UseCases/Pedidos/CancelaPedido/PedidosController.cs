@@ -1,5 +1,6 @@
 ﻿using FourSix.Application.Services;
 using FourSix.Application.UseCases;
+using FourSix.Application.UseCases.Pedidos.CancelaPedido;
 using FourSix.Application.UseCases.Pedidos.NovoPedido;
 using FourSix.Domain.Entities.PedidoAggregate;
 using FourSix.WebApi.Modules.Commons;
@@ -8,7 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace FourSix.WebApi.UseCases.Pedidos.NovoPedido
+namespace FourSix.WebApi.UseCases.Pedidos.CancelaPedido
 {
     [ApiController]
     [Route("[controller]")]
@@ -19,10 +20,10 @@ namespace FourSix.WebApi.UseCases.Pedidos.NovoPedido
         private readonly Notification _notification;
 
         private IActionResult _viewModel;
-        private readonly INovoPedidoUseCase _useCase;
+        private readonly ICancelaPedidoUseCase _useCase;
 
         public PedidosController(Notification notification,
-            INovoPedidoUseCase useCase)
+            ICancelaPedidoUseCase useCase)
         {
             _useCase = useCase;
             _notification = notification;
@@ -37,25 +38,24 @@ namespace FourSix.WebApi.UseCases.Pedidos.NovoPedido
         void IOutputPort<Pedido>.NotFound() => _viewModel = NotFound();
 
         void IOutputPort<Pedido>.Ok(Pedido pedido) =>
-            _viewModel = Ok(new NovoPedidoResponse(new PedidoModel(pedido)));
+            _viewModel = Ok(new CancelaPedidoResponse(new PedidoModel(pedido)));
 
         void IOutputPort<Pedido>.Exist() => _viewModel = BadRequest("Pedido já existe");
 
         /// <summary>
-        /// Cria novo pedido
+        /// Cancela pedido
         /// </summary>
         /// <param name="pedido">Dados do Pedido</param>
         /// <returns></returns>
         [AllowAnonymous]
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(NovoPedidoResponse))]
-        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(NovoPedidoResponse))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CancelaPedidoResponse))]
         [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Create))]
-        public async Task<IActionResult> Create([FromBody] NovoPedidoRequest pedido)
+        public async Task<IActionResult> Create([FromBody] CancelaPedidoRequest pedido)
         {
             _useCase.SetOutputPort(this);
 
-            await _useCase.Execute(pedido.NumeroPedido, pedido.DataPedido, pedido.ClienteId)
+            await _useCase.Execute(pedido.PedidoId, pedido.DataCancelamento)
                 .ConfigureAwait(false);
 
             return _viewModel!;

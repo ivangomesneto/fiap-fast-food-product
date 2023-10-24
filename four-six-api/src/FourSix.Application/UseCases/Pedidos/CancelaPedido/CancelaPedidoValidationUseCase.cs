@@ -1,19 +1,19 @@
 ﻿using FourSix.Application.Services;
 using FourSix.Domain.Entities.PedidoAggregate;
 
-namespace FourSix.Application.UseCases.Pedidos.NovoPedido
+namespace FourSix.Application.UseCases.Pedidos.CancelaPedido
 {
-    public class NovoPedidoValidationUseCase : INovoPedidoUseCase
+    public class CancelaPedidoValidationUseCase : ICancelaPedidoUseCase
     {
         private readonly Notification _notification;
-        private readonly INovoPedidoUseCase _useCase;
+        private readonly ICancelaPedidoUseCase _useCase;
         private IOutputPort<Pedido> _outputPort;
 
-        public NovoPedidoValidationUseCase(INovoPedidoUseCase useCase, Notification notification)
+        public CancelaPedidoValidationUseCase(ICancelaPedidoUseCase useCase, Notification notification)
         {
             this._useCase = useCase;
             this._notification = notification;
-            this._outputPort = new NovoPedidoPresenter();
+            this._outputPort = new CancelaPedidoPresenter();
         }
 
         public void SetOutputPort(IOutputPort<Pedido> outputPort)
@@ -22,12 +22,8 @@ namespace FourSix.Application.UseCases.Pedidos.NovoPedido
             this._useCase.SetOutputPort(outputPort);
         }
 
-        public async Task Execute(string numeroPedido, DateTime dataPedido, Guid? clienteId)
+        public async Task Execute(Guid pedidoId, DateTime dataCancelamento)
         {
-            if (string.IsNullOrEmpty(numeroPedido))
-                this._notification
-                    .Add(nameof(numeroPedido), $"{nameof(numeroPedido)} é obrigatório.");
-
             if (this._notification
             .IsInvalid)
             {
@@ -37,7 +33,7 @@ namespace FourSix.Application.UseCases.Pedidos.NovoPedido
             }
 
             await this._useCase
-                .Execute(numeroPedido, dataPedido, clienteId)
+                .Execute(pedidoId, dataCancelamento)
                 .ConfigureAwait(false);
         }
     }

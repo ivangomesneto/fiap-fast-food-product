@@ -1,8 +1,8 @@
 ﻿using FourSix.Domain.Entities.PedidoAggregate;
 
-namespace FourSix.Application.UseCases.Pedidos.NovoPedido
+namespace FourSix.Application.UseCases.Pedidos.AlteraStatusPedido
 {
-    public sealed class NovoPedidoPresenter : IOutputPort<Pedido>
+    public sealed class AlteraStatusPedidoPresenter : IOutputPort<Pedido>
     {
         public Pedido? Pedido { get; private set; }
         public bool InvalidOutput { get; private set; }

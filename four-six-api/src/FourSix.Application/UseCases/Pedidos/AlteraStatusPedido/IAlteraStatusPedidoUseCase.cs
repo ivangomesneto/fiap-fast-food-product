@@ -1,13 +1,13 @@
 ﻿using FourSix.Domain.Entities.PedidoAggregate;
 
-namespace FourSix.Application.UseCases.Pedidos.NovoPedido
+namespace FourSix.Application.UseCases.Pedidos.AlteraStatusPedido
 {
-    public interface INovoPedidoUseCase
+    public interface IAlteraStatusPedidoUseCase
     {
         /// <summary>
         /// Executa o Caso de Uso
         /// </summary>
-        Task Execute(string numeroPedido, DateTime dataPedido, Guid? clienteId);
+        Task Execute(Guid pedidoId, EnumStatus statusId, DateTime dataStatus);
 
         /// <summary>
         /// Define a porta de saída
