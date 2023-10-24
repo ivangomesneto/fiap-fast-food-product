@@ -32,8 +32,7 @@ namespace FourSix.Application.UseCases.Clientes.NovoCliente
         private async Task NovoCliente(Cliente cliente)
         {
             if (this._clienteRepository
-                .Listar()
-                .Any(q => q.Cpf == cliente.Cpf))
+                .Listar(q => q.Cpf == cliente.Cpf).Any())
             {
                 this._outputPort.Exist();
                 return;

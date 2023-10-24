@@ -1,10 +1,11 @@
 ﻿using FourSix.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Linq.Expressions;
 
 namespace FourSix.Infrastructure.DataAccess
 {
-    public class BaseRepository<T> where T : class, IBaseEntity
+    public class BaseRepository<T, C> where T : class//, IBaseEntity
     {
         internal readonly Context _context;
 
@@ -13,14 +14,17 @@ namespace FourSix.Infrastructure.DataAccess
             _context = context;
         }
 
-        public T Obter(Guid id)
+        public T Obter(C id)
         {
-            return _context.Set<T>().First(f => f.Id == id);
+            return _context.Set<T>().Find(id);
         }
 
-        public IQueryable<T> Listar()
+        public IEnumerable<T> Listar(Expression<Func<T, bool>>? predicate = null)
         {
-            return _context.Set<T>().AsQueryable();
+            if (predicate == null)
+                return _context.Set<T>();
+            else
+                return _context.Set<T>().Where(predicate);
         }
 
         public async Task Incluir(T entidade)
@@ -33,9 +37,10 @@ namespace FourSix.Infrastructure.DataAccess
             _context.Entry(entidade).State = EntityState.Modified;
         }
 
-        public async Task Excluir(Guid id)
+        public async Task Excluir(C id)
         {
-            var entity = await _context.Set<T>().FirstOrDefaultAsync(n => n.Id == id);
+            var entity = Obter(id);
+            //var entity = await _context.Set<T>().FirstOrDefaultAsync(n => n.Id == id);
             EntityEntry entityEntry = _context.Entry<T>(entity);
             entityEntry.State = EntityState.Deleted;
         }
@@ -43,6 +48,18 @@ namespace FourSix.Infrastructure.DataAccess
         public Task<int> Salvar()
         {
             return _context.SaveChangesAsync();
+        }
+    }
+
+    public class BaseRepository<T> : BaseRepository<T, Guid> where T : class, IBaseEntity
+    {
+        public BaseRepository(Context context) : base(context)
+        {
+        }
+
+        public new T Obter(Guid id)
+        {
+            return _context.Set<T>().First(f => f.Id == id);
         }
     }
 }

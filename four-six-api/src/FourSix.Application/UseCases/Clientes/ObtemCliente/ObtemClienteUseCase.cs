@@ -21,7 +21,7 @@ namespace FourSix.Application.UseCases.Clientes.ObtemCliente
         private async Task ObtemCliente(string cpf)
         {
             var cliente = this._clienteRepository
-                .Listar().Where(q=>q.Cpf==cpf).FirstOrDefault();
+                .Listar(q => q.Cpf == cpf).FirstOrDefault();
 
             if (cliente != null)
             {

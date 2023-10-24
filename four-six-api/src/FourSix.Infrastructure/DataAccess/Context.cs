@@ -26,6 +26,8 @@ namespace FourSix.Infrastructure.DataAccess
             modelBuilder.ApplyConfiguration(new PagamentoConfiguration());
             modelBuilder.ApplyConfiguration(new PedidoConfiguration());
             modelBuilder.ApplyConfiguration(new PedidoItemConfiguration());
+            modelBuilder.ApplyConfiguration(new PedidoStatusConfiguration());
+            modelBuilder.ApplyConfiguration(new StatusConfiguration());
         }
 
         private static string ReadDefaultConnectionStringFromAppSettings()

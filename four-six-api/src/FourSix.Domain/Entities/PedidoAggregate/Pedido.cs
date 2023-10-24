@@ -1,29 +1,31 @@
-﻿
-using FourSix.Domain.Entities.ClienteAggregate;
+﻿using FourSix.Domain.Entities.ClienteAggregate;
 using FourSix.Domain.Entities.ProdutoAggregate;
 
 namespace FourSix.Domain.Entities.PedidoAggregate
 {
     public class Pedido : BaseEntity, IAggregateRoot, IBaseEntity
     {
-        public Pedido() { }         
-        public Pedido(Guid id, string numeroPedido, Guid clienteId, DateTime dataPedido)
+        private readonly List<PedidoItem> _pedidoItens;
+        private readonly List<PedidoStatus> _pedidoStatus;
+
+        public Pedido() { }
+
+        public Pedido(Guid id, string numeroPedido, DateTime dataPedido, Guid? clienteId)
         {
             Id = id;
             NumeroPedido = numeroPedido;
-            ClienteId = clienteId;
             DataPedido = dataPedido;
+            ClienteId = clienteId;
         }
 
         public string NumeroPedido { get; }
-        public Guid ClienteId { get; }
-
+        public Guid? ClienteId { get; }
         public DateTime DataPedido { get; }
-
-        private readonly List<PedidoItem> _pedidoItens;
-
         public IReadOnlyCollection<PedidoItem> PedidoItens => _pedidoItens.AsReadOnly();
+        public IReadOnlyCollection<PedidoStatus> PedidoStatus => _pedidoStatus.AsReadOnly();
         public int TotalItens => _pedidoItens.Sum(i => i.Quantidade);
+        public decimal ValorTotal => _pedidoItens.Sum(i => i.ValorUnitario * i.Quantidade);
+        public Cliente Cliente { get; set; }
 
         public void AdicionarItem(Produto produto, decimal valorUnitario, int quantidade = 1, string? observacao = null)
         {
@@ -36,9 +38,9 @@ namespace FourSix.Domain.Entities.PedidoAggregate
             itemExistente.AdicionarQuantidade(quantidade);
         }
 
-        public decimal ValorTotal => _pedidoItens.Sum(i => i.ValorUnitario * i.Quantidade);
-        public Cliente Cliente { get; set; }
-
+        public void AlterarStatus(EnumStatus statusId, DateTime dataStatus)
+        {
+            _pedidoStatus.Add(new PedidoStatus(Id, statusId, dataStatus));
+        }
     }
-
 }

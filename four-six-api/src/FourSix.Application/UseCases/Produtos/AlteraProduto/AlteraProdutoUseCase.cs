@@ -32,11 +32,10 @@ namespace FourSix.Application.UseCases.Produtos.AlteraProduto
 
         private async Task AlteraProduto(Produto produto)
         {
-            
+
             if (this._produtoRepository
-                .Listar()
-                .Any(q => q.Descricao == produto.Descricao
-                && q.Categoria==produto.Categoria))
+                .Listar(q => q.Descricao == produto.Descricao
+                && q.Categoria == produto.Categoria).Any())
             {
                 this._outputPort.Exist();
                 return;
@@ -51,7 +50,7 @@ namespace FourSix.Application.UseCases.Produtos.AlteraProduto
                 .ConfigureAwait(false);
 
             this._outputPort?.Ok(produto);
-            
+
         }
     }
 }

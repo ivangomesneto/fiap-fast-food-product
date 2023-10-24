@@ -22,7 +22,6 @@ namespace FourSix.Infrastructure.DataAccess.Configurations
                 .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
 
             builder.Property(b => b.ClienteId)
-                .IsRequired()
                 .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
 
             builder.Property(b => b.NumeroPedido)
@@ -35,6 +34,7 @@ namespace FourSix.Infrastructure.DataAccess.Configurations
 
             builder.HasOne(x => x.Cliente).WithMany().HasForeignKey(b => b.ClienteId).OnDelete(DeleteBehavior.Cascade);
             builder.HasMany(x => x.PedidoItens).WithOne().HasForeignKey(b => b.PedidoId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasMany(x => x.PedidoStatus).WithOne().HasForeignKey(b => b.PedidoId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
