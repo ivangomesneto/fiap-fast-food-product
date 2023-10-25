@@ -1,32 +1,11 @@
-﻿using FourSix.Domain.Entities;
+﻿using FourSix.Domain.Entities.ProdutoAggregate;
 
 namespace FourSix.Infrastructure.DataAccess.Repositories
 {
-    internal class ProdutoRepository : IProdutoRepository
+    public class ProdutoRepository : BaseRepository<Produto>, IProdutoRepository
     {
-        public int Alterar(Produto produto)
+        public ProdutoRepository(Context context) : base(context)
         {
-            throw new NotImplementedException();
-        }
-
-        public int Excluir(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Incluir(Produto produto)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IQueryable<Produto> Listar()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Produto Obter(Guid id)
-        {
-            throw new NotImplementedException();
         }
     }
 }

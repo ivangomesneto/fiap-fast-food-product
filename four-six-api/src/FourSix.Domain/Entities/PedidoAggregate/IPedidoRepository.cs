@@ -1,6 +1,6 @@
 ﻿namespace FourSix.Domain.Entities.PedidoAggregate
 {
-    public interface IPedidoRepository : IGetRepository<Produto>, ISetRepository<Produto>
+    public interface IPedidoRepository : IGetRepository<Pedido>, ISetRepository<Pedido>
     {
     }
 }

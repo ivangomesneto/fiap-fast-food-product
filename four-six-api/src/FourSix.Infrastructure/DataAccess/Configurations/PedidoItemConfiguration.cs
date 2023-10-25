@@ -15,11 +15,28 @@ namespace FourSix.Infrastructure.DataAccess.Configurations
             }
 
             builder.ToTable("PedidoItem");
-            builder.Property(b => b.PedidoId).IsRequired().ValueGeneratedOnAdd();
-            builder.Property(b => b.ItemPedidoId).IsRequired();
-            builder.Property(b => b.ValorUnitario).IsRequired();
-            builder.Property(b => b.Quantidade).IsRequired();
-            builder.Property(b => b.Observacao).IsRequired();
+            builder.HasKey(e => new { e.PedidoId, e.ItemPedidoId });
+            builder.Property(b => b.PedidoId)
+                .IsRequired()
+                .ValueGeneratedOnAdd()
+                .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
+
+            builder.Property(b => b.ItemPedidoId)
+                .IsRequired()
+                .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
+
+            builder.Property(b => b.ValorUnitario)
+                .IsRequired()
+                .HasPrecision(6, 2)
+                .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
+
+            builder.Property(b => b.Quantidade)
+                .IsRequired()
+                .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
+
+            builder.Property(b => b.Observacao)
+                .IsRequired()
+                .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
 
             builder.HasOne(x => x.ItemPedido).WithMany().HasForeignKey(b => b.ItemPedidoId).OnDelete(DeleteBehavior.Cascade);
         }

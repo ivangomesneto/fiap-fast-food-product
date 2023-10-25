@@ -2,31 +2,10 @@
 
 namespace FourSix.Infrastructure.DataAccess.Repositories
 {
-    internal class PagamentoRepository : IPagamentoRepository
+    public class PagamentoRepository : BaseRepository<Pagamento>, IPagamentoRepository
     {
-        public int Alterar(Pagamento produto)
+        public PagamentoRepository(Context context) : base(context)
         {
-            throw new NotImplementedException();
-        }
-
-        public int Excluir(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Incluir(Pagamento produto)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IQueryable<Pagamento> Listar()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Pagamento Obter(Guid id)
-        {
-            throw new NotImplementedException();
         }
     }
 }

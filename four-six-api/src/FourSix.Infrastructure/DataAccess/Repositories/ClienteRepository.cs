@@ -1,32 +1,12 @@
 ﻿using FourSix.Domain.Entities;
+using FourSix.Domain.Entities.ClienteAggregate;
 
 namespace FourSix.Infrastructure.DataAccess.Repositories
 {
-    public class ClienteRepository : IClienteRepository
+    public class ClienteRepository : BaseRepository<Cliente>, IClienteRepository
     {
-        public int Alterar(Cliente produto)
+        public ClienteRepository(Context context) : base(context)
         {
-            throw new NotImplementedException();
-        }
-
-        public int Excluir(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Incluir(Cliente produto)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IQueryable<Cliente> Listar()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Cliente Obter(Guid id)
-        {
-            throw new NotImplementedException();
         }
     }
 }
