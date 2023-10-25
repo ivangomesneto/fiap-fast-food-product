@@ -5,6 +5,7 @@ namespace FourSix.Application.UseCases.Produtos.NovoProduto
 {
     public sealed class NovoProdutoPresenter : IOutputPort
     {
+        public Produto? Produto { get; private set; }
         public bool InvalidOutput { get; private set; }
         public bool NotFoundOutput { get; private set; }
         public bool ExistOutput { get; private set; }

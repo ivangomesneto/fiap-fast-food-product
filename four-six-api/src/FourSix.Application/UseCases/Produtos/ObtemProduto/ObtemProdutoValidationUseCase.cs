@@ -2,7 +2,6 @@
 
 namespace FourSix.Application.UseCases.Produtos.ObtemProduto
 {
-    // entender onde isso é usado.
     public class ObtemProdutoValidationUseCase : IObtemProdutoUseCase
     {
         private readonly Notification _notification;
@@ -22,10 +21,10 @@ namespace FourSix.Application.UseCases.Produtos.ObtemProduto
             this._useCase.SetOutputPort(outputPort);
         }
 
-        public async Task Execute()
+        public async Task Execute(Guid id)
         {
             await this._useCase
-                .Execute()
+                .Execute(id)
                 .ConfigureAwait(false);
         }
     }

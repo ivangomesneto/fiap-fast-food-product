@@ -7,5 +7,6 @@ namespace FourSix.Application.UseCases.Produtos.NovoProduto
         void Invalid();
         void NotFound();
         void Ok(Produto produto);
+        void Exist();
     }
 }

@@ -2,7 +2,7 @@
 {
     public interface IObtemProdutoUseCase
     {
-        Task Execute(string id);
+        Task Execute(Guid id);
         void SetOutputPort(IOutputPort outputPort);
     }
 }

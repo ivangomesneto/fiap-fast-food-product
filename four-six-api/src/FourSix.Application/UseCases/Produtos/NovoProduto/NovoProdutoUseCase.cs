@@ -9,32 +9,39 @@ namespace FourSix.Application.UseCases.Produtos.NovoProduto
         private readonly IUnitOfWork _unitOfWork;
         private IOutputPort _outputPort;
 
-        public AlteraProdutoUseCase(
+        public NovoProdutoUseCase(
             IProdutoRepository produtoRepository,
             IUnitOfWork unitOfWork)
         {
             this._produtoRepository = produtoRepository;
             this._unitOfWork = unitOfWork;
-            // ver isso aqui
-            this._outputPort = new AlteraProdutoPresenter();
+            this._outputPort = new NovoProdutoPresenter();
         }
 
-        
+
         public void SetOutputPort(IOutputPort outputPort) => this._outputPort = outputPort;
 
-        public Task Execute(Produto produto) =>
-            this.NovoProduto(produto);
+        public Task Execute(string nome, string descricao, EnumCategoriaProduto categoria, decimal preco) =>
+            this.NovoProduto(new Produto(Guid.NewGuid(),
+                nome,
+                descricao,
+                categoria,
+                preco));
 
         private async Task NovoProduto(Produto produto)
         {
-
+            if (this._produtoRepository
+                .Listar(q => q.Nome == produto.Nome 
+                && q.Categoria == produto.Categoria).Any())
+            {
+                this._outputPort.Exist();
+                return;
+            }
 
             await this._produtoRepository
-                // é o salvar?
                  .Incluir(produto)
                  .ConfigureAwait(false);
 
-            // q q é isso?
             await this._unitOfWork
                 .Save()
                 .ConfigureAwait(false);
