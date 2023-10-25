@@ -48,7 +48,7 @@ namespace FourSix.WebApi.UseCases.Pedidos.CancelaPedido
         /// <param name="pedido">Dados do Pedido</param>
         /// <returns></returns>
         [AllowAnonymous]
-        [HttpPost]
+        [HttpPut("cancelamentos")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CancelaPedidoResponse))]
         [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Create))]
         public async Task<IActionResult> Create([FromBody] CancelaPedidoRequest pedido)

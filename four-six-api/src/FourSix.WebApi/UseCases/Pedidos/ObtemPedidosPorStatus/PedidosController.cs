@@ -47,7 +47,7 @@ namespace FourSix.WebApi.UseCases.Pedidos.ObtemPedido
         /// <param name="statusId">Status dos pedidos</param>
         /// <returns></returns>
         [AllowAnonymous]
-        [HttpPost]
+        [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ObtemPedidosPorStatusResponse))]
         [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Find))]
         public async Task<IActionResult> Listar(EnumStatus statusId)

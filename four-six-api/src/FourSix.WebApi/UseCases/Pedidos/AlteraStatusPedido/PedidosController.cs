@@ -1,7 +1,6 @@
 ﻿using FourSix.Application.Services;
 using FourSix.Application.UseCases;
 using FourSix.Application.UseCases.Pedidos.AlteraStatusPedido;
-using FourSix.Application.UseCases.Pedidos.NovoPedido;
 using FourSix.Domain.Entities.PedidoAggregate;
 using FourSix.WebApi.Modules.Commons;
 using FourSix.WebApi.ViewModels;
@@ -48,7 +47,7 @@ namespace FourSix.WebApi.UseCases.Pedidos.AlteraStatusPedido
         /// <param name="pedidoStatus">Dados do Status do Pedido</param>
         /// <returns></returns>
         [AllowAnonymous]
-        [HttpPost]
+        [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(AlteraStatusPedidoResponse))]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(AlteraStatusPedidoResponse))]
         [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Update))]

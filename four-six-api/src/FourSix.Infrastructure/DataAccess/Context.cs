@@ -12,6 +12,9 @@ namespace FourSix.Infrastructure.DataAccess
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
+        public DbSet<PedidoItem> PedidosItens { get; set; }
+        public DbSet<PedidoStatus> PedidosStatus { get; set; }
+        public DbSet<Status> Status { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
