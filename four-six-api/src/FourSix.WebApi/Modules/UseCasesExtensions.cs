@@ -6,6 +6,9 @@ using FourSix.Application.UseCases.Pedidos.CancelaPedido;
 using FourSix.Application.UseCases.Pedidos.NovoPedido;
 using FourSix.Application.UseCases.Pedidos.ObtemPedidosPorStatus;
 using FourSix.Application.UseCases.Produtos.AlteraProduto;
+using FourSix.Application.UseCases.Produtos.NovoProduto;
+using FourSix.Application.UseCases.Produtos.ObtemProduto;
+using FourSix.Application.UseCases.Produtos.ObtemProdutoPorCategoria;
 using FourSix.Application.UseCases.Produtos.ObtemProdutos;
 
 namespace FourSix.WebApi.Modules
@@ -30,6 +33,15 @@ namespace FourSix.WebApi.Modules
 
             services.AddScoped<IObtemProdutosUseCase, ObtemProdutosUseCase>();
             services.Decorate<IObtemProdutosUseCase, ObtemProdutosValidationUseCase>();
+
+            services.AddScoped<INovoProdutoUseCase, NovoProdutoUseCase>();
+            services.Decorate<INovoProdutoUseCase, NovoProdutoValidationUseCase>();
+
+            services.AddScoped<IObtemProdutoUseCase, ObtemProdutoUseCase>();
+            services.Decorate<IObtemProdutoUseCase, ObtemProdutoValidationUseCase>();
+
+            services.AddScoped<IObtemProdutoPorCategoriaUseCase, ObtemProdutoPorCategoriaUseCase>();
+            services.Decorate<IObtemProdutoPorCategoriaUseCase, ObtemProdutoPorCategoriaValidationUseCase>();
             #endregion
 
             #region [ Pedido ]

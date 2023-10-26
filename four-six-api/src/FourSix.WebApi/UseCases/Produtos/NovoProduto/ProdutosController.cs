@@ -40,22 +40,19 @@ namespace FourSix.WebApi.UseCases.Produtos.NovoProduto
         void IOutputPort.Exist() => this._viewModel = this.BadRequest("Produto já existe");
 
         [AllowAnonymous]
-        [HttpPut("/novo")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(AlteraProdutoResponse))]
-        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(AlteraProdutoResponse))]
-        [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Edit))]
-        public async Task<IActionResult> Novo([FromBody] NovoProdutoRequest request)
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(NovoProdutoResponse))]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(NovoProdutoResponse))]
+        [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Create))]
+        public async Task<IActionResult> Create([FromBody] NovoProdutoRequest produto)
         {
             _useCase.SetOutputPort(this);
 
-            await _useCase.Execute(request.produto)
+            await _useCase.Execute(produto.Nome,produto.Descricao, produto.Categoria, produto.Preco)
                 .ConfigureAwait(false);
 
             return this._viewModel!;
         }
     }
-
-
-
 }
-}
+

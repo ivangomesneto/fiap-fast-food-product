@@ -35,15 +35,14 @@ namespace FourSix.WebApi.UseCases.Produtos.ObtemProduto
         void IOutputPort.NotFound() => this._viewModel = this.NotFound();
 
         void IOutputPort.Ok(Produto produto) =>
-            this._viewModel = this.Ok(new ObtemProdutoResponse(new ProdutoModel(produto));
+            this._viewModel = this.Ok(new ObtemProdutoResponse(new ProdutoModel(produto)));
 
         [AllowAnonymous]
-        [HttpGet("{id}")]
-        // entender isso
+        [HttpGet("{id:guid}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ObtemProdutoResponse))]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(ObtemProdutoResponse))]
         [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.List))]
-        public async Task<IActionResult> Get([FromRoute][Required] string id)
+        public async Task<IActionResult> Get([FromRoute][Required] Guid id)
         {
             _useCase.SetOutputPort(this);
 

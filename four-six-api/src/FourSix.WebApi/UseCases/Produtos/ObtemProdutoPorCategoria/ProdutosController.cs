@@ -1,14 +1,13 @@
 ﻿using FourSix.Application.Services;
-using FourSix.Application.UseCases.Produtos.ObtemProduto;
+using FourSix.Application.UseCases.Produtos.ObtemProdutoPorCategoria;
 using FourSix.Domain.Entities.ProdutoAggregate;
 using FourSix.WebApi.Modules.Commons;
 using FourSix.WebApi.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Swashbuckle.AspNetCore.Annotations;
 using System.ComponentModel.DataAnnotations;
 
-namespace FourSix.WebApi.UseCases.Produtos.ObtemProdutoPorTipo
+namespace FourSix.WebApi.UseCases.Produtos.ObtemProdutoPorCategoria
 {
     [ApiController]
     [Route("[controller]")]
@@ -17,10 +16,10 @@ namespace FourSix.WebApi.UseCases.Produtos.ObtemProdutoPorTipo
     {
         private readonly Notification _notification;
         private IActionResult _viewModel;
-        private readonly IObtemProdutoPorTipoUseCase _useCase;
+        private readonly IObtemProdutoPorCategoriaUseCase _useCase;
 
         public ProdutosController(Notification notification,
-            IObtemProdutoPorTipoUseCase useCase)
+            IObtemProdutoPorCategoriaUseCase useCase)
         {
             this._useCase = useCase;
             this._notification = notification;
@@ -34,20 +33,19 @@ namespace FourSix.WebApi.UseCases.Produtos.ObtemProdutoPorTipo
 
         void IOutputPort.NotFound() => this._viewModel = this.NotFound();
 
-        void IOutputPort.Ok(Produto produto) =>
-            this._viewModel = this.Ok(new ObtemProdutoResponse(new ProdutoModel(produto));
+        void IOutputPort.Ok(IList<Produto> produtos) =>
+           this._viewModel = this.Ok(new ObtemProdutoPorCategoriaResponse(produtos.Select(s => new ProdutoModel(s)).ToList()));
 
         [AllowAnonymous]
-        [HttpGet("{tipo}")]
-        // entender isso
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ObtemProdutoResponse))]
-        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(ObtemProdutoResponse))]
+        [HttpGet("{categoria}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ObtemProdutoPorCategoriaResponse))]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(ObtemProdutoPorCategoriaResponse))]
         [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.List))]
-        public async Task<IActionResult> Get([FromRoute][Required] string tipo)
+        public async Task<IActionResult> Get([FromRoute][Required] EnumCategoriaProduto categoria)
         {
             _useCase.SetOutputPort(this);
 
-            await _useCase.Execute(tipo)
+            await _useCase.Execute(categoria)
                 .ConfigureAwait(false);
 
             return this._viewModel!;

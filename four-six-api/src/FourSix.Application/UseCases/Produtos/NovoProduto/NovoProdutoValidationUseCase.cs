@@ -3,7 +3,7 @@ using FourSix.Domain.Entities.ProdutoAggregate;
 
 namespace FourSix.Application.UseCases.Produtos.NovoProduto
 {
-    internal class NovoProdutoValidationUseCase : INovoProdutoUseCase
+    public class NovoProdutoValidationUseCase : INovoProdutoUseCase
     {
         private readonly Notification _notification;
         private readonly INovoProdutoUseCase _useCase;

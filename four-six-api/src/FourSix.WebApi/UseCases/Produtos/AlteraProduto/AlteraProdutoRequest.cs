@@ -7,7 +7,7 @@ namespace FourSix.WebApi.UseCases.Produtos.AlteraProduto
     public class AlteraProdutoRequest
     {
         /// <summary>
-        /// ?Nome do produto
+        /// Nome do produto
         /// </summary>
         /// <example>FourSix Burguer Plus</example>
         [SwaggerSchema(Nullable = false)]
