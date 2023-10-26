@@ -6,7 +6,7 @@ namespace FourSix.Domain.Entities.PedidoAggregate
     public class Pedido : BaseEntity, IAggregateRoot, IBaseEntity
     {
         private readonly List<PedidoItem> _pedidoItens;
-        private readonly List<PedidoStatus> _pedidoStatus;
+        private readonly List<PedidoCheckout> _pedidoCheckout;
 
         public Pedido() { }
 
@@ -21,13 +21,13 @@ namespace FourSix.Domain.Entities.PedidoAggregate
         public string NumeroPedido { get; }
         public Guid? ClienteId { get; }
         public DateTime DataPedido { get; }
-        public EnumStatus StatusId { get; } = EnumStatus.Aberto;
+        public EnumStatusPedido StatusId { get; } = EnumStatusPedido.Recebido;
         public IReadOnlyCollection<PedidoItem> Itens => _pedidoItens.AsReadOnly();
-        public IReadOnlyCollection<PedidoStatus> HistoricoStatus => _pedidoStatus.AsReadOnly();
+        public IReadOnlyCollection<PedidoCheckout> HistoricoCheckout => _pedidoCheckout.AsReadOnly();
         public int TotalItens => _pedidoItens.Sum(i => i.Quantidade);
         public decimal ValorTotal => _pedidoItens.Sum(i => i.ValorUnitario * i.Quantidade);
         public Cliente Cliente { get; set; }
-        public Status Status { get; set; }
+        public StatusPedido Status { get; set; }
 
         public void AdicionarItem(Produto produto, decimal valorUnitario, int quantidade = 1, string? observacao = null)
         {
@@ -40,9 +40,9 @@ namespace FourSix.Domain.Entities.PedidoAggregate
             itemExistente.AdicionarQuantidade(quantidade);
         }
 
-        public void AlterarStatus(EnumStatus statusId, DateTime dataStatus)
+        public void AlterarStatus(EnumStatusPedido statusId, DateTime dataStatus)
         {
-            _pedidoStatus.Add(new PedidoStatus(Id, this.HistoricoStatus.Max(m => m.Sequencia) + 1, statusId, dataStatus));
+            _pedidoCheckout.Add(new PedidoCheckout(Id, this.HistoricoCheckout.Max(m => m.Sequencia) + 1, statusId, dataStatus));
         }
     }
 }

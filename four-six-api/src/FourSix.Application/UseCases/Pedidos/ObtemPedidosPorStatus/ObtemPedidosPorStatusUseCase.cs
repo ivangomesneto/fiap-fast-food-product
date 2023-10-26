@@ -15,9 +15,9 @@ namespace FourSix.Application.UseCases.Pedidos.ObtemPedidosPorStatus
 
         public void SetOutputPort(IOutputPort<ICollection<Pedido>> outputPort) => this._outputPort = outputPort;
 
-        public Task Execute(EnumStatus statusId) => this.ListarPedidos(statusId);
+        public Task Execute(EnumStatusPedido statusId) => this.ListarPedidos(statusId);
 
-        private async Task ListarPedidos(EnumStatus statusId)
+        private async Task ListarPedidos(EnumStatusPedido statusId)
         {
             var pedidos = this._pedidoRepository.Listar(q => q.StatusId == statusId).ToList();
 

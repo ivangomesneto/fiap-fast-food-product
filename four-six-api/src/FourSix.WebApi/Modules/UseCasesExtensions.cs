@@ -1,6 +1,7 @@
 ﻿using FourSix.Application.Services;
 using FourSix.Application.UseCases.Clientes.NovoCliente;
 using FourSix.Application.UseCases.Clientes.ObtemCliente;
+using FourSix.Application.UseCases.Pagamentos.GeraQRCode;
 using FourSix.Application.UseCases.Pedidos.AlteraStatusPedido;
 using FourSix.Application.UseCases.Pedidos.CancelaPedido;
 using FourSix.Application.UseCases.Pedidos.NovoPedido;
@@ -19,7 +20,7 @@ namespace FourSix.WebApi.Modules
         {
             services.AddScoped<Notification, Notification>();
 
-            #region [ Cliente ]
+            #region [ Clientes ]
             services.AddScoped<INovoClienteUseCase, NovoClienteUseCase>();
             services.Decorate<INovoClienteUseCase, NovoClienteValidationUseCase>();
 
@@ -27,12 +28,9 @@ namespace FourSix.WebApi.Modules
             services.Decorate<IObtemClienteUseCase, ObtemClienteValidationUseCase>();
             #endregion
 
-            #region [ Produto ]
+            #region [ Produtos ]
             services.AddScoped<IAlteraProdutoUseCase, AlteraProdutoUseCase>();
             services.Decorate<IAlteraProdutoUseCase, AlteraProdutoValidationUseCase>();
-
-            services.AddScoped<IObtemProdutosUseCase, ObtemProdutosUseCase>();
-            services.Decorate<IObtemProdutosUseCase, ObtemProdutosValidationUseCase>();
 
             services.AddScoped<INovoProdutoUseCase, NovoProdutoUseCase>();
             services.Decorate<INovoProdutoUseCase, NovoProdutoValidationUseCase>();
@@ -42,20 +40,29 @@ namespace FourSix.WebApi.Modules
 
             services.AddScoped<IObtemProdutoPorCategoriaUseCase, ObtemProdutoPorCategoriaUseCase>();
             services.Decorate<IObtemProdutoPorCategoriaUseCase, ObtemProdutoPorCategoriaValidationUseCase>();
+
+            services.AddScoped<IObtemProdutosUseCase, ObtemProdutosUseCase>();
+            services.Decorate<IObtemProdutosUseCase, ObtemProdutosValidationUseCase>();
+            
             #endregion
 
-            #region [ Pedido ]
-            services.AddScoped<INovoPedidoUseCase, NovoPedidoUseCase>();
-            services.Decorate<INovoPedidoUseCase, NovoPedidoValidationUseCase>();
-
+            #region [ Pedidos ]
             services.AddScoped<IAlteraStatusPedidoUseCase, AlteraStatusPedidoUseCase>();
             services.Decorate<IAlteraStatusPedidoUseCase, AlteraStatusPedidoValidationUseCase>();
 
             services.AddScoped<ICancelaPedidoUseCase, CancelaPedidoUseCase>();
             services.Decorate<ICancelaPedidoUseCase, CancelaPedidoValidationUseCase>();
 
+            services.AddScoped<INovoPedidoUseCase, NovoPedidoUseCase>();
+            services.Decorate<INovoPedidoUseCase, NovoPedidoValidationUseCase>();
+
             services.AddScoped<IObtemPedidosPorStatusUseCase, ObtemPedidosPorStatusUseCase>();
             services.Decorate<IObtemPedidosPorStatusUseCase, ObtemPedidosPorStatusValidationUseCase>();
+            #endregion
+
+            #region [ Pagamento ]
+            services.AddScoped<IGeraQRCodeUseCase, GeraQRCodeUseCase>();
+            services.Decorate<IGeraQRCodeUseCase, GeraQRCodeValidationUseCase>();
             #endregion
 
             return services;

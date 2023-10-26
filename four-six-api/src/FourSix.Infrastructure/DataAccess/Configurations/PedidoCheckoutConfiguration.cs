@@ -4,17 +4,17 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FourSix.Infrastructure.DataAccess.Configurations
 {
-    public class PedidoStatusConfiguration : IEntityTypeConfiguration<PedidoStatus>
+    public class PedidoCheckoutConfiguration : IEntityTypeConfiguration<PedidoCheckout>
     {
 
-        public void Configure(EntityTypeBuilder<PedidoStatus> builder)
+        public void Configure(EntityTypeBuilder<PedidoCheckout> builder)
         {
             if (builder == null)
             {
                 throw new ArgumentNullException(nameof(builder));
             }
 
-            builder.ToTable("PedidoStatus");
+            builder.ToTable("PedidoCheckout");
             builder.HasKey(e => new { e.PedidoId, e.StatusId });
 
             builder.Property(b => b.PedidoId)
@@ -24,14 +24,14 @@ namespace FourSix.Infrastructure.DataAccess.Configurations
 
             builder.Property(b => b.StatusId)
                 .IsRequired()
-                .HasConversion<int>()
+                .HasConversion<short>()
                 .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
 
             builder.Property(b => b.DataStatus)
                 .IsRequired()
                 .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
 
-            builder.HasOne(x => x.Status).WithMany().HasForeignKey(b => b.StatusId).OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(x => x.Status).WithMany().HasForeignKey(b => b.StatusId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

@@ -4,23 +4,23 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FourSix.Infrastructure.DataAccess.Configurations
 {
-    public class StatusConfiguration : IEntityTypeConfiguration<Status>
+    public class StatusPedidoConfiguration : IEntityTypeConfiguration<StatusPedido>
     {
 
-        public void Configure(EntityTypeBuilder<Status> builder)
+        public void Configure(EntityTypeBuilder<StatusPedido> builder)
         {
             if (builder == null)
             {
                 throw new ArgumentNullException(nameof(builder));
             }
 
-            builder.ToTable("Status");
+            builder.ToTable("StatusPedido");
             builder.HasKey(e => e.Id);
 
             builder.Property(b => b.Id)
                 .IsRequired()
                 .ValueGeneratedOnAdd()
-                .HasConversion<int>()
+                .HasConversion<short>()
                 .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
 
             builder.Property(b => b.Descricao)

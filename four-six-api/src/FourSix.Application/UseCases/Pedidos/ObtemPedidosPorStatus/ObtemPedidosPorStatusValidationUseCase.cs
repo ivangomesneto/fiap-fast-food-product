@@ -22,7 +22,7 @@ namespace FourSix.Application.UseCases.Pedidos.ObtemPedidosPorStatus
             this._useCase.SetOutputPort(outputPort);
         }
 
-        public async Task Execute(EnumStatus statusId)
+        public async Task Execute(EnumStatusPedido statusId)
         {
             if (this._notification
                 .IsInvalid)

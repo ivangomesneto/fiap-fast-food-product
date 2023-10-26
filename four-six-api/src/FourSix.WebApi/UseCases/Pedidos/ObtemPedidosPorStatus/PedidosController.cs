@@ -50,7 +50,7 @@ namespace FourSix.WebApi.UseCases.Pedidos.ObtemPedido
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ObtemPedidosPorStatusResponse))]
         [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Find))]
-        public async Task<IActionResult> Listar(EnumStatus statusId)
+        public async Task<IActionResult> Listar(EnumStatusPedido statusId)
         {
             _useCase.SetOutputPort(this);
 

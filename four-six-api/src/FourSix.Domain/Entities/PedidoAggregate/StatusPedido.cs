@@ -1,19 +1,19 @@
 ﻿namespace FourSix.Domain.Entities.PedidoAggregate
 {
-    public enum EnumStatus
+    public enum EnumStatusPedido
     {
-        Aberto = 1,
+        Recebido = 1,
         Pago = 2,
         EmPreparacao = 3,
         Montagem = 4,
         Pronto = 5,
-        Enregue = 6,
+        Finalizado = 6,
         Cancelado = 7
     }
 
-    public class Status
+    public class StatusPedido
     {
-        public EnumStatus Id { get; }
+        public EnumStatusPedido Id { get; }
         public string Descricao { get; }
     }
 }

@@ -12,9 +12,6 @@ namespace FourSix.Infrastructure.DataAccess
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
-        public DbSet<PedidoItem> PedidosItens { get; set; }
-        public DbSet<PedidoStatus> PedidosStatus { get; set; }
-        public DbSet<Status> Status { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -29,8 +26,10 @@ namespace FourSix.Infrastructure.DataAccess
             modelBuilder.ApplyConfiguration(new PagamentoConfiguration());
             modelBuilder.ApplyConfiguration(new PedidoConfiguration());
             modelBuilder.ApplyConfiguration(new PedidoItemConfiguration());
-            modelBuilder.ApplyConfiguration(new PedidoStatusConfiguration());
-            modelBuilder.ApplyConfiguration(new StatusConfiguration());
+            modelBuilder.ApplyConfiguration(new PedidoCheckoutConfiguration());
+            modelBuilder.ApplyConfiguration(new ProdutoConfiguration());
+            modelBuilder.ApplyConfiguration(new StatusPedidoConfiguration());
+            modelBuilder.ApplyConfiguration(new StatusPagamentoConfiguration());
         }
 
         private static string ReadDefaultConnectionStringFromAppSettings()

@@ -34,11 +34,12 @@ namespace FourSix.Infrastructure.DataAccess.Configurations
 
             builder.Property(b => b.StatusId)
                 .IsRequired()
+                .HasConversion<short>()
                 .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
 
             builder.HasOne(x => x.Cliente).WithMany().HasForeignKey(b => b.ClienteId).OnDelete(DeleteBehavior.Cascade);
             builder.HasMany(x => x.Itens).WithOne().HasForeignKey(b => b.PedidoId).OnDelete(DeleteBehavior.Cascade);
-            builder.HasMany(x => x.HistoricoStatus).WithOne().HasForeignKey(b => b.PedidoId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasMany(x => x.HistoricoCheckout).WithOne().HasForeignKey(b => b.PedidoId).OnDelete(DeleteBehavior.Cascade);
             builder.HasOne(x => x.Status).WithMany().HasForeignKey(b => b.StatusId).OnDelete(DeleteBehavior.Cascade);
         }
     }

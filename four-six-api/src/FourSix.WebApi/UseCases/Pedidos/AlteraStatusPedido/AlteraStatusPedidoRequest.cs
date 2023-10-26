@@ -18,7 +18,7 @@ namespace FourSix.WebApi.UseCases.Pedidos.AlteraStatusPedido
         /// </summary>
         /// <example>2</example>
         [SwaggerSchema(Nullable = true)]
-        public EnumStatus StatusId { get; set; }
+        public EnumStatusPedido StatusId { get; set; }
 
         /// <summary>
         /// Data do Status
