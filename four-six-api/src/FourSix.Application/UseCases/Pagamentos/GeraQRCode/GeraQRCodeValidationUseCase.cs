@@ -21,7 +21,7 @@ namespace FourSix.Application.UseCases.Pagamentos.GeraQRCode
             this._useCase.SetOutputPort(outputPort);
         }
 
-        public async Task Execute(Guid pedidoId, decimal valor)
+        public async Task<string> Execute(Guid pedidoId, decimal valor)
         {
             if (valor <= 0)
                 this._notification
@@ -32,10 +32,10 @@ namespace FourSix.Application.UseCases.Pagamentos.GeraQRCode
             {
                 this._outputPort
                     .Invalid();
-                return;
+                return "";
             }
 
-            await this._useCase
+            return await this._useCase
                 .Execute(pedidoId, valor)
                 .ConfigureAwait(false);
         }

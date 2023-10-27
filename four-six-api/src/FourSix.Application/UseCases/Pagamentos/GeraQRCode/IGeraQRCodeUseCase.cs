@@ -5,7 +5,7 @@
         /// <summary>
         /// Executa o Caso de Uso
         /// </summary>
-        Task Execute(Guid pedidoId, decimal valor);
+        Task<string> Execute(Guid pedidoId, decimal valor);
 
         /// <summary>
         /// Define a porta de saída

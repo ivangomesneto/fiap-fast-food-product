@@ -34,7 +34,7 @@ namespace FourSix.Infrastructure.DataAccess.Configurations
                 .HasConversion<short>()
                 .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
 
-            builder.Property(b => b.Valor)
+            builder.Property(b => b.ValorPedido)
                 .IsRequired()
                 .HasPrecision(18,2)
                 .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);

@@ -8,21 +8,24 @@ namespace FourSix.Domain.Entities.PagamentoAggregate
         {
         }
 
-        public Pagamento(Guid id, string codigoQR, decimal valor, decimal desconto, decimal valorTotal)
+        public Pagamento(Guid pedidoId, string codigoQR, EnumStatusPagamento statusId, decimal valorPedido, decimal desconto, decimal valorTotal, decimal valorPago)
         {
-            Id = id;
+            PedidoId = pedidoId;
             CodigoQR = codigoQR;
-            Valor = valor;
+            StatusId = statusId;
+            ValorPedido = valorPedido;
             Desconto = desconto;
             ValorTotal = valorTotal;
+            ValorPago = valorPago;
         }
 
         public Guid PedidoId { get; set; }
         public string CodigoQR { get; set; }
         public EnumStatusPagamento StatusId { get; set; }
-        public decimal Valor { get; set; }
+        public decimal ValorPedido { get; set; }
         public decimal Desconto { get; set; }
         public decimal ValorTotal { get; set; }
+        public decimal ValorPago { get; set; }
 
         public Pedido Pedido { get; set; }
         public StatusPagamento Status { get; set; }

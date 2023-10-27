@@ -16,10 +16,10 @@ namespace FourSix.Application.UseCases.Pagamentos.GeraQRCode
         public void SetOutputPort(IOutputPort<string> outputPort) => this._outputPort = outputPort;
 
         /// <inheritdoc />
-        public Task Execute(Guid pedidoId, decimal valor) =>
+        public Task<string> Execute(Guid pedidoId, decimal valor) =>
             this.GerarQRCode(pedidoId, valor);
 
-        private async Task GerarQRCode(Guid pedidoId, decimal valor)
+        private async Task<string> GerarQRCode(Guid pedidoId, decimal valor)
         {
             string cnpjEmpresa = "01.001.001/0001-00";
             string nomeBeneficiario = "FOUR SIX";
@@ -30,7 +30,7 @@ namespace FourSix.Application.UseCases.Pagamentos.GeraQRCode
             builder.Append("01");
             builder.Append(cnpjEmpresa.Replace(".", "").Replace("-", ""));
             builder.Append("BR.GOV.BCB.PIX");
-            builder.Append(Guid.NewGuid());
+            builder.Append(pedidoId);
             builder.Append("0000");
             builder.Append("986");
             builder.AppendFormat("0.00", valor);
@@ -40,6 +40,7 @@ namespace FourSix.Application.UseCases.Pagamentos.GeraQRCode
             builder.Append(cep);
 
             this._outputPort?.Ok(builder.ToString());
+            return builder.ToString();
         }
     }
 }
