@@ -47,10 +47,10 @@ namespace FourSix.WebApi.UseCases.Pagamentos.CancelaPagamento
         /// <param name="request">Dados do pagamento</param>
         /// <returns></returns>
         [AllowAnonymous]
-        [HttpPut]
+        [HttpPut("cancelamentos")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CancelaPagamentoResponse))]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(CancelaPagamentoResponse))]
-        [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Create))]
+        [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Update))]
         public async Task<IActionResult> Cancelar([FromBody] CancelaPagamentoRequest request)
         {
             _useCase.SetOutputPort(this);

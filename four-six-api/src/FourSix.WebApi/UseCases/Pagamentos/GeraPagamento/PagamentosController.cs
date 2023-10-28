@@ -49,10 +49,10 @@ namespace FourSix.WebApi.UseCases.Pagamentos.GeraPagamento
         /// <param name="request">Dados do pagamento</param>
         /// <returns></returns>
         [AllowAnonymous]
-        [HttpPut]
+        [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GeraPagamentoResponse))]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(GeraPagamentoResponse))]
-        [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Update))]
+        [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Create))]
         public async Task<IActionResult> Gerar([FromBody] CancelaPagamentoRequest request)
         {
             _useCase.SetOutputPort(this);

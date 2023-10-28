@@ -11,9 +11,13 @@
 
 	<ItemGroup>
 	  <Compile Remove="Controllers\**" />
+	  <Compile Remove="UseCases\Pagamentos\GeraQRCode\**" />
 	  <Content Remove="Controllers\**" />
+	  <Content Remove="UseCases\Pagamentos\GeraQRCode\**" />
 	  <EmbeddedResource Remove="Controllers\**" />
+	  <EmbeddedResource Remove="UseCases\Pagamentos\GeraQRCode\**" />
 	  <None Remove="Controllers\**" />
+	  <None Remove="UseCases\Pagamentos\GeraQRCode\**" />
 	</ItemGroup>
 
 	<ItemGroup>

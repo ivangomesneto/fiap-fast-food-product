@@ -48,7 +48,7 @@ namespace FourSix.WebApi.UseCases.Pagamentos.RealizaPagamento
         /// <param name="request">Dados do pagamento</param>
         /// <returns></returns>
         [AllowAnonymous]
-        [HttpPut]
+        [HttpPut("efetivacoes")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RealizaPagamentoResponse))]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(RealizaPagamentoResponse))]
         [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Update))]
