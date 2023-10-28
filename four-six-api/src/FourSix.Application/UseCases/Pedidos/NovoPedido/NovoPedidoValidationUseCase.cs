@@ -22,7 +22,7 @@ namespace FourSix.Application.UseCases.Pedidos.NovoPedido
             this._useCase.SetOutputPort(outputPort);
         }
 
-        public async Task Execute(DateTime dataPedido, Guid? clienteId)
+        public async Task Execute(DateTime dataPedido, Guid? clienteId, ICollection<Tuple<Guid, decimal, int, string>> itens)
         {
             if (this._notification
             .IsInvalid)
@@ -33,7 +33,7 @@ namespace FourSix.Application.UseCases.Pedidos.NovoPedido
             }
 
             await this._useCase
-                .Execute(dataPedido, clienteId)
+                .Execute(dataPedido, clienteId, itens)
                 .ConfigureAwait(false);
         }
     }

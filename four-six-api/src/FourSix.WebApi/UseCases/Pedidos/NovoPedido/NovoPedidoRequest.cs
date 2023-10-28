@@ -6,13 +6,6 @@ namespace FourSix.WebApi.UseCases.Pedidos.NovoPedido
     public class NovoPedidoRequest
     {
         /// <summary>
-        /// Número do Pedido
-        /// </summary>
-        /// <example>12354</example>
-        [SwaggerSchema(Nullable = false)]
-        public string NumeroPedido { get; set; }
-
-        /// <summary>
         /// Data do Pedido
         /// </summary>
         /// <example>2023-10-24T18:00</example>
