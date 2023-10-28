@@ -15,7 +15,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FourSix.Infrastructure", "f
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FourSix.WebApi", "four-six-api\src\FourSix.WebApi\FourSix.WebApi.csproj", "{BE5D483E-7088-427E-AF58-248177E948C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakeCheckout", "four-six-api\tests\FakeCheckout\FakeCheckout.csproj", "{26E15105-482A-4339-857D-E5A662C9C2A9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{1E753DAB-1CE6-40F1-810E-D7F85F54F9FA}"
+	ProjectSection(SolutionItems) = preProject
+		four-six-api\docker-compose.yml = four-six-api\docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

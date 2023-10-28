@@ -1,9 +1,18 @@
-version: "3"
+version: '3.4'
 
 services:
-  postgres:
-    image: postgres:latest
+  foursixapi:
+    image: ivangomesneto/foursixwebapi:1.0.0
+    container_name: "foursixapi"
+    depends_on:
+      - sql1
+  sql1:
+    image: "mcr.microsoft.com/mssql/server:2022-latest"
     environment:
-      POSTGRES_PASSWORD: "fiap2023"
+      SA_PASSWORD: "P@$$w0rd123"
+      ACCEPT_EULA: "Y"
+      
     ports:
-      - "5432:5432"
+      - "1433:1433"
+    hostname: sql1
+    container_name: "sql1"
