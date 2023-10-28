@@ -11,7 +11,6 @@ USER appuser
 
 FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 ARG configuration=Release
-RUN dotnet tool update --global dotnet-ef
 WORKDIR /src
 COPY ["FourSix.WebApi.csproj", "./"]
 RUN dotnet restore "FourSix.WebApi.csproj"
