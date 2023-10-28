@@ -1,9 +1,0 @@
-version: "3"
-
-services:
-  postgres:
-    image: postgres:latest
-    environment:
-      POSTGRES_PASSWORD: "fiap2023"
-    ports:
-      - "5432:5432"

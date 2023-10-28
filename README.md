@@ -6,7 +6,7 @@ Migrations
 Add-Migration  InitialMigrations
 update-database
 
-Migartion via CMD
+Migration via CMD
 dotnet tool install --global dotnet-ef
 dotnet ef migrations add InitialMigrations
 dotnet ef database update
