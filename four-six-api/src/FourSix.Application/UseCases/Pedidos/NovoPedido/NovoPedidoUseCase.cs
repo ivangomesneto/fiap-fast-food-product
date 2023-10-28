@@ -22,7 +22,7 @@ namespace FourSix.Application.UseCases.Pedidos.NovoPedido
         public void SetOutputPort(IOutputPort<Pedido> outputPort) => this._outputPort = outputPort;
 
         /// <inheritdoc />
-        public Task Execute(string numeroPedido, DateTime dataPedido, Guid? clienteId) =>
+        public Task Execute(int numeroPedido, DateTime dataPedido, Guid? clienteId) =>
             this.IncluiPedido(
                 new Pedido(Guid.NewGuid(),
                 numeroPedido,

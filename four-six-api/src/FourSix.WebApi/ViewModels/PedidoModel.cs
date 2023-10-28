@@ -7,7 +7,7 @@ namespace FourSix.WebApi.ViewModels
         public PedidoModel(Pedido pedido)
         {
             Id = pedido.Id;
-            NumeroPedido = pedido.NumeroPedido;
+            NumeroPedido = $"{pedido.NumeroPedido:00000}" ;
             ClienteId = pedido.ClienteId;
             DataPedido = pedido.DataPedido;
             TotalItens = pedido.TotalItens;

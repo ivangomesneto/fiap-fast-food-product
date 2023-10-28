@@ -10,7 +10,7 @@ namespace FourSix.Domain.Entities.PedidoAggregate
 
         public Pedido() { }
 
-        public Pedido(Guid id, string numeroPedido, DateTime dataPedido, Guid? clienteId)
+        public Pedido(Guid id, int numeroPedido, DateTime dataPedido, Guid? clienteId)
         {
             Id = id;
             NumeroPedido = numeroPedido;
@@ -18,7 +18,7 @@ namespace FourSix.Domain.Entities.PedidoAggregate
             ClienteId = clienteId;
         }
 
-        public string NumeroPedido { get; }
+        public int NumeroPedido { get; }
         public Guid? ClienteId { get; }
         public DateTime DataPedido { get; }
         public EnumStatusPedido StatusId { get; } = EnumStatusPedido.Recebido;

@@ -26,6 +26,7 @@ namespace FourSix.Infrastructure.DataAccess.Configurations
 
             builder.Property(b => b.NumeroPedido)
                 .IsRequired()
+                .ValueGeneratedOnAdd()
                 .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
 
             builder.Property(b => b.DataPedido)
