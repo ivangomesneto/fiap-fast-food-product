@@ -1,5 +1,5 @@
 Comando do Banco
-docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=P@$$w0rd123" -p 1430:1433 --name sql1 --hostname sql1 -d mcr.microsoft.com/mssql/server:2022-latest
+docker run -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=P@$$w0rd123' -p 1430:1433 --name sql1 --hostname sql1 -d mcr.microsoft.com/mssql/server:2022-latest
 
 Comando da aplicação
 docker run -d --name foursixwebapi -p 8000:80 foursixwebapi
