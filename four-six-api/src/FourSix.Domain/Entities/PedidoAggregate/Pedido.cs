@@ -10,10 +10,9 @@ namespace FourSix.Domain.Entities.PedidoAggregate
 
         public Pedido() { }
 
-        public Pedido(Guid id, int numeroPedido, DateTime dataPedido, Guid? clienteId)
+        public Pedido(Guid id, DateTime dataPedido, Guid? clienteId)
         {
             Id = id;
-            NumeroPedido = numeroPedido;
             DataPedido = dataPedido;
             ClienteId = clienteId;
         }

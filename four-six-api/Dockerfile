@@ -1,0 +1,29 @@
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
+
+COPY ["src/FourSix.Application/*.csproj", "FourSix.Application/"]
+COPY ["src/FourSix.Domain/*.csproj", "FourSix.Domain/"]
+COPY ["src/FourSix.Infrastructure/*.csproj", "FourSix.Infrastructure/"]
+COPY ["src/FourSix.WebApi/*.csproj", "FourSix.WebApi/"]
+
+RUN dotnet restore "FourSix.Application/FourSix.Application.csproj"
+RUN dotnet restore "FourSix.Domain/FourSix.Domain.csproj"
+RUN dotnet restore "FourSix.Infrastructure/FourSix.Infrastructure.csproj"
+RUN dotnet restore "FourSix.WebApi/FourSix.WebApi.csproj"
+
+COPY . .
+WORKDIR "/src/FourSix.Application"
+RUN dotnet build "FourSix.Application.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "FourSix.Application.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "FourSix.Application.dll"]

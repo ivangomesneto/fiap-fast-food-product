@@ -55,7 +55,7 @@ namespace FourSix.WebApi.UseCases.Pedidos.NovoPedido
         {
             _useCase.SetOutputPort(this);
 
-            await _useCase.Execute(pedido.NumeroPedido, pedido.DataPedido, pedido.ClienteId)
+            await _useCase.Execute(pedido.DataPedido, pedido.ClienteId)
                 .ConfigureAwait(false);
 
             return _viewModel!;
