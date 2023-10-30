@@ -21,7 +21,8 @@ namespace FourSix.Application.UseCases.Produtos.ObtemProdutoPorCategoria
         private async Task ObtemProdutoPorCategoria(EnumCategoriaProduto categoria)
         {
             var produtos = this._produtoRepository
-                  .Listar().Where(x => x.Categoria == categoria).ToList();
+                  .Listar().Where(x => x.Categoria == categoria
+                  && x.Ativo).ToList();
 
             if (produtos != null)
             {

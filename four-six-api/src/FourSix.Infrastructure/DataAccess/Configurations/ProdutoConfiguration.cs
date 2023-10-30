@@ -38,6 +38,10 @@ namespace FourSix.Infrastructure.DataAccess.Configurations
                 .IsRequired()
                 .HasPrecision(6, 2)
                 .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
+
+            builder.Property(b => b.Ativo)
+               .IsRequired()
+               .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
         }
     }
 }

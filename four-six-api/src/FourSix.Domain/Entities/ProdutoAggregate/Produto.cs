@@ -4,24 +4,27 @@
     {
         Lanche,
         Acompanhamento,
-        Sobremesa
+        Sobremesa,
+        Bebida
     }
 
     public class Produto : BaseEntity, IAggregateRoot, IBaseEntity
     {
-        public Produto(){}
-        public Produto(Guid id, string nome, string descricao, EnumCategoriaProduto categoria, decimal preco)
+        public Produto() { }
+        public Produto(Guid id, string nome, string descricao, EnumCategoriaProduto categoria, decimal preco, bool ativo)
         {
             Id = id;
             Nome = nome;
             Descricao = descricao;
             Categoria = categoria;
             Preco = preco;
+            Ativo = ativo;
         }
 
         public string Nome { get; }
-        public string Descricao { get; } 
+        public string Descricao { get; }
         public EnumCategoriaProduto Categoria { get; }
         public decimal Preco { get; }
+        public bool Ativo { get; }
     }
 }

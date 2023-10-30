@@ -31,7 +31,7 @@ namespace FourSix.Infrastructure.DataAccess.Configurations
                 .IsRequired()
                 .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
 
-            builder.HasOne(x => x.Status).WithMany().HasForeignKey(b => b.StatusId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(x => x.Status).WithMany().HasForeignKey(b => b.StatusId).OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

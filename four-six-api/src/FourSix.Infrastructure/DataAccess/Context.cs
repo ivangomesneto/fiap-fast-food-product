@@ -1,4 +1,5 @@
 ﻿using FourSix.Domain.Entities.ClienteAggregate;
+using FourSix.Domain.Entities.PagamentoAggregate;
 using FourSix.Domain.Entities.PedidoAggregate;
 using FourSix.Domain.Entities.ProdutoAggregate;
 using FourSix.Infrastructure.DataAccess.Configurations;
@@ -12,6 +13,11 @@ namespace FourSix.Infrastructure.DataAccess
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
+        public DbSet<StatusPedido> StatusPedidos { get; set; }
+        public DbSet<PedidoCheckout> PedidosCheckouts { get; set; }
+        public DbSet<PedidoItem> PedidosItens { get; set; }
+        public DbSet<Pagamento> Pagamentos { get; set; }
+        public DbSet<StatusPagamento> StatusPagamentos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -30,6 +36,7 @@ namespace FourSix.Infrastructure.DataAccess
             modelBuilder.ApplyConfiguration(new ProdutoConfiguration());
             modelBuilder.ApplyConfiguration(new StatusPedidoConfiguration());
             modelBuilder.ApplyConfiguration(new StatusPagamentoConfiguration());
+            SeedData.Seed(modelBuilder);
         }
 
         private static string ReadDefaultConnectionStringFromAppSettings()

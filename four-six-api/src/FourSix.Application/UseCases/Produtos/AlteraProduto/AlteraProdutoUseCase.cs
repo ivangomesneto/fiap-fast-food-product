@@ -28,7 +28,8 @@ namespace FourSix.Application.UseCases.Produtos.AlteraProduto
                     nome,
                     descricao,
                     categoria,
-                    preco));
+                    preco,
+                    true));
 
         private async Task AlteraProduto(Produto produto)
         {

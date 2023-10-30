@@ -26,7 +26,8 @@ namespace FourSix.Application.UseCases.Produtos.NovoProduto
                 nome,
                 descricao,
                 categoria,
-                preco));
+                preco,
+                true));
 
         private async Task NovoProduto(Produto produto)
         {

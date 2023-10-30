@@ -29,8 +29,7 @@ namespace FourSix.Application.UseCases.Pagamentos.RealizaPagamento
         {
             var pagamento = _pagamentoRepository.Obter(pagamentoId);
 
-            pagamento.ValorPago = valorPago;
-            pagamento.StatusId = EnumStatusPagamento.Pago;
+            pagamento.Pagar(valorPago);
 
             var resultado = await _unitOfWork.Save();
 
