@@ -10,19 +10,21 @@ namespace FourSix.Domain.Entities.PedidoAggregate
 
         public Pedido() { }
 
-        public Pedido(Guid id, DateTime dataPedido, Guid? clienteId)
+        public Pedido(Guid id, DateTime dataPedido, Guid? clienteId, ICollection<PedidoItem> itens, ICollection<PedidoCheckout> checkouts)
         {
             Id = id;
             DataPedido = dataPedido;
             ClienteId = clienteId;
+            _pedidoItens = itens?.ToList();
+            _pedidoCheckout = checkouts?.ToList();
         }
 
         public int NumeroPedido { get; }
         public Guid? ClienteId { get; }
         public DateTime DataPedido { get; }
         public EnumStatusPedido StatusId { get; } = EnumStatusPedido.Recebido;
-        public IReadOnlyCollection<PedidoItem> Itens => _pedidoItens.AsReadOnly();
-        public IReadOnlyCollection<PedidoCheckout> HistoricoCheckout => _pedidoCheckout.AsReadOnly();
+        public IReadOnlyCollection<PedidoItem> Itens => _pedidoItens?.AsReadOnly();
+        public IReadOnlyCollection<PedidoCheckout> HistoricoCheckout => _pedidoCheckout?.AsReadOnly();
         public int TotalItens => _pedidoItens.Sum(i => i.Quantidade);
         public decimal ValorTotal => _pedidoItens.Sum(i => i.ValorUnitario * i.Quantidade);
         public Cliente Cliente { get; set; }

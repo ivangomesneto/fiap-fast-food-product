@@ -5,10 +5,10 @@ namespace FourSix.Domain.Entities.PedidoAggregate
     public class PedidoItem
     {
         public PedidoItem() { }
-        public PedidoItem(Guid pedidoId, Guid ItemPedidoId, decimal valorUnitario, int quantidade, string? observacao)
+        public PedidoItem(Guid pedidoId, Guid itemPedidoId, decimal valorUnitario, int quantidade, string? observacao)
         {
             PedidoId = pedidoId;
-            ItemPedidoId = ItemPedidoId;
+            ItemPedidoId = itemPedidoId;
             ValorUnitario = valorUnitario;
             Quantidade = quantidade;
             Observacao = observacao;

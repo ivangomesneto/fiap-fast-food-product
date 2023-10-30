@@ -35,10 +35,12 @@ namespace FourSix.Application.UseCases.Pedidos.NovoPedido
             await this.IncluiPedido(
                 new Pedido(id,
                 dataPedido,
-                clienteId), itens.Select(i => new PedidoItem(id, i.Item1, i.Item2, i.Item3, i.Item4)).ToList());
+                clienteId, 
+                itens.Select(i => new PedidoItem(id, i.Item1, i.Item2, i.Item3, i.Item4)).ToList(), 
+                new List<PedidoCheckout> { new PedidoCheckout(id, 1, EnumStatusPedido.Recebido, DateTime.Now) }));
         }
 
-        private async Task IncluiPedido(Pedido pedido, ICollection<PedidoItem> items)
+        private async Task IncluiPedido(Pedido pedido)
         {
             if (this._pedidoRepository
                 .Listar(q => q.NumeroPedido == pedido.NumeroPedido).Any())
@@ -51,14 +53,14 @@ namespace FourSix.Application.UseCases.Pedidos.NovoPedido
                  .Incluir(pedido)
                  .ConfigureAwait(false);
 
-            foreach (var item in items)
-            {
-                await this._pedidoItemRepository
-                 .Incluir(item)
-                 .ConfigureAwait(false);
-            }
+            //foreach (var item in items)
+            //{
+            //    await this._pedidoItemRepository
+            //     .Incluir(item)
+            //     .ConfigureAwait(false);
+            //}
 
-            await _pedidoCheckoutRepository.Incluir(new PedidoCheckout(pedido.Id, 1, EnumStatusPedido.Recebido, DateTime.Now));
+            //await _pedidoCheckoutRepository.Incluir(new PedidoCheckout(pedido.Id, 1, EnumStatusPedido.Recebido, DateTime.Now));
 
             await this._unitOfWork
                 .Save()

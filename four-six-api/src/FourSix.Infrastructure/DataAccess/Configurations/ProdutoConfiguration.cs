@@ -6,7 +6,6 @@ namespace FourSix.Infrastructure.DataAccess.Configurations
 {
     public class ProdutoConfiguration : IEntityTypeConfiguration<Produto>
     {
-
         public void Configure(EntityTypeBuilder<Produto> builder)
         {
             if (builder == null)
