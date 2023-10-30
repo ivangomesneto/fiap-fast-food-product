@@ -46,10 +46,10 @@ namespace FourSix.Infrastructure.DataAccess
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(Path.Combine(Directory.GetCurrentDirectory()))
                 .AddJsonFile("appsettings.json", false)
-                .AddJsonFile($"appsettings.{envName}.json", false)
+                //.AddJsonFile($"appsettings.{envName}.json", false)
                 .AddEnvironmentVariables()
                 .Build();
-            //P@$$w0rd
+            //P@$$w0rd123
             string connectionString = configuration.GetValue<string>("PersistenceModule:DefaultConnection");
             return connectionString;
         }
