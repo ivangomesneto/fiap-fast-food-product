@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FourSix.Infrastructure.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20231030064836_Create")]
+    [Migration("20231030215136_Create")]
     partial class Create
     {
         /// <inheritdoc />
@@ -135,7 +135,6 @@ namespace FourSix.Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ClienteId")
-                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DataPedido")
@@ -180,7 +179,6 @@ namespace FourSix.Infrastructure.Migrations
             modelBuilder.Entity("FourSix.Domain.Entities.PedidoAggregate.PedidoItem", b =>
                 {
                     b.Property<Guid>("PedidoId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ItemPedidoId")
@@ -287,7 +285,7 @@ namespace FourSix.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("86c25981-e16b-456b-9ca1-462bc9a6df81"),
+                            Id = new Guid("947e3d62-26fa-4ba6-8395-39c259fc43ec"),
                             Ativo = true,
                             Categoria = 0,
                             Descricao = "Pão, carne, alface, tomate e maionese ESPECIAL",
@@ -296,7 +294,7 @@ namespace FourSix.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("4fc64b86-b4a9-43af-9bee-559c6be8e880"),
+                            Id = new Guid("a45a3af2-17db-459f-867a-b0c2e1261dc0"),
                             Ativo = true,
                             Categoria = 0,
                             Descricao = "Pão, carne, queijo, alface, tomate e maionese ESPECIAL",
@@ -305,7 +303,7 @@ namespace FourSix.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("3c5b9af5-1ece-41b8-9e32-e0ba5ad69204"),
+                            Id = new Guid("d23c72b6-0bbe-4e0d-a46e-b8d72da5e9ef"),
                             Ativo = true,
                             Categoria = 0,
                             Descricao = "Pão, carne, queijo, ovo, bacon, alface, tomate e maionese ESPECIAL",
@@ -314,7 +312,7 @@ namespace FourSix.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("ff7d515d-101f-4a0a-9531-0498d971fef1"),
+                            Id = new Guid("a0d0225e-0f3c-42ff-935d-beb44bb2cac4"),
                             Ativo = true,
                             Categoria = 3,
                             Descricao = "Coca-cola 600ml",
@@ -323,7 +321,7 @@ namespace FourSix.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("c68a1fee-ccdc-498c-9d09-4275dfc13038"),
+                            Id = new Guid("63c776f5-4539-478e-a17a-54d3a1c2d3ee"),
                             Ativo = true,
                             Categoria = 3,
                             Descricao = "H2O 500ml",
@@ -332,7 +330,7 @@ namespace FourSix.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("1cf5d22d-05bf-45cb-ad1f-88a33a67bc72"),
+                            Id = new Guid("9482fcf0-e9e4-4bdc-869f-ad7d1d15016c"),
                             Ativo = true,
                             Categoria = 3,
                             Descricao = "Suco Natural de Laranja 500ml",
@@ -341,7 +339,7 @@ namespace FourSix.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("26000029-db74-4ebe-b1c1-fc8f51399198"),
+                            Id = new Guid("c55a9ca7-411d-4245-8b91-1efbc30f7a9b"),
                             Ativo = true,
                             Categoria = 1,
                             Descricao = "Batata Frita especial",
@@ -350,7 +348,7 @@ namespace FourSix.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("abbdc726-4da0-4ac2-ba13-8c42dc47b4f3"),
+                            Id = new Guid("c2a49da0-6bc2-4cdc-be77-97d0284b8c92"),
                             Ativo = true,
                             Categoria = 1,
                             Descricao = "Cebola empanada especial",
@@ -359,7 +357,7 @@ namespace FourSix.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("9c317f77-3939-4365-a500-3bfc627716e0"),
+                            Id = new Guid("7686debb-92c2-4d89-a669-8988da8e8c72"),
                             Ativo = true,
                             Categoria = 2,
                             Descricao = "Casquinha de sorvete de baunilha",
@@ -368,7 +366,7 @@ namespace FourSix.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("5931d83f-5fbb-46b3-9810-52e629683f3d"),
+                            Id = new Guid("ea5df339-afd7-41b6-a4ab-44979c1d919d"),
                             Ativo = true,
                             Categoria = 2,
                             Descricao = "Bolo de chocolate com recheio de creme de morango",
