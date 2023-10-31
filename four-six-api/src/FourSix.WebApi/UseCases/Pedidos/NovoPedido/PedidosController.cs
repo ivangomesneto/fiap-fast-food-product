@@ -55,8 +55,12 @@ namespace FourSix.WebApi.UseCases.Pedidos.NovoPedido
         {
             _useCase.SetOutputPort(this);
 
-            await _useCase.Execute(pedido.DataPedido, pedido.ClienteId, pedido.Items.Select(i => new Tuple<Guid, decimal, int, string>(i.ItemPedidoId, i.ValorUnitario, i.Quantidade, i.Observacao)).ToList())
-                .ConfigureAwait(false);
+            try
+            {
+                await _useCase.Execute(pedido.DataPedido, pedido.ClienteId, pedido.Items.Select(i => new Tuple<Guid, decimal, int, string>(i.ItemPedidoId, i.ValorUnitario, i.Quantidade, i.Observacao)).ToList())
+                    .ConfigureAwait(false);
+            }
+            catch (Exception ex) { }
 
             return _viewModel!;
         }

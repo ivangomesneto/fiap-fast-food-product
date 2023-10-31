@@ -43,7 +43,7 @@ namespace FourSix.WebApi.UseCases.Pagamentos.RealizaPagamento
         void IOutputPort<Pagamento>.Exist() => _viewModel = BadRequest("Pagamento já existe");
 
         /// <summary>
-        /// Gera novo pagamento
+        /// Efetiva pagamento pendente
         /// </summary>
         /// <param name="request">Dados do pagamento</param>
         /// <returns></returns>

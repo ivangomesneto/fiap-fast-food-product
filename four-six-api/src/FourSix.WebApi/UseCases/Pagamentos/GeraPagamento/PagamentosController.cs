@@ -1,6 +1,7 @@
 ﻿using FourSix.Application.Services;
 using FourSix.Application.UseCases;
 using FourSix.Application.UseCases.Pagamentos.CancelaPagamento;
+using FourSix.Application.UseCases.Pagamentos.GeraPagamento;
 using FourSix.Domain.Entities.PagamentoAggregate;
 using FourSix.WebApi.Modules.Commons;
 using FourSix.WebApi.UseCases.Pagamentos.CancelaPagamento;
@@ -21,10 +22,10 @@ namespace FourSix.WebApi.UseCases.Pagamentos.GeraPagamento
         private readonly Notification _notification;
 
         private IActionResult _viewModel;
-        private readonly ICancelaPagamentoUseCase _useCase;
+        private readonly IGeraPagamentoUseCase _useCase;
 
         public PagamentosController(Notification notification,
-            ICancelaPagamentoUseCase useCase)
+            IGeraPagamentoUseCase useCase)
         {
             _useCase = useCase;
             _notification = notification;
@@ -44,7 +45,7 @@ namespace FourSix.WebApi.UseCases.Pagamentos.GeraPagamento
         void IOutputPort<Pagamento>.Exist() => _viewModel = BadRequest("Pagamento já existe");
 
         /// <summary>
-        /// Cancela pagamento
+        /// Gera novo pagamento
         /// </summary>
         /// <param name="request">Dados do pagamento</param>
         /// <returns></returns>
@@ -53,11 +54,11 @@ namespace FourSix.WebApi.UseCases.Pagamentos.GeraPagamento
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GeraPagamentoResponse))]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(GeraPagamentoResponse))]
         [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Create))]
-        public async Task<IActionResult> Gerar([FromBody] CancelaPagamentoRequest request)
+        public async Task<IActionResult> Gerar([FromBody] GeraPagamentoRequest request)
         {
             _useCase.SetOutputPort(this);
 
-            await _useCase.Execute(request.PagamentoId)
+            await _useCase.Execute(request.PedidoId, request.ValorPedido, request.Desconto)
                 .ConfigureAwait(false);
 
             return _viewModel!;

@@ -15,9 +15,14 @@ namespace FourSix.Infrastructure.DataAccess.Configurations
             }
 
             builder.ToTable("PedidoCheckout");
-            builder.HasKey(e => new { e.PedidoId, e.StatusId });
+            builder.HasKey(e => new { e.PedidoId, e.Sequencia });
 
             builder.Property(b => b.PedidoId)
+                .IsRequired()
+                .ValueGeneratedNever()
+                .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
+
+            builder.Property(b => b.Sequencia)
                 .IsRequired()
                 .ValueGeneratedNever()
                 .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);

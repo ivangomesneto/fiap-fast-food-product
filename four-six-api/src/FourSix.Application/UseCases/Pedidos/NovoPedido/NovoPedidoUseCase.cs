@@ -53,15 +53,6 @@ namespace FourSix.Application.UseCases.Pedidos.NovoPedido
                  .Incluir(pedido)
                  .ConfigureAwait(false);
 
-            //foreach (var item in items)
-            //{
-            //    await this._pedidoItemRepository
-            //     .Incluir(item)
-            //     .ConfigureAwait(false);
-            //}
-
-            //await _pedidoCheckoutRepository.Incluir(new PedidoCheckout(pedido.Id, 1, EnumStatusPedido.Recebido, DateTime.Now));
-
             await this._unitOfWork
                 .Save()
                 .ConfigureAwait(false);

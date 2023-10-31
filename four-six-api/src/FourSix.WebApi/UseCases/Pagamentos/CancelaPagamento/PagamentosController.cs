@@ -42,7 +42,7 @@ namespace FourSix.WebApi.UseCases.Pagamentos.CancelaPagamento
         void IOutputPort<Pagamento>.Exist() => _viewModel = BadRequest("Pagamento já existe");
 
         /// <summary>
-        /// Gera novo pagamento
+        /// Cancela pagamento
         /// </summary>
         /// <param name="request">Dados do pagamento</param>
         /// <returns></returns>
