@@ -76,7 +76,7 @@ namespace FourSix.Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     NumeroPedido = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ClienteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ClienteId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     DataPedido = table.Column<DateTime>(type: "datetime2", nullable: false),
                     StatusId = table.Column<short>(type: "smallint", nullable: false)
                 },
@@ -183,16 +183,16 @@ namespace FourSix.Infrastructure.Migrations
                 columns: new[] { "Id", "Ativo", "Categoria", "Descricao", "Nome", "Preco" },
                 values: new object[,]
                 {
-                    { new Guid("1cf5d22d-05bf-45cb-ad1f-88a33a67bc72"), true, 3, "Suco Natural de Laranja 500ml", "Suco Natural de Laranja", 10m },
-                    { new Guid("26000029-db74-4ebe-b1c1-fc8f51399198"), true, 1, "Batata Frita especial", "Batata Frita", 6.50m },
-                    { new Guid("3c5b9af5-1ece-41b8-9e32-e0ba5ad69204"), true, 0, "Pão, carne, queijo, ovo, bacon, alface, tomate e maionese ESPECIAL", "Burguer FourSix", 10m },
-                    { new Guid("4fc64b86-b4a9-43af-9bee-559c6be8e880"), true, 0, "Pão, carne, queijo, alface, tomate e maionese ESPECIAL", "Burguer Six", 7.5m },
-                    { new Guid("5931d83f-5fbb-46b3-9810-52e629683f3d"), true, 2, "Bolo de chocolate com recheio de creme de morango", "Bolo Sensação", 3.25m },
-                    { new Guid("86c25981-e16b-456b-9ca1-462bc9a6df81"), true, 0, "Pão, carne, alface, tomate e maionese ESPECIAL", "Burger Four", 5.5m },
-                    { new Guid("9c317f77-3939-4365-a500-3bfc627716e0"), true, 2, "Casquinha de sorvete de baunilha", "Sorvete de Baunilha", 1.25m },
-                    { new Guid("abbdc726-4da0-4ac2-ba13-8c42dc47b4f3"), true, 1, "Cebola empanada especial", "Onion", 8.25m },
-                    { new Guid("c68a1fee-ccdc-498c-9d09-4275dfc13038"), true, 3, "H2O 500ml", "H2O", 8.25m },
-                    { new Guid("ff7d515d-101f-4a0a-9531-0498d971fef1"), true, 3, "Coca-cola 600ml", "Coca-cola", 8.25m }
+                    { new Guid("63c776f5-4539-478e-a17a-54d3a1c2d3ee"), true, 3, "H2O 500ml", "H2O", 8.25m },
+                    { new Guid("7686debb-92c2-4d89-a669-8988da8e8c72"), true, 2, "Casquinha de sorvete de baunilha", "Sorvete de Baunilha", 1.25m },
+                    { new Guid("947e3d62-26fa-4ba6-8395-39c259fc43ec"), true, 0, "Pão, carne, alface, tomate e maionese ESPECIAL", "Burger Four", 5.5m },
+                    { new Guid("9482fcf0-e9e4-4bdc-869f-ad7d1d15016c"), true, 3, "Suco Natural de Laranja 500ml", "Suco Natural de Laranja", 10m },
+                    { new Guid("a0d0225e-0f3c-42ff-935d-beb44bb2cac4"), true, 3, "Coca-cola 600ml", "Coca-cola", 8.25m },
+                    { new Guid("a45a3af2-17db-459f-867a-b0c2e1261dc0"), true, 0, "Pão, carne, queijo, alface, tomate e maionese ESPECIAL", "Burguer Six", 7.5m },
+                    { new Guid("c2a49da0-6bc2-4cdc-be77-97d0284b8c92"), true, 1, "Cebola empanada especial", "Onion", 8.25m },
+                    { new Guid("c55a9ca7-411d-4245-8b91-1efbc30f7a9b"), true, 1, "Batata Frita especial", "Batata Frita", 6.50m },
+                    { new Guid("d23c72b6-0bbe-4e0d-a46e-b8d72da5e9ef"), true, 0, "Pão, carne, queijo, ovo, bacon, alface, tomate e maionese ESPECIAL", "Burguer FourSix", 10m },
+                    { new Guid("ea5df339-afd7-41b6-a4ab-44979c1d919d"), true, 2, "Bolo de chocolate com recheio de creme de morango", "Bolo Sensação", 3.25m }
                 });
 
             migrationBuilder.InsertData(

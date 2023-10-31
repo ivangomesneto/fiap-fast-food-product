@@ -4,6 +4,7 @@ using FourSix.Infrastructure.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FourSix.Infrastructure.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20231030221313_FixPedidoItem")]
+    partial class FixPedidoItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,16 +163,13 @@ namespace FourSix.Infrastructure.Migrations
                     b.Property<Guid>("PedidoId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Sequencia")
-                        .HasColumnType("int");
+                    b.Property<short>("StatusId")
+                        .HasColumnType("smallint");
 
                     b.Property<DateTime>("DataStatus")
                         .HasColumnType("datetime2");
 
-                    b.Property<short>("StatusId")
-                        .HasColumnType("smallint");
-
-                    b.HasKey("PedidoId", "Sequencia");
+                    b.HasKey("PedidoId", "StatusId");
 
                     b.HasIndex("StatusId");
 
