@@ -6,13 +6,22 @@ services:
     container_name: "foursixapi"
     depends_on:
       - sql1
+    networks:
+      - foursix-network
+    ports:
+      - "5293:80"
   sql1:
     image: "mcr.microsoft.com/mssql/server:2022-latest"
     environment:
       SA_PASSWORD: "P@$$w0rd123"
       ACCEPT_EULA: "Y"
-      
     ports:
-      - "1433:1433"
+      - "1430:1430"
+    networks:
+      - foursix-network
     hostname: sql1
     container_name: "sql1"
+
+networks:
+  foursix-network:
+    
