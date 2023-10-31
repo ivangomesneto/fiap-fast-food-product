@@ -7,7 +7,7 @@ namespace FourSix.Application.UseCases.Pedidos.NovoPedido
         /// <summary>
         /// Executa o Caso de Uso
         /// </summary>
-        Task Execute(string numeroPedido, DateTime dataPedido, Guid? clienteId);
+        Task Execute(DateTime dataPedido, Guid? clienteId, ICollection<Tuple<Guid, decimal, int, string>> itens);
 
         /// <summary>
         /// Define a porta de saída

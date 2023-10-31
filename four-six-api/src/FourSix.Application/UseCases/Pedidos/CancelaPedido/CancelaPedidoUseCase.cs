@@ -6,14 +6,14 @@ namespace FourSix.Application.UseCases.Pedidos.CancelaPedido
     public class CancelaPedidoUseCase : ICancelaPedidoUseCase
     {
         private readonly IPedidoRepository _pedidoRepository;
-        private readonly IPedidoStatusRepository _pedidoStatusRepository;
+        private readonly IPedidoCheckoutRepository _pedidoStatusRepository;
         private readonly IUnitOfWork _unitOfWork;
         private IOutputPort<Pedido> _outputPort;
 
         public CancelaPedidoUseCase(
             IPedidoRepository pedidoRepository,
             IUnitOfWork unitOfWork,
-            IPedidoStatusRepository pedidoStatusRepository)
+            IPedidoCheckoutRepository pedidoStatusRepository)
         {
             this._pedidoRepository = pedidoRepository;
             this._unitOfWork = unitOfWork;
@@ -43,7 +43,7 @@ namespace FourSix.Application.UseCases.Pedidos.CancelaPedido
             var novaSequencia = _pedidoStatusRepository.Listar(l => l.PedidoId == pedidoId).Max(l => l.Sequencia) + 1;
 
             await this._pedidoStatusRepository
-                 .Incluir(new PedidoStatus(pedidoId, novaSequencia, EnumStatus.Cancelado, dataCancelamento))
+                 .Incluir(new PedidoCheckout(pedidoId, novaSequencia, EnumStatusPedido.Cancelado, dataCancelamento))
                  .ConfigureAwait(false);
 
             await this._unitOfWork

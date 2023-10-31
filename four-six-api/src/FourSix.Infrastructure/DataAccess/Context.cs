@@ -1,4 +1,5 @@
 ﻿using FourSix.Domain.Entities.ClienteAggregate;
+using FourSix.Domain.Entities.PagamentoAggregate;
 using FourSix.Domain.Entities.PedidoAggregate;
 using FourSix.Domain.Entities.ProdutoAggregate;
 using FourSix.Infrastructure.DataAccess.Configurations;
@@ -12,9 +13,11 @@ namespace FourSix.Infrastructure.DataAccess
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
+        public DbSet<StatusPedido> StatusPedidos { get; set; }
+        public DbSet<PedidoCheckout> PedidosCheckouts { get; set; }
         public DbSet<PedidoItem> PedidosItens { get; set; }
-        public DbSet<PedidoStatus> PedidosStatus { get; set; }
-        public DbSet<Status> Status { get; set; }
+        public DbSet<Pagamento> Pagamentos { get; set; }
+        public DbSet<StatusPagamento> StatusPagamentos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -29,8 +32,11 @@ namespace FourSix.Infrastructure.DataAccess
             modelBuilder.ApplyConfiguration(new PagamentoConfiguration());
             modelBuilder.ApplyConfiguration(new PedidoConfiguration());
             modelBuilder.ApplyConfiguration(new PedidoItemConfiguration());
-            modelBuilder.ApplyConfiguration(new PedidoStatusConfiguration());
-            modelBuilder.ApplyConfiguration(new StatusConfiguration());
+            modelBuilder.ApplyConfiguration(new PedidoCheckoutConfiguration());
+            modelBuilder.ApplyConfiguration(new ProdutoConfiguration());
+            modelBuilder.ApplyConfiguration(new StatusPedidoConfiguration());
+            modelBuilder.ApplyConfiguration(new StatusPagamentoConfiguration());
+            SeedData.Seed(modelBuilder);
         }
 
         private static string ReadDefaultConnectionStringFromAppSettings()
@@ -40,10 +46,10 @@ namespace FourSix.Infrastructure.DataAccess
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(Path.Combine(Directory.GetCurrentDirectory()))
                 .AddJsonFile("appsettings.json", false)
-                .AddJsonFile($"appsettings.{envName}.json", false)
+                //.AddJsonFile($"appsettings.{envName}.json", false)
                 .AddEnvironmentVariables()
                 .Build();
-            //P@$$w0rd
+            //P@$$w0rd123
             string connectionString = configuration.GetValue<string>("PersistenceModule:DefaultConnection");
             return connectionString;
         }

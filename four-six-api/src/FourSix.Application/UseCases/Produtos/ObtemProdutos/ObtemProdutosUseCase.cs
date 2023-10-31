@@ -21,7 +21,8 @@ namespace FourSix.Application.UseCases.Produtos.ObtemProdutos
         private async Task ObtemProdutos()
         {
             var produtos = this._produtoRepository
-                .Listar().ToList();
+                .Listar()
+                .Where(q=>q.Ativo).ToList();
 
             if (produtos != null)
             {

@@ -55,7 +55,8 @@ namespace FourSix.WebApi.UseCases.Produtos.AlteraProduto
         {
             _useCase.SetOutputPort(this);
 
-            await _useCase.Execute(produto.Nome, 
+            await _useCase.Execute(id,
+                produto.Nome, 
                 produto.Descricao, 
                 produto.Categoria,
                 produto.Preco)

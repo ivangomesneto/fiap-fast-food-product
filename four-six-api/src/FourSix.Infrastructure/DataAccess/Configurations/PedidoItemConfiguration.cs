@@ -18,11 +18,12 @@ namespace FourSix.Infrastructure.DataAccess.Configurations
             builder.HasKey(e => new { e.PedidoId, e.ItemPedidoId });
             builder.Property(b => b.PedidoId)
                 .IsRequired()
-                .ValueGeneratedOnAdd()
+                .ValueGeneratedNever()
                 .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
 
             builder.Property(b => b.ItemPedidoId)
                 .IsRequired()
+                .ValueGeneratedNever()
                 .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
 
             builder.Property(b => b.ValorUnitario)
@@ -35,7 +36,7 @@ namespace FourSix.Infrastructure.DataAccess.Configurations
                 .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
 
             builder.Property(b => b.Observacao)
-                .IsRequired()
+                .IsRequired(false)
                 .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
 
             builder.HasOne(x => x.ItemPedido).WithMany().HasForeignKey(b => b.ItemPedidoId).OnDelete(DeleteBehavior.Cascade);

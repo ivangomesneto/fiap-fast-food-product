@@ -14,17 +14,17 @@ namespace FourSix.Infrastructure.DataAccess
             _context = context;
         }
 
-        public T Obter(C id)
+        public virtual T Obter(C id)
         {
             return _context.Set<T>().Find(id);
         }
 
-        public IEnumerable<T> Listar(Expression<Func<T, bool>>? predicate = null)
+        public virtual IEnumerable<T> Listar(Expression<Func<T, bool>>? predicate = null)
         {
             if (predicate == null)
-                return _context.Set<T>();
+                return _context.Set<T>().AsNoTracking();
             else
-                return _context.Set<T>().Where(predicate);
+                return _context.Set<T>().Where(predicate).AsNoTracking();
         }
 
         public async Task Incluir(T entidade)

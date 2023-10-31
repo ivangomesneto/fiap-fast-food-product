@@ -1,5 +1,7 @@
+using FourSix.Infrastructure.DataAccess;
 using FourSix.WebApi.Modules;
 using FourSix.WebApi.Modules.Commons;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +18,14 @@ builder.Services.AddCustomControllers();
 builder.Services.AddCustomCors();
 builder.Services.AddSwaggerConfig();
 
+
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var dataContext = scope.ServiceProvider.GetRequiredService<Context>();
+    dataContext.Database.Migrate();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

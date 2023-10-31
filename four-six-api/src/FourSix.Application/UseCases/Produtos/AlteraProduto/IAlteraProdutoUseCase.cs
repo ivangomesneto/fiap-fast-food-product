@@ -7,7 +7,7 @@ namespace FourSix.Application.UseCases.Produtos.AlteraProduto
         /// <summary>
         /// Executa o Caso de Uso
         /// </summary>
-        Task Execute(string nome, string descricao, EnumCategoriaProduto categoria, decimal preco);
+        Task Execute(Guid produtoId, string nome, string descricao, EnumCategoriaProduto categoria, decimal preco);
 
         /// <summary>
         /// Define a porta de saída

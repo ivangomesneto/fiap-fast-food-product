@@ -4,7 +4,7 @@ namespace FourSix.Application.UseCases.Pedidos.ObtemPedidosPorStatus
 {
     public interface IObtemPedidosPorStatusUseCase
     {
-        Task Execute(EnumStatus statusId);
+        Task<ICollection<Pedido>> Execute(EnumStatusPedido statusId);
         void SetOutputPort(IOutputPort<ICollection<Pedido>> outputPort);
     }
 }

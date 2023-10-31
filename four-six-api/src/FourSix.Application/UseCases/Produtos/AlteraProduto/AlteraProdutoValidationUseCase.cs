@@ -22,7 +22,7 @@ namespace FourSix.Application.UseCases.Produtos.AlteraProduto
             this._useCase.SetOutputPort(outputPort);
         }
 
-        public async Task Execute(string nome, string descricao, EnumCategoriaProduto categoria, decimal preco)
+        public async Task Execute(Guid produtoId, string nome, string descricao, EnumCategoriaProduto categoria, decimal preco)
         {
             if (string.IsNullOrEmpty(nome))
                 this._notification
@@ -31,10 +31,6 @@ namespace FourSix.Application.UseCases.Produtos.AlteraProduto
             if (string.IsNullOrEmpty(descricao))
                 this._notification
                     .Add(nameof(descricao), $"{nameof(descricao)} é obrigatório.");
-
-            if (categoria == 0)
-                this._notification
-                    .Add(nameof(categoria), $"{nameof(categoria)} é obrigatório.");
 
             if (preco == 0)
                 this._notification
@@ -49,7 +45,7 @@ namespace FourSix.Application.UseCases.Produtos.AlteraProduto
             }
 
             await this._useCase
-                .Execute(nome, descricao, categoria, preco)
+                .Execute(produtoId, nome, descricao, categoria, preco)
                 .ConfigureAwait(false);
         }
     }

@@ -22,19 +22,20 @@ namespace FourSix.Application.UseCases.Produtos.AlteraProduto
         public void SetOutputPort(IOutputPort outputPort) => this._outputPort = outputPort;
 
         /// <inheritdoc />
-        public Task Execute(string nome, string descricao, EnumCategoriaProduto categoria, decimal preco) =>
+        public Task Execute(Guid produtoId, string nome, string descricao, EnumCategoriaProduto categoria, decimal preco) =>
             this.AlteraProduto(
-                new Produto(Guid.NewGuid(),
+                new Produto(produtoId,
                     nome,
                     descricao,
                     categoria,
-                    preco));
+                    preco,
+                    true));
 
         private async Task AlteraProduto(Produto produto)
         {
 
             if (this._produtoRepository
-                .Listar(q => q.Descricao == produto.Descricao
+                .Listar(q => q.Nome == produto.Nome
                 && q.Categoria == produto.Categoria).Any())
             {
                 this._outputPort.Exist();
@@ -42,7 +43,7 @@ namespace FourSix.Application.UseCases.Produtos.AlteraProduto
             }
 
             await this._produtoRepository
-                 .Incluir(produto)
+                 .Alterar(produto)
                  .ConfigureAwait(false);
 
             await this._unitOfWork

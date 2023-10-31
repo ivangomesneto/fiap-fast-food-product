@@ -7,7 +7,7 @@ namespace FourSix.Application.UseCases.Pedidos.AlteraStatusPedido
         /// <summary>
         /// Executa o Caso de Uso
         /// </summary>
-        Task Execute(Guid pedidoId, EnumStatus statusId, DateTime dataStatus);
+        Task Execute(Guid pedidoId, EnumStatusPedido statusId, DateTime dataStatus);
 
         /// <summary>
         /// Define a porta de saída

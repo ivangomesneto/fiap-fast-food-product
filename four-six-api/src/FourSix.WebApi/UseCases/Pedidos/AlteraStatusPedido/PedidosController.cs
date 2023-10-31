@@ -44,19 +44,24 @@ namespace FourSix.WebApi.UseCases.Pedidos.AlteraStatusPedido
         /// <summary>
         /// Altera status do pedido
         /// </summary>
-        /// <param name="pedidoStatus">Dados do Status do Pedido</param>
+        /// <param name="pedidoId">ID do Pedido</param>
+        /// <param name="statusId">Status do Pedido</param>
         /// <returns></returns>
         [AllowAnonymous]
-        [HttpPut]
+        [HttpPut("{pedidoId:guid}/status/{statusId}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(AlteraStatusPedidoResponse))]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(AlteraStatusPedidoResponse))]
         [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Update))]
-        public async Task<IActionResult> Alterar([FromBody] AlteraStatusPedidoRequest pedidoStatus)
+        public async Task<IActionResult> Alterar(Guid pedidoId, EnumStatusPedido statusId)
         {
             _useCase.SetOutputPort(this);
 
-            await _useCase.Execute(pedidoStatus.PedidoId, pedidoStatus.StatusId, pedidoStatus.DataStatus)
-                .ConfigureAwait(false);
+            try
+            {
+                await _useCase.Execute(pedidoId, statusId, DateTime.Now)
+                    .ConfigureAwait(false);
+            }
+            catch(Exception ex) { }
 
             return _viewModel!;
         }
