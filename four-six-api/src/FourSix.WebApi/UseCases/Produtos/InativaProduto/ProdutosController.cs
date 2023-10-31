@@ -1,13 +1,11 @@
 ﻿using FourSix.Application.Services;
-using FourSix.Application.UseCases.Produtos.AlteraProduto;
-using FourSix.Domain.Entities.ProdutoAggregate;
+using FourSix.Application.UseCases.Produtos.InativaProduto;
 using FourSix.WebApi.Modules.Commons;
-using FourSix.WebApi.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace FourSix.WebApi.UseCases.Produtos.AlteraProduto
+namespace FourSix.WebApi.UseCases.Produtos.InativaProduto
 {
     [ApiController]
     [Route("[controller]")]
@@ -18,10 +16,10 @@ namespace FourSix.WebApi.UseCases.Produtos.AlteraProduto
         private readonly Notification _notification;
 
         private IActionResult _viewModel;
-        private readonly IAlteraProdutoUseCase _useCase;
+        private readonly IInativaProdutoUseCase _useCase;
 
         public ProdutosController(Notification notification,
-            IAlteraProdutoUseCase useCase)
+            IInativaProdutoUseCase useCase)
         {
             this._useCase = useCase;
             this._notification = notification;
@@ -35,31 +33,26 @@ namespace FourSix.WebApi.UseCases.Produtos.AlteraProduto
 
         void IOutputPort.NotFound() => this._viewModel = this.NotFound();
 
-        void IOutputPort.Ok(Produto produto) =>
-            this._viewModel = this.Ok(new AlteraProdutoResponse(new ProdutoModel(produto)));
+        void IOutputPort.Ok() =>
+            this._viewModel = this.Ok();
 
-        void IOutputPort.Exist() => this._viewModel = this.BadRequest("Produto já existe");
+        void IOutputPort.ExistPedido() => this._viewModel = this.BadRequest("Produto sendo utilizado em um pedido aberto");
 
         /// <summary>
-        /// Altera produto
+        /// Inativa produto
         /// </summary>
         /// <param name="id">Id do produto</param>
-        /// <param name="produto">Dados do Produto</param>
         /// <returns></returns>
         [AllowAnonymous]
-        [HttpPut("{id:guid}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(AlteraProdutoResponse))]
-        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(AlteraProdutoResponse))]
-        [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Edit))]
-        public async Task<IActionResult> Edit([FromRoute] Guid id, [FromBody] AlteraProdutoRequest produto)
+        [HttpDelete("{id:guid}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Delete))]
+        public async Task<IActionResult> Edit([FromRoute] Guid id)
         {
             _useCase.SetOutputPort(this);
 
-            await _useCase.Execute(id,
-                produto.Nome, 
-                produto.Descricao, 
-                produto.Categoria,
-                produto.Preco)
+            await _useCase.Execute(id)
                 .ConfigureAwait(false);
 
             return this._viewModel!;

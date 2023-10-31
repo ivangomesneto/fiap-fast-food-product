@@ -1,46 +1,46 @@
 ﻿using FourSix.Application.Services;
+using FourSix.Domain.Entities.PedidoAggregate;
 using FourSix.Domain.Entities.ProdutoAggregate;
 
-namespace FourSix.Application.UseCases.Produtos.AlteraProduto
+namespace FourSix.Application.UseCases.Produtos.InativaProduto
 {
-    public class AlteraProdutoUseCase : IAlteraProdutoUseCase
+    public class InativaProdutoUseCase : IInativaProdutoUseCase
     {
         private readonly IProdutoRepository _produtoRepository;
+        private readonly IPedidoRepository _pedidoRepository;
         private readonly IUnitOfWork _unitOfWork;
         private IOutputPort _outputPort;
 
-        public AlteraProdutoUseCase(
+        public InativaProdutoUseCase(
             IProdutoRepository produtoRepository,
+            IPedidoRepository pedidoRepository,
             IUnitOfWork unitOfWork)
         {
             this._produtoRepository = produtoRepository;
+            this._pedidoRepository = pedidoRepository;
             this._unitOfWork = unitOfWork;
-            this._outputPort = new AlteraProdutoPresenter();
+            this._outputPort = new InativaProdutoPresenter();
         }
 
         /// <inheritdoc />
         public void SetOutputPort(IOutputPort outputPort) => this._outputPort = outputPort;
 
         /// <inheritdoc />
-        public Task Execute(Guid produtoId, string nome, string descricao, EnumCategoriaProduto categoria, decimal preco) =>
-            this.AlteraProduto(
-                new Produto(produtoId,
-                    nome,
-                    descricao,
-                    categoria,
-                    preco,
-                    true));
+        public Task Execute(Guid produtoId) =>
+            this.ExcluiProduto(produtoId);
 
-        private async Task AlteraProduto(Produto produto)
+        private async Task ExcluiProduto(Guid produtoId)
         {
+            var produto = this._produtoRepository
+                .Obter(produtoId);
 
-            if (this._produtoRepository
-                .Listar(q => q.Nome == produto.Nome
-                && q.Categoria == produto.Categoria).Any())
+            if (produto == null)
             {
-                this._outputPort.Exist();
+                this._outputPort?.NotFound();
                 return;
             }
+
+            produto.InativarProduto();
 
             await this._produtoRepository
                  .Alterar(produto)
@@ -50,7 +50,7 @@ namespace FourSix.Application.UseCases.Produtos.AlteraProduto
                 .Save()
                 .ConfigureAwait(false);
 
-            this._outputPort?.Ok(produto);
+            this._outputPort?.Ok();
 
         }
     }

@@ -1,13 +1,11 @@
-﻿using FourSix.Domain.Entities.ProdutoAggregate;
-
-namespace FourSix.Application.UseCases.Produtos.AlteraProduto
+﻿namespace FourSix.Application.UseCases.Produtos.InativaProduto
 {
-    public interface IAlteraProdutoUseCase
+    public interface IInativaProdutoUseCase
     {
         /// <summary>
         /// Executa o Caso de Uso
         /// </summary>
-        Task Execute(Guid produtoId, string nome, string descricao, EnumCategoriaProduto categoria, decimal preco);
+        Task Execute(Guid produtoId);
 
         /// <summary>
         /// Define a porta de saída

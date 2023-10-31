@@ -25,6 +25,11 @@
         public string Descricao { get; }
         public EnumCategoriaProduto Categoria { get; }
         public decimal Preco { get; }
-        public bool Ativo { get; }
+        public bool Ativo { get; private set; }
+
+        public void InativarProduto()
+        {
+            Ativo = false;
+        }
     }
 }
