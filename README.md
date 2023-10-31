@@ -7,7 +7,7 @@
 
 **Observações**
 
-<p> Ao executar o docker-compose 2 container sobem no Docker, um banco SQLServer e uma API .NET
+<p> Ao executar o docker-compose 2 container sobem no Docker,  um banco SQLServer e uma API .NET
 Existe um Healthcheck no SQL Server para garantir que a API só suba depois que o banco estiver no ar, porém
 caso ocorra algo que a API suba antes do esperado, basta dar um, "start" na API </p>
 
