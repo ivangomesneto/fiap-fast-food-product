@@ -3,7 +3,7 @@
   1. Acesse o diretorio four-six-api
   2. Suba o docker-compose.yml através do comando docker-compose up
   3. Após a aplicação subir acesse http://localhost:5293/swagger/index.html
-  4. Para mais informações sobre o projeto acesse https://sage-peach-7c6.notion.site/22682d7ca9024037a102fe9ca4788932?v=531ac3130b5d4dd0aac0d0852b120de1
+  4. Para mais informações sobre o projeto acesse https://www.notion.so/22682d7ca9024037a102fe9ca4788932?v=531ac3130b5d4dd0aac0d0852b120de1&pvs=4
 
 **Observações**
 
