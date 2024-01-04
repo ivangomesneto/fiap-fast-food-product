@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sqlserver-pod
+  labels:
+        app: sqlserver-pod
+spec:
+  containers:
+    - name: sqlserverdb
+      image: mcr.microsoft.com/mssql/server:2022-latest
+      ports:
+        - containerPort: 1433
+      env:
+      - name: MSSQL_SA_PASSWORD
+        value: 'SenhaDoBanco(123)'
+      - name: ACCEPT_EULA
+        value: "Y"

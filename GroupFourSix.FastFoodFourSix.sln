@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.7.34031.279
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6A6341B0-93BA-4F5A-96CA-2C96D8C7ADF9}"
 EndProject
@@ -18,6 +18,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{1E753DAB-1CE6-40F1-810E-D7F85F54F9FA}"
 	ProjectSection(SolutionItems) = preProject
 		four-six-api\docker-compose.yml = four-six-api\docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "kubernetes", "kubernetes", "{4E039F95-FADF-4984-B0CD-493A2D6BAE8A}"
+	ProjectSection(SolutionItems) = preProject
+		four-six-api\kubernetes\api-pod.yaml = four-six-api\kubernetes\api-pod.yaml
+		four-six-api\kubernetes\api-service.yaml = four-six-api\kubernetes\api-service.yaml
+		four-six-api\kubernetes\sqlserver-pod.yaml = four-six-api\kubernetes\sqlserver-pod.yaml
+		four-six-api\kubernetes\sqlserver-service.yaml = four-six-api\kubernetes\sqlserver-service.yaml
 	EndProjectSection
 EndProject
 Global
@@ -42,10 +50,6 @@ Global
 		{BE5D483E-7088-427E-AF58-248177E948C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE5D483E-7088-427E-AF58-248177E948C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE5D483E-7088-427E-AF58-248177E948C5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{26E15105-482A-4339-857D-E5A662C9C2A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{26E15105-482A-4339-857D-E5A662C9C2A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{26E15105-482A-4339-857D-E5A662C9C2A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{26E15105-482A-4339-857D-E5A662C9C2A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,7 +59,6 @@ Global
 		{B47C602A-15FD-433E-95BE-B84B55EDABBC} = {6A6341B0-93BA-4F5A-96CA-2C96D8C7ADF9}
 		{ADD05075-05C1-4368-9268-706808FCB78B} = {6A6341B0-93BA-4F5A-96CA-2C96D8C7ADF9}
 		{BE5D483E-7088-427E-AF58-248177E948C5} = {6A6341B0-93BA-4F5A-96CA-2C96D8C7ADF9}
-		{26E15105-482A-4339-857D-E5A662C9C2A9} = {C5E6AA7C-A8C1-4E91-8EBB-75CE0DD876DA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D8084736-400F-4A65-B03A-AFD5FE97FEA0}

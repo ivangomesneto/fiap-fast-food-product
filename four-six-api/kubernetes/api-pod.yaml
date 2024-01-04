@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: api-pod-foursix
+  labels:
+    app: api-pod-foursix
+spec:
+  containers:
+    - name: api-pod-config
+      image: damffranco/four-six-api:latest
+      ports:
+        - containerPort: 5293
