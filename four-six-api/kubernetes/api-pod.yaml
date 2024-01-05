@@ -9,4 +9,4 @@ spec:
     - name: api-pod-config
       image: damffranco/four-six-api:latest
       ports:
-        - containerPort: 5293
+        - containerPort: 80
