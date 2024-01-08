@@ -5,10 +5,11 @@ metadata:
     app: sqlserver
   name: foursixsql
 spec:
+  selector:
+    #app: sqlserver-pod
+    app: mssql
   ports:
   - port: 1433
     protocol: TCP
     targetPort: 1433
-  selector:
-    app: sqlserver-pod
   type: LoadBalancer

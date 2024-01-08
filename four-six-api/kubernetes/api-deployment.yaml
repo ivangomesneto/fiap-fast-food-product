@@ -15,7 +15,7 @@ spec:
         app: foursix-deployment
     spec:
       containers:
-        - name: c-foursix-deployment
-          image: damffranco/four-six-api:latest
-          ports:
-            - containerPort: 80
+      - name: c-foursix-deployment
+        image: damffranco/four-six-api:latest
+        ports:
+        - containerPort: 80
