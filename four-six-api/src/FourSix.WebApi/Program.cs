@@ -1,4 +1,4 @@
-using FourSix.Infrastructure.DataAccess;
+using FourSix.Controllers.Gateways.DataAccess;
 using FourSix.WebApi.Modules;
 using FourSix.WebApi.Modules.Commons;
 using Microsoft.EntityFrameworkCore;

@@ -1,9 +1,7 @@
-﻿using FourSix.Application.Services;
-using FourSix.Application.UseCases;
-using FourSix.Application.UseCases.Pedidos.AlteraStatusPedido;
+﻿using FourSix.Controllers.Presenters;
 using FourSix.Domain.Entities.PedidoAggregate;
+using FourSix.UseCases.UseCases.Pedidos.AlteraStatusPedido;
 using FourSix.WebApi.Modules.Commons;
-using FourSix.WebApi.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -14,7 +12,7 @@ namespace FourSix.WebApi.UseCases.Pedidos.AlteraStatusPedido
     [Route("[controller]")]
     [Produces("application/json")]
     [SwaggerTag("Criar, Obter, Alterar e Cancelar Pedidos")]
-    public class PedidosController : Controller, IOutputPort<Pedido>
+    public class PedidosController : Controller
     {
         private readonly Notification _notification;
 
@@ -27,19 +25,6 @@ namespace FourSix.WebApi.UseCases.Pedidos.AlteraStatusPedido
             _useCase = useCase;
             _notification = notification;
         }
-
-        void IOutputPort<Pedido>.Invalid()
-        {
-            ValidationProblemDetails problemDetails = new ValidationProblemDetails(_notification.ModelState);
-            _viewModel = BadRequest(problemDetails);
-        }
-
-        void IOutputPort<Pedido>.NotFound() => _viewModel = NotFound();
-
-        void IOutputPort<Pedido>.Ok(Pedido pedido) =>
-            _viewModel = Ok(new AlteraStatusPedidoResponse(new PedidoModel(pedido)));
-
-        void IOutputPort<Pedido>.Exist() => _viewModel = BadRequest("Pedido já existe");
 
         /// <summary>
         /// Altera status do pedido
@@ -54,14 +39,14 @@ namespace FourSix.WebApi.UseCases.Pedidos.AlteraStatusPedido
         [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Update))]
         public async Task<IActionResult> Alterar(Guid pedidoId, EnumStatusPedido statusId)
         {
-            _useCase.SetOutputPort(this);
-
             try
             {
                 await _useCase.Execute(pedidoId, statusId, DateTime.Now)
                     .ConfigureAwait(false);
             }
-            catch(Exception ex) { }
+            catch (Exception ex)
+            {
+            }
 
             return _viewModel!;
         }

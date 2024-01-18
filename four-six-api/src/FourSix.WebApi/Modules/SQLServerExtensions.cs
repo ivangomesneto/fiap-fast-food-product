@@ -1,10 +1,7 @@
-﻿using FourSix.Application.Services;
-using FourSix.Domain.Entities.ClienteAggregate;
-using FourSix.Domain.Entities.PagamentoAggregate;
-using FourSix.Domain.Entities.PedidoAggregate;
-using FourSix.Domain.Entities.ProdutoAggregate;
-using FourSix.Infrastructure.DataAccess;
-using FourSix.Infrastructure.DataAccess.Repositories;
+﻿using FourSix.Controllers.Gateways.DataAccess;
+using FourSix.Controllers.Gateways.Repositories;
+using FourSix.UseCases.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace FourSix.WebApi.Modules
 {
@@ -21,6 +18,7 @@ namespace FourSix.WebApi.Modules
             services.AddScoped<IPedidoItemRepository, PedidoItemRepository>();
             services.AddScoped<IPedidoCheckoutRepository, PedidoStatusRepository>();
             services.AddScoped<IPagamentoRepository, PagamentoRepository>();
+            services.AddScoped<DbContext, Context>();
 
             return services;
         }

@@ -1,4 +1,4 @@
-﻿using FourSix.Application.Services;
+﻿using FourSix.UseCases.Services;
 
 namespace FourSix.Infrastructure.DataAccess
 {

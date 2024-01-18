@@ -1,12 +1,6 @@
-﻿using FourSix.Application.Services;
-using FourSix.Application.UseCases;
-using FourSix.Application.UseCases.Pagamentos.CancelaPagamento;
-using FourSix.Application.UseCases.Pagamentos.GeraPagamento;
-using FourSix.Domain.Entities.PagamentoAggregate;
+﻿using FourSix.Controllers.Presenters;
+using FourSix.UseCases.UseCases.Pagamentos.GeraPagamento;
 using FourSix.WebApi.Modules.Commons;
-using FourSix.WebApi.UseCases.Pagamentos.CancelaPagamento;
-using FourSix.WebApi.UseCases.Pagamentos.RealizaPagamento;
-using FourSix.WebApi.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -17,7 +11,7 @@ namespace FourSix.WebApi.UseCases.Pagamentos.GeraPagamento
     [Route("[controller]")]
     [Produces("application/json")]
     [SwaggerTag("Gerar, Efetuar e Cancelar Pagamento")]
-    public class PagamentosController : Controller, IOutputPort<Pagamento>
+    public class PagamentosController : Controller
     {
         private readonly Notification _notification;
 
@@ -31,19 +25,6 @@ namespace FourSix.WebApi.UseCases.Pagamentos.GeraPagamento
             _notification = notification;
         }
 
-        void IOutputPort<Pagamento>.Invalid()
-        {
-            ValidationProblemDetails problemDetails = new ValidationProblemDetails(_notification.ModelState);
-            _viewModel = BadRequest(problemDetails);
-        }
-
-        void IOutputPort<Pagamento>.NotFound() => _viewModel = NotFound();
-
-        void IOutputPort<Pagamento>.Ok(Pagamento pagamento) =>
-            _viewModel = Ok(new GeraPagamentoResponse(new PagamentoModel(pagamento)));
-
-        void IOutputPort<Pagamento>.Exist() => _viewModel = BadRequest("Pagamento já existe");
-
         /// <summary>
         /// Gera novo pagamento
         /// </summary>
@@ -56,8 +37,6 @@ namespace FourSix.WebApi.UseCases.Pagamentos.GeraPagamento
         [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Create))]
         public async Task<IActionResult> Gerar([FromBody] GeraPagamentoRequest request)
         {
-            _useCase.SetOutputPort(this);
-
             await _useCase.Execute(request.PedidoId, request.ValorPedido, request.Desconto)
                 .ConfigureAwait(false);
 

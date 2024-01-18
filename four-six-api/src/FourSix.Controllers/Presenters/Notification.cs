@@ -1,4 +1,4 @@
-﻿namespace FourSix.Application.Services
+﻿namespace FourSix.Controllers.Presenters
 {
     public sealed class Notification
     {

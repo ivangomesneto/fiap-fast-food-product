@@ -10,14 +10,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Controllers\**" />
-	  <Compile Remove="UseCases\Pagamentos\GeraQRCode\**" />
-	  <Content Remove="Controllers\**" />
-	  <Content Remove="UseCases\Pagamentos\GeraQRCode\**" />
-	  <EmbeddedResource Remove="Controllers\**" />
-	  <EmbeddedResource Remove="UseCases\Pagamentos\GeraQRCode\**" />
-	  <None Remove="Controllers\**" />
-	  <None Remove="UseCases\Pagamentos\GeraQRCode\**" />
+    <Compile Remove="Controllers\**" />
+    <Compile Remove="UseCases\Pagamentos\GeraQRCode\**" />
+    <Content Remove="Controllers\**" />
+    <Content Remove="UseCases\Pagamentos\GeraQRCode\**" />
+    <EmbeddedResource Remove="Controllers\**" />
+    <EmbeddedResource Remove="UseCases\Pagamentos\GeraQRCode\**" />
+    <None Remove="Controllers\**" />
+    <None Remove="UseCases\Pagamentos\GeraQRCode\**" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -35,8 +35,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\FourSix.Application\FourSix.Application.csproj" />
-	  <ProjectReference Include="..\FourSix.Infrastructure\FourSix.Infrastructure.csproj" />
+	  <ProjectReference Include="..\FourSix.Controllers\FourSix.Controllers.csproj" />
+	  <ProjectReference Include="..\FourSix.UseCases\FourSix.UseCases.csproj" />
 	</ItemGroup>
 
 </Project>

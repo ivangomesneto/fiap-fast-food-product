@@ -1,4 +1,4 @@
-﻿namespace FourSix.Application.Services
+﻿namespace FourSix.UseCases.Services
 {
     public interface IUnitOfWork
     {

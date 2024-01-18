@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Text;
 
-namespace FourSix.Application.ExtensionsMethods
+namespace FourSix.Domain.ExtensionsMethods
 {
     public static class StringExtension
     {

@@ -1,19 +1,15 @@
-﻿using FourSix.Application.Services;
-using FourSix.Application.UseCases.Produtos.ObtemProdutos;
-using FourSix.Domain.Entities.ProdutoAggregate;
+﻿using FourSix.Controllers.Presenters;
+using FourSix.UseCases.UseCases.Produtos.ObtemProdutos;
 using FourSix.WebApi.Modules.Commons;
-using FourSix.WebApi.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Swashbuckle.AspNetCore.Annotations;
-using System.ComponentModel.DataAnnotations;
 
 namespace FourSix.WebApi.UseCases.Produtos.ObtemProdutos
 {
     [ApiController]
     [Route("[controller]")]
     [Produces("application/json")]
-    public class ProdutosController : Controller, IOutputPort
+    public class ProdutosController : Controller
     {
         private readonly Notification _notification;
 
@@ -27,18 +23,6 @@ namespace FourSix.WebApi.UseCases.Produtos.ObtemProdutos
             this._notification = notification;
         }
 
-        void IOutputPort.Invalid()
-        {
-            ValidationProblemDetails problemDetails = new ValidationProblemDetails(this._notification.ModelState);
-            this._viewModel = this.BadRequest(problemDetails);
-        }
-
-        void IOutputPort.NotFound() => this._viewModel = this.NotFound();
-
-        void IOutputPort.Ok(IList<Produto> produtos) =>
-            this._viewModel = this.Ok(new ObtemProdutosResponse(produtos.Select(s => new ProdutoModel(s)).ToList()));
-
-
         /// <summary>
         /// Obtém todos os produtos
         /// </summary>
@@ -50,8 +34,6 @@ namespace FourSix.WebApi.UseCases.Produtos.ObtemProdutos
         [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.List))]
         public async Task<IActionResult> Get()
         {
-            _useCase.SetOutputPort(this);
-
             await _useCase.Execute()
                 .ConfigureAwait(false);
 
