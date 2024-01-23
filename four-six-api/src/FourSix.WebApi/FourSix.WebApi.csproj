@@ -10,14 +10,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-    <Compile Remove="Controllers\**" />
-    <Compile Remove="UseCases\Pagamentos\GeraQRCode\**" />
-    <Content Remove="Controllers\**" />
-    <Content Remove="UseCases\Pagamentos\GeraQRCode\**" />
-    <EmbeddedResource Remove="Controllers\**" />
-    <EmbeddedResource Remove="UseCases\Pagamentos\GeraQRCode\**" />
-    <None Remove="Controllers\**" />
-    <None Remove="UseCases\Pagamentos\GeraQRCode\**" />
+	  <Compile Remove="Requests\**" />
+	  <Content Remove="Requests\**" />
+	  <EmbeddedResource Remove="Requests\**" />
+	  <None Remove="Requests\**" />
 	</ItemGroup>
 
 	<ItemGroup>

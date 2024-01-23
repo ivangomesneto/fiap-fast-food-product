@@ -1,6 +1,5 @@
 ﻿using FourSix.Domain.Entities.PedidoAggregate;
 using FourSix.UseCases.Interfaces;
-using System.Collections.Generic;
 
 namespace FourSix.UseCases.UseCases.Pedidos.ObtemPedidosPorStatus
 {
@@ -8,7 +7,7 @@ namespace FourSix.UseCases.UseCases.Pedidos.ObtemPedidosPorStatus
     {
         private readonly IPedidoRepository _pedidoRepository;
 
-        public ObtemPedidosPorStatusUseCase(FourSix.UseCases.Interfaces.IPedidoRepository pedidoRepository)
+        public ObtemPedidosPorStatusUseCase(IPedidoRepository pedidoRepository)
         {
             this._pedidoRepository = pedidoRepository;
         }
