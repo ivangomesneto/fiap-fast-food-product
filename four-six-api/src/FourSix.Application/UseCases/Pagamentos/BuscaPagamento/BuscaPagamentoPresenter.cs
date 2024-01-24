@@ -18,6 +18,4 @@ namespace FourSix.Application.UseCases.Pagamentos.BuscaPagamento
             public void Exist() => ExistOutput = true;
             public void Ok(Pagamento pagamento) => Pagamento = pagamento;
         }
-    }
-
 }

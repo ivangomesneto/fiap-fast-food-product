@@ -41,23 +41,23 @@ namespace FourSix.WebApi.UseCases.Pagamentos.CancelaPagamento
         void IOutputPort<Pagamento>.Ok(Pagamento pagamento) =>
             _viewModel = Ok(new ConsultaPagamentoResponse(new PagamentoModel(pagamento)));
 
-        void IOutputPort<Pagamento>.Exist() => null;
+        void IOutputPort<Pagamento>.Exist() => _viewModel = BadRequest("Pagamento já existe");
 
         /// <summary>
-        /// Cancela pagamento
+        /// Busca pagamento
         /// </summary>
         /// <param name="request">Dados do pagamento</param>
         /// <returns></returns>
         [AllowAnonymous]
-        [HttpGet("busca")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CancelaPagamentoResponse))]
+        [HttpGet("{pagamentoId}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ConsultaPagamentoResponse))]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(ConsultaPagamentoResponse))]
         [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Update))]
-        public async Task<IActionResult> Buscar([FromBody] ConsultaPagamentoRequest request)
+        public async Task<IActionResult> Buscar([FromRoute] Guid pagamentoId)
         {
             _useCase.SetOutputPort(this);
 
-            await _useCase.Execute(request.PagamentoId)
+            await _useCase.Execute(pagamentoId)
                 .ConfigureAwait(false);
 
             return _viewModel!;

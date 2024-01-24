@@ -68,6 +68,11 @@ namespace FourSix.Infrastructure.DataAccess
                 },
                 new
                 {
+                     Id = EnumStatusPagamento.Negado,
+                     Descricao = "Negado"
+                },
+                new
+                {
                     Id = EnumStatusPagamento.Cancelado,
                     Descricao = "Cancelado"
                 });

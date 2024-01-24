@@ -1,6 +1,7 @@
 ﻿using FourSix.Application.Services;
 using FourSix.Application.UseCases.Clientes.NovoCliente;
 using FourSix.Application.UseCases.Clientes.ObtemCliente;
+using FourSix.Application.UseCases.Pagamentos.BuscaPagamento;
 using FourSix.Application.UseCases.Pagamentos.CancelaPagamento;
 using FourSix.Application.UseCases.Pagamentos.GeraPagamento;
 using FourSix.Application.UseCases.Pagamentos.GeraQRCode;
@@ -80,6 +81,9 @@ namespace FourSix.WebApi.Modules
             services.AddScoped<IRealizaPagamentoUseCase, RealizaPagamentoUseCase>();
             services.Decorate<IRealizaPagamentoUseCase, RealizaPagamentoValidationUseCase>();
             #endregion
+
+            services.AddScoped<IBuscaPagamentoUseCase, BuscaPagamentoUseCase>();
+            services.Decorate<IBuscaPagamentoUseCase, BuscaPagamentoValidationUseCase>();
 
             return services;
         }

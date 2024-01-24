@@ -4,7 +4,8 @@
     {
         AguardandoPagamento = 1,
         Pago = 2,
-        Cancelado = 3
+        Cancelado = 3,
+        Negado = 4
     }
 
     public class StatusPagamento
