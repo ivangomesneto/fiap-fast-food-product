@@ -1,9 +1,9 @@
 ﻿using Swashbuckle.AspNetCore.Annotations;
 
-namespace FourSix.WebApi.UseCases.Pagamentos.ConfirmaPagamento
+namespace FourSix.WebApi.UseCases.Pagamentos.NegaPagamento
 {
     [SwaggerSchema(Required = new[] { "pagamentoId" })]
-    public class ConfirmaPagamentoResponse
+    public class NegaPagamentoRequest
     {
         /// <summary>
         /// Id do pagamento
@@ -12,7 +12,5 @@ namespace FourSix.WebApi.UseCases.Pagamentos.ConfirmaPagamento
         [SwaggerSchema(Nullable = false)]
         public Guid PagamentoId { get; set; }
 
-        [SwaggerSchema(Nullable = false)]
-        public Boolean pagamentoProcessado { get; set; }
     }
 }

@@ -1,29 +1,28 @@
 ﻿using FourSix.Application.Services;
 using FourSix.Application.UseCases;
-using FourSix.Application.UseCases.Pagamentos.BuscaPagamento;
+using FourSix.Application.UseCases.Pagamentos.NegaPagamento;
 using FourSix.Domain.Entities.PagamentoAggregate;
 using FourSix.WebApi.Modules.Commons;
-using FourSix.WebApi.UseCases.Pagamentos.ConsultaPagamento;
 using FourSix.WebApi.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace FourSix.WebApi.UseCases.Pagamentos.ConsultaPagamento
+namespace FourSix.WebApi.UseCases.Pagamentos.NegaPagamento
 {
     [ApiController]
     [Route("[controller]")]
     [Produces("application/json")]
-    [SwaggerTag("Gerar, Efetuar, Buscar e Cancelar Pagamento")]
+    [SwaggerTag("Gerar, Efetuar e Cancelar Pagamento")]
     public class PagamentosController : Controller, IOutputPort<Pagamento>
     {
         private readonly Notification _notification;
 
         private IActionResult _viewModel;
-        private readonly IBuscaPagamentoUseCase _useCase;
+        private readonly INegaPagamentoUseCase _useCase;
 
         public PagamentosController(Notification notification,
-            IBuscaPagamentoUseCase useCase)
+            INegaPagamentoUseCase useCase)
         {
             _useCase = useCase;
             _notification = notification;
@@ -38,25 +37,25 @@ namespace FourSix.WebApi.UseCases.Pagamentos.ConsultaPagamento
         void IOutputPort<Pagamento>.NotFound() => _viewModel = NotFound();
 
         void IOutputPort<Pagamento>.Ok(Pagamento pagamento) =>
-            _viewModel = Ok(new ConsultaPagamentoResponse(new PagamentoModel(pagamento)));
+            _viewModel = Ok(new NegaPagamentoResponse(new PagamentoModel(pagamento)));
 
         void IOutputPort<Pagamento>.Exist() => _viewModel = BadRequest("Pagamento já existe");
 
         /// <summary>
-        /// Busca pagamento
+        /// Confirma pagamento
         /// </summary>
         /// <param name="request">Dados do pagamento</param>
         /// <returns></returns>
         [AllowAnonymous]
-        [HttpGet("{pagamentoId}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ConsultaPagamentoResponse))]
-        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(ConsultaPagamentoResponse))]
+        [HttpPut("negacoes")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(NegaPagamentoResponse))]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(NegaPagamentoResponse))]
         [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Update))]
-        public async Task<IActionResult> Buscar([FromRoute] Guid pagamentoId)
+        public async Task<IActionResult> Negar([FromBody] NegaPagamentoRequest request)
         {
             _useCase.SetOutputPort(this);
 
-            await _useCase.Execute(pagamentoId)
+            await _useCase.Execute(request.PagamentoId)
                 .ConfigureAwait(false);
 
             return _viewModel!;
