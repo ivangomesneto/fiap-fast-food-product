@@ -3,13 +3,13 @@ kind: Service
 metadata:
   labels:
     app: api-svc-foursix
-  name: api-loadbalancer-svc-foursix
+  name: api-svc-foursix
 spec:
+  selector:
+    #app: api-pod-foursix
+    app: foursix-deployment
   ports:
   - port: 30001
     protocol: TCP
     targetPort: 80
-  selector:
-    #app: api-pod-foursix
-    app: foursix-deployment
   type: LoadBalancer
