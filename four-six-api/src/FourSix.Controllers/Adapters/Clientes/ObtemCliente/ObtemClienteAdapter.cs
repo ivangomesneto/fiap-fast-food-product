@@ -32,7 +32,7 @@ namespace FourSix.Controllers.Adapters.Clientes.ObtemCliente
         //[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ObtemClienteResponse))]
         //[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(ObtemClienteResponse))]
         //[ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Find))]
-        public async Task Get(string cpf)
+        public async Task Obter(string cpf)
         {
             await _useCase.Execute(cpf)
                 .ConfigureAwait(false);

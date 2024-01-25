@@ -2,6 +2,6 @@
 {
     public interface IObtemProdutosAdapter
     {
-        Task Get();
+        Task Listar();
     }
 }

@@ -27,7 +27,7 @@ namespace FourSix.Controllers.Adapters.Produtos.ObtemProdutosPorCategoria
         //[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ObtemProdutoPorCategoriaResponse))]
         //[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(ObtemProdutoPorCategoriaResponse))]
         //[ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.List))]
-        public async Task Get(EnumCategoriaProduto categoria)
+        public async Task Obter(EnumCategoriaProduto categoria)
         {
             await _useCase.Execute(categoria)
                 .ConfigureAwait(false);

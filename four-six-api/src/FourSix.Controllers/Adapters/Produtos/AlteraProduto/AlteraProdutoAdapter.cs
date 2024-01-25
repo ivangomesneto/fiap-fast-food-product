@@ -33,7 +33,7 @@ namespace FourSix.Controllers.Adapters.Produtos.AlteraProduto
         //[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(AlteraProdutoResponse))]
         //[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(AlteraProdutoResponse))]
         //[ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Edit))]
-        public async Task Edit(Guid id, AlteraProdutoRequest produto)
+        public async Task Alterar(Guid id, AlteraProdutoRequest produto)
         {
             await _useCase.Execute(id,
                 produto.Nome,

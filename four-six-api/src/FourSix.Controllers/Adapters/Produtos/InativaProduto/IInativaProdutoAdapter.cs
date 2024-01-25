@@ -2,6 +2,6 @@
 {
     public interface IInativaProdutoAdapter
     {
-        Task Edit(Guid id);
+        Task Inativar(Guid id);
     }
 }

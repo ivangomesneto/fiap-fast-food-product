@@ -2,6 +2,6 @@
 {
     public interface IObtemClienteAdapter
     {
-        Task Get(string cpf);
+        Task Obter(string cpf);
     }
 }

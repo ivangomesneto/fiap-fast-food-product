@@ -32,7 +32,7 @@ namespace FourSix.Controllers.Adapters.Pagamentos.RealizaPagamento
         //[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RealizaPagamentoResponse))]
         //[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(RealizaPagamentoResponse))]
         //[ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Update))]
-        public async Task Realizar(RealizaPagamentoRequest request)
+        public async Task Efetivar(RealizaPagamentoRequest request)
         {
             await _useCase.Execute(request.PagamentoId, request.ValorPago)
                 .ConfigureAwait(false);

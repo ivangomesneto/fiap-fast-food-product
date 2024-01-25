@@ -30,7 +30,7 @@ namespace FourSix.Controllers.Adapters.Produtos.ObtemProdutos
         //[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ObtemProdutosResponse))]
         //[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(ObtemProdutosResponse))]
         //[ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.List))]
-        public async Task Get()
+        public async Task Listar()
         {
             await _useCase.Execute()
                 .ConfigureAwait(false);

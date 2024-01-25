@@ -32,7 +32,7 @@ namespace FourSix.Controllers.Adapters.Produtos.InativaProduto
         //[ProducesResponseType(StatusCodes.Status200OK)]
         //[ProducesResponseType(StatusCodes.Status201Created)]
         //[ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Delete))]
-        public async Task Edit(Guid id)
+        public async Task Inativar(Guid id)
         {
             await _useCase.Execute(id)
                 .ConfigureAwait(false);
