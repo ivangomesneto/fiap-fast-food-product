@@ -4,6 +4,6 @@ namespace FourSix.UseCases.UseCases.Produtos.NovoProduto
 {
     public interface INovoProdutoUseCase
     {
-        Task Execute(string nome, string descricao, EnumCategoriaProduto categoria, decimal preco);
+        Task<Produto> Execute(string nome, string descricao, EnumCategoriaProduto categoria, decimal preco);
     }
 }

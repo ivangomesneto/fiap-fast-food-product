@@ -2,7 +2,7 @@
 
 namespace FourSix.UseCases.UseCases.Produtos.ObtemProdutoPorCategoria
 {
-    public interface IObtemProdutoPorCategoriaUseCase
+    public interface IObtemProdutosPorCategoriaUseCase
     {
         Task<ICollection<Produto>> Execute(EnumCategoriaProduto categoria);
     }

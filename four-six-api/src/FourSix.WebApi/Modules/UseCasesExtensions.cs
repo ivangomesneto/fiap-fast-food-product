@@ -46,7 +46,7 @@ namespace FourSix.WebApi.Modules
             services.AddScoped<IObtemProdutoUseCase, ObtemProdutoUseCase>();
             //services.Decorate<IObtemProdutoUseCase, ObtemProdutoValidationUseCase>();
 
-            services.AddScoped<IObtemProdutoPorCategoriaUseCase, ObtemProdutoPorCategoriaUseCase>();
+            services.AddScoped<IObtemProdutosPorCategoriaUseCase, ObtemProdutosPorCategoriaUseCase>();
             //services.Decorate<IObtemProdutoPorCategoriaUseCase, ObtemProdutoPorCategoriaValidationUseCase>();
 
             services.AddScoped<IObtemProdutosUseCase, ObtemProdutosUseCase>();

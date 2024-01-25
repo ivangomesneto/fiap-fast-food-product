@@ -21,10 +21,10 @@ namespace FourSix.UseCases.UseCases.Pedidos.CancelaPedido
 
         public async Task Execute(Guid pedidoId, DateTime dataCancelamento)
         {
-            await this.CancelaPedido(pedidoId, dataCancelamento);
+            await this.CancelarPedido(pedidoId, dataCancelamento);
         }
 
-        private async Task CancelaPedido(Guid pedidoId, DateTime dataCancelamento)
+        private async Task CancelarPedido(Guid pedidoId, DateTime dataCancelamento)
         {
             var pedido = this._pedidoRepository.Listar(q => q.Id == pedidoId).FirstOrDefault();
 

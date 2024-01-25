@@ -17,7 +17,7 @@ namespace FourSix.UseCases.UseCases.Produtos.AlteraProduto
         }
 
         public Task Execute(Guid produtoId, string nome, string descricao, EnumCategoriaProduto categoria, decimal preco) =>
-            this.AlteraProduto(
+            this.AlterarProduto(
                 new Produto(produtoId,
                     nome,
                     descricao,
@@ -25,7 +25,7 @@ namespace FourSix.UseCases.UseCases.Produtos.AlteraProduto
                     preco,
                     true));
 
-        private async Task AlteraProduto(Produto produto)
+        private async Task AlterarProduto(Produto produto)
         {
 
             if (this._produtoRepository

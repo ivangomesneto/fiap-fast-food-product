@@ -12,7 +12,7 @@ using FourSix.Controllers.Adapters.Produtos.AlteraProduto;
 using FourSix.Controllers.Adapters.Produtos.InativaProduto;
 using FourSix.Controllers.Adapters.Produtos.NovoProduto;
 using FourSix.Controllers.Adapters.Produtos.ObtemProduto;
-using FourSix.Controllers.Adapters.Produtos.ObtemProdutoPorCategoria;
+using FourSix.Controllers.Adapters.Produtos.ObtemProdutosPorCategoria;
 using FourSix.Controllers.Adapters.Produtos.ObtemProdutos;
 using FourSix.Domain.Entities.PedidoAggregate;
 using FourSix.Domain.Entities.ProdutoAggregate;
@@ -139,7 +139,7 @@ namespace FourSix.WebApi.Modules
 
             app.MapGet("produtos/{categoria}",
             [SwaggerOperation(Summary = "Obtém o produto por categoria")]
-            ([SwaggerParameter("Categoria do produto")] EnumCategoriaProduto categoria, IObtemProdutoPorCategoriaAdapter adapter) =>
+            ([SwaggerParameter("Categoria do produto")] EnumCategoriaProduto categoria, IObtemProdutosPorCategoriaAdapter adapter) =>
             {
                 return adapter.Get(categoria);
             }).WithTags("Produtos");

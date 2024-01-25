@@ -12,7 +12,7 @@ using FourSix.Controllers.Adapters.Produtos.AlteraProduto;
 using FourSix.Controllers.Adapters.Produtos.InativaProduto;
 using FourSix.Controllers.Adapters.Produtos.NovoProduto;
 using FourSix.Controllers.Adapters.Produtos.ObtemProduto;
-using FourSix.Controllers.Adapters.Produtos.ObtemProdutoPorCategoria;
+using FourSix.Controllers.Adapters.Produtos.ObtemProdutosPorCategoria;
 using FourSix.Controllers.Adapters.Produtos.ObtemProdutos;
 
 namespace FourSix.WebApi.Modules
@@ -45,7 +45,7 @@ namespace FourSix.WebApi.Modules
             services.AddScoped<IInativaProdutoAdapter, InativaProdutoAdapter>();
             services.AddScoped<INovoProdutoAdapter, NovoProdutoAdapter>();
             services.AddScoped<IObtemProdutoAdapter, ObtemProdutoAdapter>();
-            services.AddScoped<IObtemProdutoPorCategoriaAdapter, ObtemProdutoPorCategoriaAdapter>();
+            services.AddScoped<IObtemProdutosPorCategoriaAdapter, ObtemProdutosPorCategoriaAdapter>();
             services.AddScoped<IObtemProdutosAdapter, ObtemProdutosAdapter>();
             #endregion
 

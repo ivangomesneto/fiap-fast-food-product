@@ -12,9 +12,9 @@ namespace FourSix.UseCases.UseCases.Produtos.ObtemProduto
             this._produtoRepository = produtoRepository;
         }
 
-        public Task<Produto> Execute(Guid id) => this.ObtemProduto(id);
+        public Task<Produto> Execute(Guid id) => this.ObterProduto(id);
 
-        private async Task<Produto> ObtemProduto(Guid id)
+        private async Task<Produto> ObterProduto(Guid id)
         {
             var produto = this._produtoRepository
                   .Listar().Where(x => x.Id == id).FirstOrDefault();

@@ -1,4 +1,5 @@
-﻿using FourSix.UseCases.Interfaces;
+﻿using FourSix.Domain.Entities.PagamentoAggregate;
+using FourSix.UseCases.Interfaces;
 
 namespace FourSix.UseCases.UseCases.Pagamentos.RealizaPagamento
 {
@@ -15,15 +16,17 @@ namespace FourSix.UseCases.UseCases.Pagamentos.RealizaPagamento
             _unitOfWork = unitOfWork;
         }
 
-        public Task Execute(Guid pedidoId, decimal valorPago) => RealizarPagamento(pedidoId, valorPago);
+        public Task<Pagamento> Execute(Guid pedidoId, decimal valorPago) => RealizarPagamento(pedidoId, valorPago);
 
-        private async Task RealizarPagamento(Guid pagamentoId, decimal valorPago)
+        private async Task<Pagamento> RealizarPagamento(Guid pagamentoId, decimal valorPago)
         {
             var pagamento = _pagamentoRepository.Obter(pagamentoId);
 
             pagamento.Pagar(valorPago);
 
-            var resultado = await _unitOfWork.Save();
+            await _unitOfWork.Save();
+
+            return pagamento;
         }
     }
 }

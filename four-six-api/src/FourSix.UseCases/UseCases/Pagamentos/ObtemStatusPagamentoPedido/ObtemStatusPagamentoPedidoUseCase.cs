@@ -12,13 +12,13 @@ namespace FourSix.UseCases.UseCases.Pagamentos.ObtemStatusPagamentoPedido
             this._pagamentoRepository = pagamentoRepository;
         }
 
-        public Task<Pagamento> Execute(Guid pedidoId) => ObterStatusPagamento(pedidoId);
+        public Task<EnumStatusPagamento> Execute(Guid pedidoId) => ObterStatusPagamento(pedidoId);
 
-        private async Task<Pagamento> ObterStatusPagamento(Guid pedidoId)
+        private async Task<EnumStatusPagamento> ObterStatusPagamento(Guid pedidoId)
         {
-            var pagamento = this._pagamentoRepository.Listar(l => l.PedidoId == pedidoId).FirstOrDefault();
+            var statusPagamento = this._pagamentoRepository.Listar(l => l.PedidoId == pedidoId).Select(s => s.StatusId).First();
 
-            return pagamento;
+            return statusPagamento;
         }
     }
 }

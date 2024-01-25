@@ -19,10 +19,10 @@ namespace FourSix.UseCases.UseCases.Pagamentos.GeraPagamento
             _unitOfWork = unitOfWork;
         }
 
-        public Task Execute(Guid pedidoId, decimal valor, decimal desconto) =>
+        public Task<Pagamento> Execute(Guid pedidoId, decimal valor, decimal desconto) =>
             GerarPagamento(pedidoId, valor, desconto);
 
-        private async Task GerarPagamento(Guid pedidoId, decimal valor, decimal desconto)
+        private async Task<Pagamento> GerarPagamento(Guid pedidoId, decimal valor, decimal desconto)
         {
             var qrCode = await _geraQRCodeUseCase.Execute(pedidoId, valor);
 
@@ -31,6 +31,8 @@ namespace FourSix.UseCases.UseCases.Pagamentos.GeraPagamento
             await _pagamentoRepository.Incluir(pagamento);
 
             await _unitOfWork.Save();
+
+            return pagamento;
         }
     }
 }

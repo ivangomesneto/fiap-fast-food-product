@@ -3,18 +3,18 @@ using FourSix.UseCases.Interfaces;
 
 namespace FourSix.UseCases.UseCases.Produtos.ObtemProdutoPorCategoria
 {
-    public class ObtemProdutoPorCategoriaUseCase : IObtemProdutoPorCategoriaUseCase
+    public class ObtemProdutosPorCategoriaUseCase : IObtemProdutosPorCategoriaUseCase
     {
         private readonly IProdutoRepository _produtoRepository;
 
-        public ObtemProdutoPorCategoriaUseCase(IProdutoRepository produtoRepository)
+        public ObtemProdutosPorCategoriaUseCase(IProdutoRepository produtoRepository)
         {
             this._produtoRepository = produtoRepository;
         }
 
-        public Task<ICollection<Produto>> Execute(EnumCategoriaProduto categoria) => this.ObtemProdutoPorCategoria(categoria);
+        public Task<ICollection<Produto>> Execute(EnumCategoriaProduto categoria) => this.ObterProdutoPorCategoria(categoria);
 
-        private async Task<ICollection<Produto>> ObtemProdutoPorCategoria(EnumCategoriaProduto categoria)
+        private async Task<ICollection<Produto>> ObterProdutoPorCategoria(EnumCategoriaProduto categoria)
         {
             var produtos = this._produtoRepository
                   .Listar().Where(x => x.Categoria == categoria

@@ -4,19 +4,19 @@ using FourSix.UseCases.UseCases.Produtos.ObtemProdutoPorCategoria;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
-namespace FourSix.Controllers.Adapters.Produtos.ObtemProdutoPorCategoria
+namespace FourSix.Controllers.Adapters.Produtos.ObtemProdutosPorCategoria
 {
     //[ApiController]
     //[Route("[controller]")]
     //[Produces("application/json")]
-    public class ObtemProdutoPorCategoriaAdapter : IObtemProdutoPorCategoriaAdapter
+    public class ObtemProdutosPorCategoriaAdapter : IObtemProdutosPorCategoriaAdapter
     {
         private readonly Notification _notification;
         private IActionResult _viewModel;
-        private readonly IObtemProdutoPorCategoriaUseCase _useCase;
+        private readonly IObtemProdutosPorCategoriaUseCase _useCase;
 
-        public ObtemProdutoPorCategoriaAdapter(Notification notification,
-            IObtemProdutoPorCategoriaUseCase useCase)
+        public ObtemProdutosPorCategoriaAdapter(Notification notification,
+            IObtemProdutosPorCategoriaUseCase useCase)
         {
             this._useCase = useCase;
             this._notification = notification;

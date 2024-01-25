@@ -16,15 +16,15 @@ namespace FourSix.UseCases.UseCases.Produtos.NovoProduto
             this._unitOfWork = unitOfWork;
         }
 
-        public Task Execute(string nome, string descricao, EnumCategoriaProduto categoria, decimal preco) =>
-            this.NovoProduto(new Produto(Guid.NewGuid(),
+        public Task<Produto> Execute(string nome, string descricao, EnumCategoriaProduto categoria, decimal preco) =>
+            this.InserirProduto(new Produto(Guid.NewGuid(),
                 nome,
                 descricao,
                 categoria,
                 preco,
                 true));
 
-        private async Task NovoProduto(Produto produto)
+        private async Task<Produto> InserirProduto(Produto produto)
         {
             if (this._produtoRepository
                 .Listar(q => q.Nome == produto.Nome
@@ -40,6 +40,8 @@ namespace FourSix.UseCases.UseCases.Produtos.NovoProduto
             await this._unitOfWork
                 .Save()
                 .ConfigureAwait(false);
+
+            return produto;
         }
     }
 }

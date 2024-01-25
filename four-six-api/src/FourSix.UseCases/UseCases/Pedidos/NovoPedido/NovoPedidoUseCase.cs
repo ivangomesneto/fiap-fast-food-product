@@ -22,19 +22,21 @@ namespace FourSix.UseCases.UseCases.Pedidos.NovoPedido
             _pedidoCheckoutRepository = pedidoCheckoutRepository;
         }
 
-        public async Task Execute(DateTime dataPedido, Guid? clienteId, ICollection<Tuple<Guid, decimal, int, string>> itens)
+        public async Task<Pedido> Execute(DateTime dataPedido, Guid? clienteId, ICollection<Tuple<Guid, decimal, int, string>> itens)
         {
             var id = Guid.NewGuid();
 
-            await this.IncluiPedido(
+            var pedido = await this.InserirPedido(
                 new Pedido(id,
                 dataPedido,
                 clienteId,
                 itens.Select(i => new PedidoItem(id, i.Item1, i.Item2, i.Item3, i.Item4)).ToList(),
                 new List<PedidoCheckout> { new PedidoCheckout(id, 1, EnumStatusPedido.Recebido, DateTime.Now) }));
+
+            return pedido;
         }
 
-        private async Task IncluiPedido(Pedido pedido)
+        private async Task<Pedido> InserirPedido(Pedido pedido)
         {
             if (this._pedidoRepository
                 .Listar(q => q.NumeroPedido == pedido.NumeroPedido).Any())
@@ -49,6 +51,8 @@ namespace FourSix.UseCases.UseCases.Pedidos.NovoPedido
             await this._unitOfWork
                 .Save()
                 .ConfigureAwait(false);
+
+            return pedido;
         }
     }
 }

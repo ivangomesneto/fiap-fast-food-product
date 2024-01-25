@@ -7,6 +7,6 @@ namespace FourSix.UseCases.UseCases.Pagamentos.GeraPagamento
         /// <summary>
         /// Executa o Caso de Uso
         /// </summary>
-        Task Execute(Guid pedidoId, decimal valor, decimal desconto);
+        Task<Pagamento> Execute(Guid pedidoId, decimal valor, decimal desconto);
     }
 }

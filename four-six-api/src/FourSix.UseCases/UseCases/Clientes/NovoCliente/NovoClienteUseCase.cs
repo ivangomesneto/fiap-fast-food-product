@@ -17,14 +17,14 @@ namespace FourSix.UseCases.UseCases.Clientes.NovoCliente
         }
 
         /// <inheritdoc />
-        public Task Execute(string cpf, string nomeCompleto, string email) =>
-            this.NovoCliente(
+        public Task<Cliente> Execute(string cpf, string nomeCompleto, string email) =>
+            this.InserirCliente(
                 new Cliente(Guid.NewGuid(),
                 cpf,
                 nomeCompleto,
                 email));
 
-        private async Task NovoCliente(Cliente cliente)
+        private async Task<Cliente> InserirCliente(Cliente cliente)
         {
             if (this._clienteRepository.Listar(q => q.Cpf == cliente.Cpf).Any())
             {
@@ -38,6 +38,8 @@ namespace FourSix.UseCases.UseCases.Clientes.NovoCliente
             await this._unitOfWork
                 .Save()
                 .ConfigureAwait(false);
+
+            return cliente;
         }
     }
 }

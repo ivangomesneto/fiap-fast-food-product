@@ -7,6 +7,6 @@ namespace FourSix.UseCases.UseCases.Pedidos.NovoPedido
         /// <summary>
         /// Executa o Caso de Uso
         /// </summary>
-        Task Execute(DateTime dataPedido, Guid? clienteId, ICollection<Tuple<Guid, decimal, int, string>> itens);
+        Task<Pedido> Execute(DateTime dataPedido, Guid? clienteId, ICollection<Tuple<Guid, decimal, int, string>> itens);
     }
 }

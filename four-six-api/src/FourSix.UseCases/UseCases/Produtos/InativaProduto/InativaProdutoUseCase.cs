@@ -18,9 +18,9 @@ namespace FourSix.UseCases.UseCases.Produtos.InativaProduto
             this._unitOfWork = unitOfWork;
         }
 
-        public Task Execute(Guid produtoId) => this.ExcluiProduto(produtoId);
+        public Task Execute(Guid produtoId) => this.ExcluirProduto(produtoId);
 
-        private async Task ExcluiProduto(Guid produtoId)
+        private async Task ExcluirProduto(Guid produtoId)
         {
             var produto = this._produtoRepository
                 .Obter(produtoId);
