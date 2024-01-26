@@ -1,6 +1,6 @@
 ﻿using FourSix.Domain.Entities.ProdutoAggregate;
 
-namespace FourSix.WebApi.ViewModels
+namespace FourSix.Controllers.ViewModels
 {
     public class ProdutoModel
     {

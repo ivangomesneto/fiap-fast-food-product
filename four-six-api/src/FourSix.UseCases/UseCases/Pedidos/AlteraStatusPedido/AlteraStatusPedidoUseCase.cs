@@ -19,12 +19,9 @@ namespace FourSix.UseCases.UseCases.Pedidos.AlteraStatusPedido
             _pedidoStatusRepository = pedidoStatusRepository;
         }
 
-        public async Task Execute(Guid pedidoId, EnumStatusPedido statusId, DateTime dataStatus)
-        {
-            await this.AlterarStatusPedido(pedidoId, statusId, dataStatus);
-        }
+        public Task<Pedido> Execute(Guid pedidoId, EnumStatusPedido statusId, DateTime dataStatus) => AlterarStatusPedido(pedidoId, statusId, dataStatus);
 
-        private async Task AlterarStatusPedido(Guid pedidoId, EnumStatusPedido statusId, DateTime dataStatus)
+        private async Task<Pedido> AlterarStatusPedido(Guid pedidoId, EnumStatusPedido statusId, DateTime dataStatus)
         {
             var pedido = this._pedidoRepository.Listar(q => q.Id == pedidoId).FirstOrDefault(); ;
 
@@ -34,7 +31,7 @@ namespace FourSix.UseCases.UseCases.Pedidos.AlteraStatusPedido
             }
 
             pedido.AlterarStatus(statusId);
-            _pedidoRepository.Alterar(pedido);
+            await _pedidoRepository.Alterar(pedido);
 
             var novaSequencia = _pedidoStatusRepository.Listar(l => l.PedidoId == pedidoId).Max(l => l.Sequencia) + 1;
 
@@ -48,6 +45,8 @@ namespace FourSix.UseCases.UseCases.Pedidos.AlteraStatusPedido
 
             //Busca com os dados completos
             pedido = this._pedidoRepository.Listar(q => q.Id == pedidoId).FirstOrDefault();
+
+            return pedido;
         }
     }
 }

@@ -4,6 +4,6 @@ namespace FourSix.Controllers.Adapters.Pedidos.AlteraStatusPedido
 {
     public interface IAlteraStatusPedidoAdapter
     {
-        Task Alterar(Guid pedidoId, EnumStatusPedido statusId);
+        Task<AlteraStatusPedidoResponse> Alterar(Guid pedidoId, EnumStatusPedido statusId);
     }
 }

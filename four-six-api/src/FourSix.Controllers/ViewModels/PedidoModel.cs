@@ -1,6 +1,6 @@
 ﻿using FourSix.Domain.Entities.PedidoAggregate;
 
-namespace FourSix.WebApi.ViewModels
+namespace FourSix.Controllers.ViewModels
 {
     public class PedidoModel
     {

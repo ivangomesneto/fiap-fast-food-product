@@ -4,6 +4,6 @@ namespace FourSix.Controllers.Adapters.Produtos.ObtemProdutosPorCategoria
 {
     public interface IObtemProdutosPorCategoriaAdapter
     {
-        Task Obter(EnumCategoriaProduto categoria);
+        Task<ObtemProdutosPorCategoriaResponse> Obter(EnumCategoriaProduto categoria);
     }
 }

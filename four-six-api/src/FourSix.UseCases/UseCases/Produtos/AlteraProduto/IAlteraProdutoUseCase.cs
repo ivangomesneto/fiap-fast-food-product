@@ -7,6 +7,6 @@ namespace FourSix.UseCases.UseCases.Produtos.AlteraProduto
         /// <summary>
         /// Executa o Caso de Uso
         /// </summary>
-        Task Execute(Guid produtoId, string nome, string descricao, EnumCategoriaProduto categoria, decimal preco);
+        Task<Produto> Execute(Guid produtoId, string nome, string descricao, EnumCategoriaProduto categoria, decimal preco);
     }
 }

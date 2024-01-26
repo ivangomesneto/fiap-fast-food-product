@@ -19,12 +19,9 @@ namespace FourSix.UseCases.UseCases.Pedidos.CancelaPedido
             _pedidoStatusRepository = pedidoStatusRepository;
         }
 
-        public async Task Execute(Guid pedidoId, DateTime dataCancelamento)
-        {
-            await this.CancelarPedido(pedidoId, dataCancelamento);
-        }
+        public Task<Pedido> Execute(Guid pedidoId, DateTime dataCancelamento) => this.CancelarPedido(pedidoId, dataCancelamento);
 
-        private async Task CancelarPedido(Guid pedidoId, DateTime dataCancelamento)
+        private async Task<Pedido> CancelarPedido(Guid pedidoId, DateTime dataCancelamento)
         {
             var pedido = this._pedidoRepository.Listar(q => q.Id == pedidoId).FirstOrDefault();
 
@@ -42,6 +39,10 @@ namespace FourSix.UseCases.UseCases.Pedidos.CancelaPedido
             await this._unitOfWork
                 .Save()
                 .ConfigureAwait(false);
+
+            pedido = this._pedidoRepository.Listar(q => q.Id == pedidoId).FirstOrDefault();
+
+            return pedido;
         }
     }
 }

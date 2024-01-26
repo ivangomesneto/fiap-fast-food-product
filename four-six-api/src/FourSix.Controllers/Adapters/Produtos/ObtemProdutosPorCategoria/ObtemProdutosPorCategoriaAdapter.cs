@@ -1,18 +1,15 @@
 ﻿using FourSix.Controllers.Presenters;
+using FourSix.Controllers.ViewModels;
 using FourSix.Domain.Entities.ProdutoAggregate;
 using FourSix.UseCases.UseCases.Produtos.ObtemProdutoPorCategoria;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
 
 namespace FourSix.Controllers.Adapters.Produtos.ObtemProdutosPorCategoria
 {
-    //[ApiController]
-    //[Route("[controller]")]
-    //[Produces("application/json")]
     public class ObtemProdutosPorCategoriaAdapter : IObtemProdutosPorCategoriaAdapter
     {
         private readonly Notification _notification;
-        private IActionResult _viewModel;
         private readonly IObtemProdutosPorCategoriaUseCase _useCase;
 
         public ObtemProdutosPorCategoriaAdapter(Notification notification,
@@ -22,17 +19,18 @@ namespace FourSix.Controllers.Adapters.Produtos.ObtemProdutosPorCategoria
             this._notification = notification;
         }
 
-        //[AllowAnonymous]
-        //[HttpGet("{categoria}")]
-        //[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ObtemProdutoPorCategoriaResponse))]
-        //[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(ObtemProdutoPorCategoriaResponse))]
-        //[ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.List))]
-        public async Task Obter(EnumCategoriaProduto categoria)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ObtemProdutosPorCategoriaResponse))]
+        public async Task<ObtemProdutosPorCategoriaResponse> Obter(EnumCategoriaProduto categoria)
         {
             await _useCase.Execute(categoria)
                 .ConfigureAwait(false);
 
-            //return this._viewModel!;
+            var lista = await _useCase.Execute(categoria);
+
+            var model = new List<ProdutoModel>();
+            lista.ToList().ForEach(f => model.Add(new ProdutoModel(f)));
+
+            return new ObtemProdutosPorCategoriaResponse(model);
         }
     }
 }

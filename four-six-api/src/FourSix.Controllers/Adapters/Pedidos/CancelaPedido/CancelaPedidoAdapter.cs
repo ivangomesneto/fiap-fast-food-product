@@ -1,14 +1,12 @@
 ﻿using FourSix.Controllers.Presenters;
+using FourSix.Controllers.ViewModels;
 using FourSix.UseCases.UseCases.Pedidos.CancelaPedido;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FourSix.Controllers.Adapters.Pedidos.CancelaPedido
 {
-    //[ApiController]
-    //[Route("[controller]")]
-    //[Produces("application/json")]
-    //[SwaggerTag("Criar, Obter, Alterar Status e Cancelar Pedidos")]
-    public class CancelaPedidoAdapter: ICancelaPedidoAdapter
+    public class CancelaPedidoAdapter : ICancelaPedidoAdapter
     {
         private readonly Notification _notification;
 
@@ -22,21 +20,12 @@ namespace FourSix.Controllers.Adapters.Pedidos.CancelaPedido
             _notification = notification;
         }
 
-        ///// <summary>
-        ///// Cancela pedido
-        ///// </summary>
-        ///// <param name="pedido">Dados do Pedido</param>
-        ///// <returns></returns>
-        //[AllowAnonymous]
-        //[HttpPut("cancelamentos")]
-        //[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CancelaPedidoResponse))]
-        //[ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Create))]
-        public async Task Cancelar(CancelaPedidoRequest pedido)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CancelaPedidoResponse))]
+        public async Task<CancelaPedidoResponse> Cancelar(CancelaPedidoRequest pedido)
         {
-            await _useCase.Execute(pedido.PedidoId, pedido.DataCancelamento)
-                .ConfigureAwait(false);
+            var model = new PedidoModel(await _useCase.Execute(pedido.PedidoId, pedido.DataCancelamento));
 
-            //return _viewModel!;
+            return new CancelaPedidoResponse(model);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using FourSix.Domain.Entities.ClienteAggregate;
 
-namespace FourSix.WebApi.ViewModels
+namespace FourSix.Controllers.ViewModels
 {
     public class ClienteModel
     {

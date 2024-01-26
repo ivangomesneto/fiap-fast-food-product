@@ -2,6 +2,6 @@
 {
     public interface INovoClienteAdapter
     {
-        Task Inserir(NovoClienteRequest cliente);
+        Task<NovoClienteResponse> Inserir(NovoClienteRequest cliente);
     }
 }

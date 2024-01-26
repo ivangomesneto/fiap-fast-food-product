@@ -1,5 +1,7 @@
 ﻿using FourSix.Controllers.Presenters;
 using FourSix.UseCases.UseCases.Pagamentos.ObtemStatusPagamentoPedido;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FourSix.Controllers.Adapters.Pagamentos.ObtemStatusPagamentoPedido
 {
@@ -7,7 +9,6 @@ namespace FourSix.Controllers.Adapters.Pagamentos.ObtemStatusPagamentoPedido
     {
         private readonly Notification _notification;
 
-        //private IActionResult _viewModel;
         private readonly IObtemStatusPagamentoPedidoUseCase _useCase;
 
         public ObtemStatusPagamentoPedidoAdapter(Notification notification,
@@ -17,13 +18,10 @@ namespace FourSix.Controllers.Adapters.Pagamentos.ObtemStatusPagamentoPedido
             _notification = notification;
         }
 
-        public async Task<ObtemStatusPagamentoPedidoPresenter> ObterStatusPagamento(Guid pedidoId)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ObtemStatusPagamentoPedidoResponse))]
+        public async Task<ObtemStatusPagamentoPedidoResponse> ObterStatusPagamento(Guid pedidoId)
         {
-            var response = await _useCase.Execute(pedidoId).ConfigureAwait(false);
-
-            return null;
-            //return new ObtemStatusPagamentoPedidoResponse(response);
-            //return _viewModel!;
+            return new ObtemStatusPagamentoPedidoResponse(await _useCase.Execute(pedidoId));
         }
     }
 }

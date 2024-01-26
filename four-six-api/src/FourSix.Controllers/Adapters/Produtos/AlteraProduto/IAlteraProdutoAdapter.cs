@@ -2,6 +2,6 @@
 {
     public interface IAlteraProdutoAdapter
     {
-        Task Alterar(Guid id, AlteraProdutoRequest produto);
+        Task<AlteraProdutoResponse> Alterar(Guid id, AlteraProdutoRequest produto);
     }
 }

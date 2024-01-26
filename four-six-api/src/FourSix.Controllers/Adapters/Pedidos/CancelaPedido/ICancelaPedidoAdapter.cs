@@ -2,6 +2,6 @@
 {
     public interface ICancelaPedidoAdapter
     {
-        Task Cancelar(CancelaPedidoRequest pedido);
+        Task<CancelaPedidoResponse> Cancelar(CancelaPedidoRequest pedido);
     }
 }

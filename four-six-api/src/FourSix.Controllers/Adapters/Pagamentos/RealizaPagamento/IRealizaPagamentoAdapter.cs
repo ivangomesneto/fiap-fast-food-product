@@ -2,6 +2,6 @@
 {
     public interface IRealizaPagamentoAdapter
     {
-        Task Efetivar(RealizaPagamentoRequest request);
+        Task<RealizaPagamentoResponse> Efetivar(RealizaPagamentoRequest request);
     }
 }

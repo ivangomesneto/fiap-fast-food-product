@@ -2,6 +2,6 @@
 {
     public interface ICancelaPagamentoAdapter
     {
-        Task Cancelar(CancelaPagamentoRequest request);
+        Task<CancelaPagamentoResponse> Cancelar(CancelaPagamentoRequest request);
     }
 }

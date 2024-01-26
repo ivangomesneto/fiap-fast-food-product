@@ -2,6 +2,6 @@
 {
     public interface INovoPedidoAdapter
     {
-        Task Inserir(NovoPedidoRequest pedido);
+        Task<NovoPedidoResponse> Inserir(NovoPedidoRequest pedido);
     }
 }

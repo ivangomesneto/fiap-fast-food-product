@@ -1,10 +1,12 @@
-﻿namespace FourSix.UseCases.UseCases.Produtos.InativaProduto
+﻿using FourSix.Domain.Entities.ProdutoAggregate;
+
+namespace FourSix.UseCases.UseCases.Produtos.InativaProduto
 {
     public interface IInativaProdutoUseCase
     {
         /// <summary>
         /// Executa o Caso de Uso
         /// </summary>
-        Task Execute(Guid produtoId);
+        Task<Produto> Execute(Guid produtoId);
     }
 }

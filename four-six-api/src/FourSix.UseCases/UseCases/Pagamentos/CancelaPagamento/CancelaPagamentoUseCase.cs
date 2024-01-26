@@ -1,4 +1,5 @@
-﻿using FourSix.UseCases.Interfaces;
+﻿using FourSix.Domain.Entities.PagamentoAggregate;
+using FourSix.UseCases.Interfaces;
 
 namespace FourSix.UseCases.UseCases.Pagamentos.CancelaPagamento
 {
@@ -15,15 +16,17 @@ namespace FourSix.UseCases.UseCases.Pagamentos.CancelaPagamento
             _unitOfWork = unitOfWork;
         }
 
-        public Task Execute(Guid pedidoId) => CancelarPagamento(pedidoId);
+        public Task<Pagamento> Execute(Guid pedidoId) => CancelarPagamento(pedidoId);
 
-        private async Task CancelarPagamento(Guid pagamentoId)
+        private async Task<Pagamento> CancelarPagamento(Guid pagamentoId)
         {
             var pagamento = _pagamentoRepository.Obter(pagamentoId);
 
             pagamento.Cancelar();
 
             await _unitOfWork.Save();
+
+            return pagamento;
         }
     }
 }

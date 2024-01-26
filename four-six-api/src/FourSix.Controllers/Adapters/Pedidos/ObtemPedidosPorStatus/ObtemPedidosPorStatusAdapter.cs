@@ -1,4 +1,5 @@
 ﻿using FourSix.Controllers.Presenters;
+using FourSix.Controllers.ViewModels;
 using FourSix.Domain.Entities.PedidoAggregate;
 using FourSix.UseCases.UseCases.Pedidos.ObtemPedidosPorStatus;
 using FourSix.WebApi.UseCases.Pedidos.ObtemPedido;
@@ -21,16 +22,14 @@ namespace FourSix.Controllers.Adapters.Pedidos.ObtemPedidosPorStatus
         }
 
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ObtemPedidosPorStatusResponse))]
-        public async Task<ICollection<Pedido>> Listar(EnumStatusPedido statusId)
+        public async Task<ObtemPedidosPorStatusResponse> Listar(EnumStatusPedido statusId)
         {
-            //_useCase.SetOutputPort(this);
+            var lista = await _useCase.Execute(statusId);
 
-            var pedidos = _useCase.Execute(statusId).Result.ToList();
-            //.ConfigureAwait(false);
+            var model = new List<PedidoModel>();
+            lista.ToList().ForEach(f => model.Add(new PedidoModel(f)));
 
-            return pedidos;
-
-            //return Ok(pedidos);
+            return new ObtemPedidosPorStatusResponse(model);
         }
     }
 }

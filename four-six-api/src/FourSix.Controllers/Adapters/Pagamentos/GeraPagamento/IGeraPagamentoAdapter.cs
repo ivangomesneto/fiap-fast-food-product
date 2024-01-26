@@ -2,6 +2,6 @@
 {
     public interface IGeraPagamentoAdapter
     {
-        Task Gerar(GeraPagamentoRequest request);
+        Task<GeraPagamentoResponse> Gerar(GeraPagamentoRequest request);
     }
 }

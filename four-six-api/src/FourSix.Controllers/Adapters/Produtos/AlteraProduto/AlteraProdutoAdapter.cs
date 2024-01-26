@@ -1,18 +1,15 @@
 ﻿using FourSix.Controllers.Presenters;
+using FourSix.Controllers.ViewModels;
 using FourSix.UseCases.UseCases.Produtos.AlteraProduto;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FourSix.Controllers.Adapters.Produtos.AlteraProduto
 {
-    //[ApiController]
-    //[Route("[controller]")]
-    //[Produces("application/json")]
-    //[SwaggerTag("Criar, Obter, Editar and Excluir Produtos")]
     public class AlteraProdutoAdapter : IAlteraProdutoAdapter
     {
         private readonly Notification _notification;
 
-        private IActionResult _viewModel;
         private readonly IAlteraProdutoUseCase _useCase;
 
         public AlteraProdutoAdapter(Notification notification,
@@ -22,27 +19,12 @@ namespace FourSix.Controllers.Adapters.Produtos.AlteraProduto
             this._notification = notification;
         }
 
-        /// <summary>
-        /// Altera produto
-        /// </summary>
-        /// <param name="id">Id do produto</param>
-        /// <param name="produto">Dados do Produto</param>
-        /// <returns></returns>
-        //[AllowAnonymous]
-        //[HttpPut("{id:guid}")]
-        //[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(AlteraProdutoResponse))]
-        //[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(AlteraProdutoResponse))]
-        //[ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Edit))]
-        public async Task Alterar(Guid id, AlteraProdutoRequest produto)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(AlteraProdutoResponse))]
+        public async Task<AlteraProdutoResponse> Alterar(Guid id, AlteraProdutoRequest produto)
         {
-            await _useCase.Execute(id,
-                produto.Nome,
-                produto.Descricao,
-                produto.Categoria,
-                produto.Preco)
-                .ConfigureAwait(false);
+            var model = new ProdutoModel(await _useCase.Execute(id, produto.Nome, produto.Descricao, produto.Categoria, produto.Preco));
 
-            //return this._viewModel!;
+            return new AlteraProdutoResponse(model);
         }
     }
 }

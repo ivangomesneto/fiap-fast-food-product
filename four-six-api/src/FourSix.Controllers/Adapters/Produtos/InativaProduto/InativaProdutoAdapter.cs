@@ -1,18 +1,16 @@
-﻿using FourSix.Controllers.Presenters;
+﻿using FourSix.Controllers.Adapters.Produtos.AlteraProduto;
+using FourSix.Controllers.Presenters;
+using FourSix.Controllers.ViewModels;
 using FourSix.UseCases.UseCases.Produtos.InativaProduto;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FourSix.Controllers.Adapters.Produtos.InativaProduto
 {
-    //[ApiController]
-    //[Route("[controller]")]
-    //[Produces("application/json")]
-    //[SwaggerTag("Criar, Obter, Editar and Excluir Produtos")]
     public class InativaProdutoAdapter : IInativaProdutoAdapter
     {
         private readonly Notification _notification;
 
-        private IActionResult _viewModel;
         private readonly IInativaProdutoUseCase _useCase;
 
         public InativaProdutoAdapter(Notification notification,
@@ -22,22 +20,12 @@ namespace FourSix.Controllers.Adapters.Produtos.InativaProduto
             this._notification = notification;
         }
 
-        ///// <summary>
-        ///// Inativa produto
-        ///// </summary>
-        ///// <param name="id">Id do produto</param>
-        ///// <returns></returns>
-        //[AllowAnonymous]
-        //[HttpDelete("{id:guid}")]
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //[ProducesResponseType(StatusCodes.Status201Created)]
-        //[ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Delete))]
-        public async Task Inativar(Guid id)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(AlteraProdutoResponse))]
+        public async Task<InativaProdutoResponse> Inativar(Guid id)
         {
-            await _useCase.Execute(id)
-                .ConfigureAwait(false);
+            var model = new ProdutoModel(await _useCase.Execute(id));
 
-            //return this._viewModel!;
+            return new InativaProdutoResponse(model);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using FourSix.Domain.Entities.ProdutoAggregate;
+﻿using FourSix.Domain.Entities.PedidoAggregate;
+using FourSix.Domain.Entities.ProdutoAggregate;
 using FourSix.UseCases.Interfaces;
 
 namespace FourSix.UseCases.UseCases.Produtos.AlteraProduto
@@ -16,7 +17,7 @@ namespace FourSix.UseCases.UseCases.Produtos.AlteraProduto
             this._unitOfWork = unitOfWork;
         }
 
-        public Task Execute(Guid produtoId, string nome, string descricao, EnumCategoriaProduto categoria, decimal preco) =>
+        public Task<Produto> Execute(Guid produtoId, string nome, string descricao, EnumCategoriaProduto categoria, decimal preco) =>
             this.AlterarProduto(
                 new Produto(produtoId,
                     nome,
@@ -25,9 +26,8 @@ namespace FourSix.UseCases.UseCases.Produtos.AlteraProduto
                     preco,
                     true));
 
-        private async Task AlterarProduto(Produto produto)
+        private async Task<Produto> AlterarProduto(Produto produto)
         {
-
             if (this._produtoRepository
                 .Listar(q => q.Nome == produto.Nome
                 && q.Categoria == produto.Categoria).Any())
@@ -41,7 +41,11 @@ namespace FourSix.UseCases.UseCases.Produtos.AlteraProduto
 
             await this._unitOfWork
                 .Save()
-                .ConfigureAwait(false);
+            .ConfigureAwait(false);
+
+            produto = this._produtoRepository.Listar(q => q.Id == produto.Id).FirstOrDefault();
+
+            return produto;
         }
     }
 }

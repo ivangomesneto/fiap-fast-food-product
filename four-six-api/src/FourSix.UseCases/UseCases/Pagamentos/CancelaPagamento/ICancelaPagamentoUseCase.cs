@@ -7,6 +7,6 @@ namespace FourSix.UseCases.UseCases.Pagamentos.CancelaPagamento
         /// <summary>
         /// Executa o Caso de Uso
         /// </summary>
-        Task Execute(Guid pagamentoId);
+        Task<Pagamento> Execute(Guid pagamentoId);
     }
 }

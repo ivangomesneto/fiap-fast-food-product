@@ -1,5 +1,8 @@
 ﻿using FourSix.Controllers.Presenters;
+using FourSix.Controllers.ViewModels;
 using FourSix.UseCases.UseCases.Pedidos.NovoPedido;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FourSix.Controllers.Adapters.Pedidos.NovoPedido
 {
@@ -7,7 +10,6 @@ namespace FourSix.Controllers.Adapters.Pedidos.NovoPedido
     {
         private readonly Notification _notification;
 
-        //private IActionResult _viewModel;
         private readonly INovoPedidoUseCase _useCase;
 
         public NovoPedidoAdapter(Notification notification,
@@ -17,26 +19,12 @@ namespace FourSix.Controllers.Adapters.Pedidos.NovoPedido
             _notification = notification;
         }
 
-        ///// <summary>
-        ///// Cria novo pedido
-        ///// </summary>
-        ///// <param name="pedido">Dados do Pedido</param>
-        ///// <returns></returns>
-        //[AllowAnonymous]
-        //[HttpPost]
-        //[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(NovoPedidoResponse))]
-        //[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(NovoPedidoResponse))]
-        //[ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Create))]
-        public async Task Inserir(NovoPedidoRequest pedido)
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(NovoPedidoResponse))]
+        public async Task<NovoPedidoResponse> Inserir(NovoPedidoRequest pedido)
         {
-            try
-            {
-                await _useCase.Execute(pedido.DataPedido, pedido.ClienteId, pedido.Items.Select(i => new Tuple<Guid, decimal, int, string>(i.ItemPedidoId, i.ValorUnitario, i.Quantidade, i.Observacao)).ToList())
-                    .ConfigureAwait(false);
-            }
-            catch (Exception ex) { }
+            var model = new PedidoModel(await _useCase.Execute(pedido.DataPedido, pedido.ClienteId, pedido.Items.Select(i => new Tuple<Guid, decimal, int, string>(i.ItemPedidoId, i.ValorUnitario, i.Quantidade, i.Observacao)).ToList()));
 
-            //return _viewModel!;
+            return new NovoPedidoResponse(model);
         }
     }
 }

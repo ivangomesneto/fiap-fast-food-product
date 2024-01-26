@@ -7,6 +7,6 @@ namespace FourSix.UseCases.UseCases.Pedidos.AlteraStatusPedido
         /// <summary>
         /// Executa o Caso de Uso
         /// </summary>
-        Task Execute(Guid pedidoId, EnumStatusPedido statusId, DateTime dataStatus);
+        Task<Pedido> Execute(Guid pedidoId, EnumStatusPedido statusId, DateTime dataStatus);
     }
 }

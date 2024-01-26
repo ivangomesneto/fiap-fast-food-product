@@ -1,16 +1,14 @@
 ﻿using FourSix.Controllers.Presenters;
+using FourSix.Controllers.ViewModels;
 using FourSix.UseCases.UseCases.Produtos.ObtemProduto;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FourSix.Controllers.Adapters.Produtos.ObtemProduto
 {
-    //[ApiController]
-    //[Route("[controller]")]
-    //[Produces("application/json")]
     public class ObtemProdutoAdapter : IObtemProdutoAdapter
     {
         private readonly Notification _notification;
-        private IActionResult _viewModel;
         private readonly IObtemProdutoUseCase _useCase;
 
         public ObtemProdutoAdapter(Notification notification,
@@ -20,17 +18,12 @@ namespace FourSix.Controllers.Adapters.Produtos.ObtemProduto
             this._notification = notification;
         }
 
-        //[AllowAnonymous]
-        //[HttpGet("{id:guid}")]
-        //[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ObtemProdutoResponse))]
-        //[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(ObtemProdutoResponse))]
-        //[ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.List))]
-        public async Task Obter(Guid id)
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(ObtemProdutoResponse))]
+        public async Task<ObtemProdutoResponse> Obter(Guid id)
         {
-            await _useCase.Execute(id)
-                .ConfigureAwait(false);
+            var model = new ProdutoModel(await _useCase.Execute(id));
 
-            //return this._viewModel!;
+            return new ObtemProdutoResponse(model);
         }
     }
 }

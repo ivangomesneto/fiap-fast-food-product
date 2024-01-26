@@ -1,4 +1,4 @@
-﻿using FourSix.WebApi.ViewModels;
+﻿using FourSix.Controllers.ViewModels;
 
 namespace FourSix.Controllers.Adapters.Pedidos.AlteraStatusPedido
 {

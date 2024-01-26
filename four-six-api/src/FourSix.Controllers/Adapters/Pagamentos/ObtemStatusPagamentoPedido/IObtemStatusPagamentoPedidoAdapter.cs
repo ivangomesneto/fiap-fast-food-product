@@ -2,6 +2,6 @@
 {
     public interface IObtemStatusPagamentoPedidoAdapter
     {
-        Task<ObtemStatusPagamentoPedidoPresenter> ObterStatusPagamento(Guid pedidoId);
+        Task<ObtemStatusPagamentoPedidoResponse> ObterStatusPagamento(Guid pedidoId);
     }
 }

@@ -2,6 +2,6 @@
 {
     public interface IObtemProdutoAdapter
     {
-        Task Obter(Guid id);
+        Task<ObtemProdutoResponse> Obter(Guid id);
     }
 }

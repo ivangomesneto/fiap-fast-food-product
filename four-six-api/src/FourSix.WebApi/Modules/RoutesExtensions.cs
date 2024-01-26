@@ -38,7 +38,7 @@ namespace FourSix.WebApi.Modules
             [SwaggerOperation(Summary = "Cria novo cliente")]
             ([FromBody] NovoClienteRequest request, INovoClienteAdapter adapter) =>
             {
-                adapter.Inserir(request);
+                return adapter.Inserir(request);
             }).WithTags("Clientes");
 
             #endregion
@@ -56,21 +56,21 @@ namespace FourSix.WebApi.Modules
             [SwaggerOperation(Summary = "Cria novo pedido")]
             ([FromBody] NovoPedidoRequest request, INovoPedidoAdapter adapter) =>
             {
-                adapter.Inserir(request);
+                return adapter.Inserir(request);
             }).WithTags("Pedidos");
 
             app.MapPut("pedidos/cancelamentos",
             [SwaggerOperation(Summary = "Cancela pedido")]
             ([FromBody] CancelaPedidoRequest request, ICancelaPedidoAdapter adapter) =>
             {
-                adapter.Cancelar(request);
+                return adapter.Cancelar(request);
             }).WithTags("Pedidos");
 
             app.MapPut("pedidos/{pedidoId:guid}/status/{statusId}",
             [SwaggerOperation(Summary = "Altera status do pedido")]
             ([SwaggerParameter("ID do Pedido")] Guid pedidoId, [SwaggerParameter("Status do Pedido")] EnumStatusPedido statusId, IAlteraStatusPedidoAdapter adapter) =>
             {
-                adapter.Alterar(pedidoId, statusId);
+                return adapter.Alterar(pedidoId, statusId);
             }).WithTags("Pedidos");
 
             #endregion
@@ -125,7 +125,7 @@ namespace FourSix.WebApi.Modules
 
             app.MapPost("produtos",
             [SwaggerOperation(Summary = "Insere novo produto")]
-            ([SwaggerParameter("Id do produto")][FromBody] NovoProdutoRequest request, INovoProdutoAdapter adapter) =>
+            ([FromBody] NovoProdutoRequest request, INovoProdutoAdapter adapter) =>
             {
                 return adapter.Inserir(request);
             }).WithTags("Produtos");

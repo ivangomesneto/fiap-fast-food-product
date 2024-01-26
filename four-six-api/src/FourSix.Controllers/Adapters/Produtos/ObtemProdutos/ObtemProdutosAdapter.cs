@@ -1,17 +1,15 @@
 ﻿using FourSix.Controllers.Presenters;
+using FourSix.Controllers.ViewModels;
 using FourSix.UseCases.UseCases.Produtos.ObtemProdutos;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FourSix.Controllers.Adapters.Produtos.ObtemProdutos
 {
-    //[ApiController]
-    //[Route("[controller]")]
-    //[Produces("application/json")]
     public class ObtemProdutosAdapter : IObtemProdutosAdapter
     {
         private readonly Notification _notification;
 
-        private IActionResult _viewModel;
         private readonly IObtemProdutosUseCase _useCase;
 
         public ObtemProdutosAdapter(Notification notification,
@@ -21,21 +19,15 @@ namespace FourSix.Controllers.Adapters.Produtos.ObtemProdutos
             this._notification = notification;
         }
 
-        ///// <summary>
-        ///// Obtém todos os produtos
-        ///// </summary>
-        ///// <returns></returns>
-        //[AllowAnonymous]
-        //[HttpGet]
-        //[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ObtemProdutosResponse))]
-        //[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(ObtemProdutosResponse))]
-        //[ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.List))]
-        public async Task Listar()
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ObtemProdutosResponse))]
+        public async Task<ObtemProdutosResponse> Listar()
         {
-            await _useCase.Execute()
-                .ConfigureAwait(false);
+            var lista = await _useCase.Execute();
 
-            //return this._viewModel!;
+            var model = new List<ProdutoModel>();
+            lista.ToList().ForEach(f => model.Add(new ProdutoModel(f)));
+
+            return new ObtemProdutosResponse(model);
         }
     }
 }

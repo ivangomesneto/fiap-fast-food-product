@@ -1,18 +1,15 @@
 ﻿using FourSix.Controllers.Presenters;
+using FourSix.Controllers.ViewModels;
 using FourSix.UseCases.UseCases.Pagamentos.CancelaPagamento;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FourSix.Controllers.Adapters.Pagamentos.CancelaPagamento
 {
-    //[ApiController]
-    //[Route("[controller]")]
-    //[Produces("application/json")]
-    //[SwaggerTag("Gerar, Efetuar e Cancelar Pagamento")]
     public class CancelaPagamentoAdapter : ICancelaPagamentoAdapter
     {
         private readonly Notification _notification;
 
-        private IActionResult _viewModel;
         private readonly ICancelaPagamentoUseCase _useCase;
 
         public CancelaPagamentoAdapter(Notification notification,
@@ -22,22 +19,12 @@ namespace FourSix.Controllers.Adapters.Pagamentos.CancelaPagamento
             _notification = notification;
         }
 
-        ///// <summary>
-        ///// Cancela pagamento
-        ///// </summary>
-        ///// <param name="request">Dados do pagamento</param>
-        ///// <returns></returns>
-        //[AllowAnonymous]
-        //[HttpPut("cancelamentos")]
-        //[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CancelaPagamentoResponse))]
-        //[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(CancelaPagamentoResponse))]
-        //[ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Update))]
-        public async Task Cancelar(CancelaPagamentoRequest request)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CancelaPagamentoResponse))]
+        public async Task<CancelaPagamentoResponse> Cancelar(CancelaPagamentoRequest request)
         {
-            await _useCase.Execute(request.PagamentoId)
-                .ConfigureAwait(false);
+            var model = new PagamentoModel(await _useCase.Execute(request.PagamentoId));
 
-            //return _viewModel!;
+            return new CancelaPagamentoResponse(model);
         }
     }
 }

@@ -7,6 +7,6 @@ namespace FourSix.UseCases.UseCases.Pedidos.CancelaPedido
         /// <summary>
         /// Executa o Caso de Uso
         /// </summary>
-        Task Execute(Guid pedidoId, DateTime dataCancelamento);
+        Task<Pedido> Execute(Guid pedidoId, DateTime dataCancelamento);
     }
 }
