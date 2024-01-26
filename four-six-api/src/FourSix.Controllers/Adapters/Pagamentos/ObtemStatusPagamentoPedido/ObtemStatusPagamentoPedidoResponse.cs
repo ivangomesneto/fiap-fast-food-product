@@ -4,7 +4,7 @@ namespace FourSix.Controllers.Adapters.Pagamentos.ObtemStatusPagamentoPedido
 {
     public class ObtemStatusPagamentoPedidoResponse
     {
-        public ObtemStatusPagamentoPedidoResponse(EnumStatusPagamento enumStatusPagamento) => StatusPagamento = enumStatusPagamento;
-        public EnumStatusPagamento StatusPagamento { get; }
+        public ObtemStatusPagamentoPedidoResponse(StatusPagamento statusPagamento) => StatusPagamento = statusPagamento;
+        public StatusPagamento StatusPagamento { get; }
     }
 }

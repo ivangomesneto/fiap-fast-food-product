@@ -4,6 +4,6 @@ namespace FourSix.UseCases.UseCases.Pagamentos.ObtemStatusPagamentoPedido
 {
     public interface IObtemStatusPagamentoPedidoUseCase
     {
-        Task<EnumStatusPagamento> Execute(Guid pedidoId);
+        Task<StatusPagamento> Execute(Guid pedidoId);
     }
 }
