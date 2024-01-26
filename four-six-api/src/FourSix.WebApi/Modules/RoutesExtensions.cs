@@ -18,6 +18,8 @@ using FourSix.Domain.Entities.PedidoAggregate;
 using FourSix.Domain.Entities.ProdutoAggregate;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using FourSix.Controllers.Adapters.Pagamentos.BuscaPagamento;
+using FourSix.Controllers.Adapters.Pagamentos.NegaPagamento;
 
 namespace FourSix.WebApi.Modules
 {
@@ -77,11 +79,18 @@ namespace FourSix.WebApi.Modules
 
             #region [ Pagamentos ]
 
-            app.MapPut("pagamentos/cancelamentos",
+            app.MapPut("pagamentos/{pagamentoId:Guid}/cancelamentos",
             [SwaggerOperation(Summary = "Cancela pagamento")]
-            ([SwaggerParameter("Dados do pagamento")][FromBody] CancelaPagamentoRequest request, ICancelaPagamentoAdapter adapter) =>
+            ([SwaggerParameter("Dados do pagamento")][FromRoute] Guid pagamentoId, ICancelaPagamentoAdapter adapter) =>
             {
-                return adapter.Cancelar(request);
+                return adapter.Cancelar(pagamentoId);
+            }).WithTags("Pagamentos");
+
+            app.MapPut("pagamentos/{pagamentoId:Guid}/negacoes",
+            [SwaggerOperation(Summary = "Nega pagamento")]
+            ([SwaggerParameter("Dados do pagamento")][FromRoute] Guid pagamentoId, INegaPagamentoAdapter adapter) =>
+            {
+                return adapter.Negar(pagamentoId);
             }).WithTags("Pagamentos");
 
             app.MapPost("pagamentos",
@@ -103,6 +112,13 @@ namespace FourSix.WebApi.Modules
             ([SwaggerParameter("Dados do pagamento")][FromBody] RealizaPagamentoRequest request, IRealizaPagamentoAdapter adapter) =>
             {
                 return adapter.Efetivar(request);
+            }).WithTags("Pagamentos");
+
+            app.MapGet("pagamentos/{pagamentoId:Guid}",
+            [SwaggerOperation(Summary = "Obtém o pagamento")]
+            ([SwaggerParameter("Id do pedido")] Guid pagamentoId, IBuscaPagamentoAdapter adapter) =>
+            {
+                return adapter.Buscar(pagamentoId);
             }).WithTags("Pagamentos");
 
             #endregion

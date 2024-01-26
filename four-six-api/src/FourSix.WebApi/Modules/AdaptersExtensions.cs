@@ -14,6 +14,8 @@ using FourSix.Controllers.Adapters.Produtos.NovoProduto;
 using FourSix.Controllers.Adapters.Produtos.ObtemProduto;
 using FourSix.Controllers.Adapters.Produtos.ObtemProdutosPorCategoria;
 using FourSix.Controllers.Adapters.Produtos.ObtemProdutos;
+using FourSix.Controllers.Adapters.Pagamentos.NegaPagamento;
+using FourSix.Controllers.Adapters.Pagamentos.BuscaPagamento;
 
 namespace FourSix.WebApi.Modules
 {
@@ -28,6 +30,8 @@ namespace FourSix.WebApi.Modules
 
             #region [ Pagamentos ]
             services.AddScoped<ICancelaPagamentoAdapter, CancelaPagamentoAdapter>();
+            services.AddScoped<INegaPagamentoAdapter, NegaPagamentoAdapter>();
+            services.AddScoped<IBuscaPagamentoAdapter, BuscaPagamentoAdapter>();
             services.AddScoped<IGeraPagamentoAdapter, GeraPagamentoAdapter>();
             services.AddScoped<IObtemStatusPagamentoPedidoAdapter, ObtemStatusPagamentoPedidoAdapter>();
             services.AddScoped<IRealizaPagamentoAdapter, RealizaPagamentoAdapter>();

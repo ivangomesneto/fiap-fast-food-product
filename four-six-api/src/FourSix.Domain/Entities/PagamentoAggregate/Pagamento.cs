@@ -41,5 +41,10 @@ namespace FourSix.Domain.Entities.PagamentoAggregate
             ValorPago = 0;
             StatusId = EnumStatusPagamento.Cancelado;
         }
+
+        public void Negar()
+        {
+            StatusId = EnumStatusPagamento.Negado;
+        }
     }
 }

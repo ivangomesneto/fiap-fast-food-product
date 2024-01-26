@@ -48,6 +48,11 @@ namespace FourSix.Controllers.Gateways.DataAccess
                 {
                     Id = EnumStatusPedido.Finalizado,
                     Descricao = "Finalizado"
+                },
+                new
+                {
+                    Id = EnumStatusPedido.Cancelado,
+                    Descricao = "Cancelado"
                 });
 
             #endregion
@@ -70,6 +75,11 @@ namespace FourSix.Controllers.Gateways.DataAccess
                 {
                     Id = EnumStatusPagamento.Cancelado,
                     Descricao = "Cancelado"
+                },
+                new
+                {
+                    Id = EnumStatusPagamento.Negado,
+                    Descricao = "Negado"
                 });
 
             #endregion
