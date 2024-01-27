@@ -5,6 +5,7 @@ using FourSix.Controllers.Adapters.Pagamentos.CancelaPagamento;
 using FourSix.Controllers.Adapters.Pagamentos.GeraPagamento;
 using FourSix.Controllers.Adapters.Pagamentos.NegaPagamento;
 using FourSix.Controllers.Adapters.Pagamentos.RealizaPagamento;
+using FourSix.Controllers.Adapters.Pagamentos.WebhookPagamento;
 using FourSix.Controllers.Adapters.Pedidos.AlteraStatusPedido;
 using FourSix.Controllers.Adapters.Pedidos.CancelaPedido;
 using FourSix.Controllers.Adapters.Pedidos.NovoPedido;
@@ -36,6 +37,7 @@ namespace FourSix.WebApi.Modules
             services.AddScoped<IGeraPagamentoAdapter, GeraPagamentoAdapter>();
             services.AddScoped<IObtemStatusPagamentoPedidoAdapter, ObtemStatusPagamentoPedidoAdapter>();
             services.AddScoped<IRealizaPagamentoAdapter, RealizaPagamentoAdapter>();
+            services.AddScoped<IWebhookPagamentoAdapter, WebhookPagamentoAdapter>();
             #endregion
 
             #region [ Pedidos ]

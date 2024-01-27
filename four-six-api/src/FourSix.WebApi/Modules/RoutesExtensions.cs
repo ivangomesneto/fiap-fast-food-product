@@ -5,6 +5,7 @@ using FourSix.Controllers.Adapters.Pagamentos.CancelaPagamento;
 using FourSix.Controllers.Adapters.Pagamentos.GeraPagamento;
 using FourSix.Controllers.Adapters.Pagamentos.NegaPagamento;
 using FourSix.Controllers.Adapters.Pagamentos.RealizaPagamento;
+using FourSix.Controllers.Adapters.Pagamentos.WebhookPagamento;
 using FourSix.Controllers.Adapters.Pedidos.AlteraStatusPedido;
 using FourSix.Controllers.Adapters.Pedidos.CancelaPedido;
 using FourSix.Controllers.Adapters.Pedidos.NovoPedido;
@@ -19,6 +20,7 @@ using FourSix.Controllers.Adapters.Produtos.ObtemProdutos;
 using FourSix.Controllers.Adapters.Produtos.ObtemProdutosPorCategoria;
 using FourSix.Domain.Entities.PedidoAggregate;
 using FourSix.Domain.Entities.ProdutoAggregate;
+using FourSix.UseCases.UseCases.Pagamentos.WebhookPagamento;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -120,6 +122,14 @@ namespace FourSix.WebApi.Modules
             ([SwaggerParameter("Dados do pagamento")][FromBody] RealizaPagamentoRequest request, IRealizaPagamentoAdapter adapter) =>
             {
                 return adapter.Efetivar(request);
+            }).WithTags("Pagamentos");
+
+            app.MapPut("pagamentos/webhook/{pagamentoId:Guid}",
+            [SwaggerOperation(Summary = "Processa o retorno de pagamento")]
+            ([SwaggerParameter("Id do pagamento")] Guid pagamentoId, 
+            [SwaggerParameter("Dados do pagamento")][FromBody] WebHookPagamentRequest request, IWebhookPagamentoAdapter adapter) =>
+            {
+              return adapter.process(request, pagamentoId);
             }).WithTags("Pagamentos");
 
             app.MapGet("pagamentos/{pagamentoId:Guid}",

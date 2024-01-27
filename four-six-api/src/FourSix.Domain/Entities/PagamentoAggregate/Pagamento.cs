@@ -37,5 +37,10 @@ namespace FourSix.Domain.Entities.PagamentoAggregate
             StatusId = status;
             DataAtualizacao = DateTime.Now;
         }
+        public void AtualizarStatus(EnumStatusPagamento status)
+        {
+            StatusId = status;
+            DataAtualizacao = DateTime.Now;
+        }
     }
 }
