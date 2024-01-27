@@ -20,7 +20,7 @@ namespace FourSix.UseCases.UseCases.Pagamentos.NegaPagamento
         {
             var pagamento = _pagamentoRepository.Obter(pagamentoId);
 
-            pagamento.Negar();
+            pagamento.AtualizarStatus(EnumStatusPagamento.Negado);
 
             return pagamento;
         }

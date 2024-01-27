@@ -22,7 +22,7 @@ namespace FourSix.UseCases.UseCases.Pagamentos.RealizaPagamento
         {
             var pagamento = _pagamentoRepository.Obter(pagamentoId);
 
-            pagamento.Pagar(valorPago);
+            pagamento.AtualizarStatus(EnumStatusPagamento.Pago, valorPago);
 
             await _unitOfWork.Save();
 

@@ -1,8 +1,5 @@
-﻿using FourSix.Controllers.Adapters.Pagamentos.ObtemStatusPagamentoPedido;
-using FourSix.Controllers.Adapters.Produtos.ObtemProduto;
-using FourSix.Controllers.Presenters;
+﻿using FourSix.Controllers.Presenters;
 using FourSix.Controllers.ViewModels;
-using FourSix.Domain.Entities.PedidoAggregate;
 using FourSix.UseCases.UseCases.Pagamentos.BuscaPagamento;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;

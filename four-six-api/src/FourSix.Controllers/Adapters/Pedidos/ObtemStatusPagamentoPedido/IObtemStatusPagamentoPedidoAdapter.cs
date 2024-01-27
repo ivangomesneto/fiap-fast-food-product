@@ -1,4 +1,4 @@
-﻿namespace FourSix.Controllers.Adapters.Pagamentos.ObtemStatusPagamentoPedido
+﻿namespace FourSix.Controllers.Adapters.Pedidos.ObtemStatusPagamentoPedido
 {
     public interface IObtemStatusPagamentoPedidoAdapter
     {

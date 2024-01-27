@@ -1,25 +1,25 @@
 ﻿using FourSix.Controllers.Adapters.Clientes.NovoCliente;
 using FourSix.Controllers.Adapters.Clientes.ObtemCliente;
+using FourSix.Controllers.Adapters.Pagamentos.BuscaPagamento;
 using FourSix.Controllers.Adapters.Pagamentos.CancelaPagamento;
 using FourSix.Controllers.Adapters.Pagamentos.GeraPagamento;
-using FourSix.Controllers.Adapters.Pagamentos.ObtemStatusPagamentoPedido;
+using FourSix.Controllers.Adapters.Pagamentos.NegaPagamento;
 using FourSix.Controllers.Adapters.Pagamentos.RealizaPagamento;
 using FourSix.Controllers.Adapters.Pedidos.AlteraStatusPedido;
 using FourSix.Controllers.Adapters.Pedidos.CancelaPedido;
 using FourSix.Controllers.Adapters.Pedidos.NovoPedido;
 using FourSix.Controllers.Adapters.Pedidos.ObtemPedidosPorStatus;
+using FourSix.Controllers.Adapters.Pedidos.ObtemStatusPagamentoPedido;
 using FourSix.Controllers.Adapters.Produtos.AlteraProduto;
 using FourSix.Controllers.Adapters.Produtos.InativaProduto;
 using FourSix.Controllers.Adapters.Produtos.NovoProduto;
 using FourSix.Controllers.Adapters.Produtos.ObtemProduto;
-using FourSix.Controllers.Adapters.Produtos.ObtemProdutosPorCategoria;
 using FourSix.Controllers.Adapters.Produtos.ObtemProdutos;
+using FourSix.Controllers.Adapters.Produtos.ObtemProdutosPorCategoria;
 using FourSix.Domain.Entities.PedidoAggregate;
 using FourSix.Domain.Entities.ProdutoAggregate;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using FourSix.Controllers.Adapters.Pagamentos.BuscaPagamento;
-using FourSix.Controllers.Adapters.Pagamentos.NegaPagamento;
 
 namespace FourSix.WebApi.Modules
 {
@@ -75,6 +75,13 @@ namespace FourSix.WebApi.Modules
                 return adapter.Alterar(pedidoId, statusId);
             }).WithTags("Pedidos");
 
+            app.MapGet("pedidos/{pedidoId:Guid}/pagamentos",
+            [SwaggerOperation(Summary = "Obtém o status do pagamento do pedido")]
+            ([SwaggerParameter("Id do pedido")] Guid pedidoId, IObtemStatusPagamentoPedidoAdapter adapter) =>
+            {
+                return adapter.ObterStatusPagamento(pedidoId);
+            }).WithTags("Pedidos");
+
             #endregion
 
             #region [ Pagamentos ]
@@ -100,13 +107,6 @@ namespace FourSix.WebApi.Modules
                 return adapter.Gerar(request);
             }).WithTags("Pagamentos");
 
-            app.MapGet("pagamentos/pedidos/{pedidoId:Guid}",
-            [SwaggerOperation(Summary = "Obtém o status do pagamento do pedido")]
-            ([SwaggerParameter("Id do pedido")] Guid pedidoId, IObtemStatusPagamentoPedidoAdapter adapter) =>
-            {
-                return adapter.ObterStatusPagamento(pedidoId);
-            }).WithTags("Pagamentos");
-
             app.MapPut("pagamentos/efetivacoes",
             [SwaggerOperation(Summary = "Efetiva pagamento pendente")]
             ([SwaggerParameter("Dados do pagamento")][FromBody] RealizaPagamentoRequest request, IRealizaPagamentoAdapter adapter) =>
@@ -116,7 +116,7 @@ namespace FourSix.WebApi.Modules
 
             app.MapGet("pagamentos/{pagamentoId:Guid}",
             [SwaggerOperation(Summary = "Obtém o pagamento")]
-            ([SwaggerParameter("Id do pedido")] Guid pagamentoId, IBuscaPagamentoAdapter adapter) =>
+            ([SwaggerParameter("Id do pagamento")] Guid pagamentoId, IBuscaPagamentoAdapter adapter) =>
             {
                 return adapter.Buscar(pagamentoId);
             }).WithTags("Pagamentos");

@@ -1,5 +1,4 @@
-﻿using FourSix.Domain.Entities.ClienteAggregate;
-using FourSix.Domain.Entities.PedidoAggregate;
+﻿using FourSix.Domain.Entities.PedidoAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -7,7 +6,6 @@ namespace FourSix.Controllers.Gateways.Configurations
 {
     public class PedidoConfiguration : IEntityTypeConfiguration<Pedido>
     {
-
         public void Configure(EntityTypeBuilder<Pedido> builder)
         {
             if (builder == null)

@@ -2,7 +2,6 @@
 using FourSix.Controllers.Adapters.Clientes.ObtemCliente;
 using FourSix.Controllers.Adapters.Pagamentos.CancelaPagamento;
 using FourSix.Controllers.Adapters.Pagamentos.GeraPagamento;
-using FourSix.Controllers.Adapters.Pagamentos.ObtemStatusPagamentoPedido;
 using FourSix.Controllers.Adapters.Pagamentos.RealizaPagamento;
 using FourSix.Controllers.Adapters.Pedidos.AlteraStatusPedido;
 using FourSix.Controllers.Adapters.Pedidos.CancelaPedido;
@@ -16,6 +15,7 @@ using FourSix.Controllers.Adapters.Produtos.ObtemProdutosPorCategoria;
 using FourSix.Controllers.Adapters.Produtos.ObtemProdutos;
 using FourSix.Controllers.Adapters.Pagamentos.NegaPagamento;
 using FourSix.Controllers.Adapters.Pagamentos.BuscaPagamento;
+using FourSix.Controllers.Adapters.Pedidos.ObtemStatusPagamentoPedido;
 
 namespace FourSix.WebApi.Modules
 {

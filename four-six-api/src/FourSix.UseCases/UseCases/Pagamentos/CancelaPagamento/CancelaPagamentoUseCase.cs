@@ -22,7 +22,7 @@ namespace FourSix.UseCases.UseCases.Pagamentos.CancelaPagamento
         {
             var pagamento = _pagamentoRepository.Obter(pagamentoId);
 
-            pagamento.Cancelar();
+            pagamento.AtualizarStatus(EnumStatusPagamento.Cancelado);
 
             await _unitOfWork.Save();
 

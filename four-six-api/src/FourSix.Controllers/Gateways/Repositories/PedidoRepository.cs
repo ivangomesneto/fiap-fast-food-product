@@ -1,10 +1,11 @@
 ﻿using FourSix.Domain.Entities.PedidoAggregate;
+using FourSix.UseCases.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace FourSix.Controllers.Gateways.Repositories
 {
-    public class PedidoRepository : BaseRepository<Pedido>, UseCases.Interfaces.IPedidoRepository
+    public class PedidoRepository : BaseRepository<Pedido>, IPedidoRepository
     {
         public PedidoRepository(DbContext context) : base(context)
         {
@@ -19,11 +20,5 @@ namespace FourSix.Controllers.Gateways.Repositories
             else
                 return pedidos.Where(predicate).AsNoTracking();
         }
-
-        //public Task AlterarStatus(Guid pedidoId, EnumStatusPedido idStatus)
-        //{
-        //    var pedido = Obter(pedidoId);
-        //    pedido
-        //}
     }
 }
