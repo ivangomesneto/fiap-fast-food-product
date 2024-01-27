@@ -8,6 +8,7 @@ using FourSix.Controllers.Adapters.Pagamentos.RealizaPagamento;
 using FourSix.Controllers.Adapters.Pedidos.AlteraStatusPedido;
 using FourSix.Controllers.Adapters.Pedidos.CancelaPedido;
 using FourSix.Controllers.Adapters.Pedidos.NovoPedido;
+using FourSix.Controllers.Adapters.Pedidos.ObtemPedidos;
 using FourSix.Controllers.Adapters.Pedidos.ObtemPedidosPorStatus;
 using FourSix.Controllers.Adapters.Pedidos.ObtemStatusPagamentoPedido;
 using FourSix.Controllers.Adapters.Produtos.AlteraProduto;
@@ -46,6 +47,13 @@ namespace FourSix.WebApi.Modules
             #endregion
 
             #region [ Pedidos ]
+
+            app.MapGet("pedidos",
+            [SwaggerOperation(Summary = "Obtém lista de pedido")]
+            (IObtemPedidosAdapter adapter) =>
+            {
+             return adapter.Listar();
+            }).WithTags("Pedidos");
 
             app.MapGet("pedidos/{statusId}",
             [SwaggerOperation(Summary = "Obtém lista de pedido por status")]

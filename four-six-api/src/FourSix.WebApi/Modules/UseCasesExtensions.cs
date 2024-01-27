@@ -10,6 +10,7 @@ using FourSix.UseCases.UseCases.Pagamentos.RealizaPagamento;
 using FourSix.UseCases.UseCases.Pedidos.AlteraStatusPedido;
 using FourSix.UseCases.UseCases.Pedidos.CancelaPedido;
 using FourSix.UseCases.UseCases.Pedidos.NovoPedido;
+using FourSix.UseCases.UseCases.Pedidos.ObtemPedidos;
 using FourSix.UseCases.UseCases.Pedidos.ObtemPedidosPorStatus;
 using FourSix.UseCases.UseCases.Pedidos.ObtemStatusPagamentoPedido;
 using FourSix.UseCases.UseCases.Produtos.AlteraProduto;
@@ -68,6 +69,8 @@ namespace FourSix.WebApi.Modules
 
             services.AddScoped<IObtemPedidosPorStatusUseCase, ObtemPedidosPorStatusUseCase>();
             //services.Decorate<IObtemPedidosPorStatusUseCase, ObtemPedidosPorStatusValidationUseCase>();
+
+            services.AddScoped<IObtemPedidosUseCase, ObtemPedidosUseCase>();
             #endregion
 
             #region [ Pagamento ]
