@@ -1,11 +1,5 @@
 ﻿using FourSix.Domain.Entities.PedidoAggregate;
 using FourSix.UseCases.Interfaces;
-using FourSix.UseCases.UseCases.Pedidos.ObtemPedidosPorStatus;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FourSix.UseCases.UseCases.Pedidos.ObtemPedidos
 {
@@ -23,8 +17,7 @@ namespace FourSix.UseCases.UseCases.Pedidos.ObtemPedidos
 
         private async Task<ICollection<Pedido>> ListarPedidos()
         {
-            var pedidos = this._pedidoRepository.Listar()
-                .Where(x => x.StatusId != EnumStatusPedido.Finalizado)
+            var pedidos = this._pedidoRepository.Listar(x => x.StatusId != EnumStatusPedido.Finalizado)
                 .OrderBy(x => x.StatusId).OrderBy(x => x.DataPedido).ToList();
 
             return pedidos;

@@ -8,7 +8,7 @@ namespace FourSix.Controllers.Adapters.Pedidos.CancelaPedido
         /// <summary>
         /// Id do Pedido
         /// </summary>
-        /// <example>9b084d56-9d07-4060-87f2-9e053af42189</example>
+        /// <example>78e3b8d0-be9a-4407-9304-c61788797808</example>
         [SwaggerSchema(Nullable = false)]
         public Guid PedidoId { get; set; }
 

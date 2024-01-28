@@ -55,7 +55,7 @@ namespace FourSix.WebApi.Modules
 
             app.MapGet("pedidos/{statusId}",
             [SwaggerOperation(Summary = "Obtém lista de pedido por status")]
-            ([SwaggerParameter("Status do Pedido")] EnumStatusPedido statusId, IObtemPedidosPorStatusAdapter adapter) =>
+            ([SwaggerParameter("Status do pedido<br><br>Recebido = 1<br>Pago = 2<br>EmPreparacao = 3<br>Montagem = 4<br>Pronto = 5<br>Finalizado = 6<br>Cancelado = 7")] EnumStatusPedido statusId, IObtemPedidosPorStatusAdapter adapter) =>
             {
                 return adapter.Listar(statusId);
             }).WithTags("Pedidos");
@@ -74,9 +74,9 @@ namespace FourSix.WebApi.Modules
                 return adapter.Cancelar(request);
             }).WithTags("Pedidos");
 
-            app.MapPut("pedidos/{pedidoId:guid}/status/{statusId}",
+            app.MapPut("pedidos/{pedidoId:Guid}/status/{statusId}",
             [SwaggerOperation(Summary = "Altera status do pedido")]
-            ([SwaggerParameter("ID do Pedido")] Guid pedidoId, [SwaggerParameter("Status do Pedido")] EnumStatusPedido statusId, IAlteraStatusPedidoAdapter adapter) =>
+            ([SwaggerParameter("ID do Pedido")] Guid pedidoId, [SwaggerParameter("Status do pedido<br><br>Recebido = 1<br>Pago = 2<br>EmPreparacao = 3<br>Montagem = 4<br>Pronto = 5<br>Finalizado = 6<br>Cancelado = 7")] EnumStatusPedido statusId, IAlteraStatusPedidoAdapter adapter) =>
             {
                 return adapter.Alterar(pedidoId, statusId);
             }).WithTags("Pedidos");
@@ -99,7 +99,7 @@ namespace FourSix.WebApi.Modules
                 return adapter.Gerar(request);
             }).WithTags("Pagamentos");
 
-            app.MapPut("pagamentos/{pagamentoId:Guid}/status/",
+            app.MapPut("pagamentos/{pagamentoId:Guid}/status",
             [SwaggerOperation(Summary = "Processa o retorno de pagamento")]
             ([SwaggerParameter("Id do pagamento")] Guid pagamentoId,
             [SwaggerParameter("Dados do pagamento")][FromBody] AlteraStatusPagamentRequest request, IAlteraStatusPagamentoAdapter adapter) =>
@@ -118,18 +118,18 @@ namespace FourSix.WebApi.Modules
 
             #region [ Produtos ]
 
-            app.MapPut("produtos/{id:guid}",
+            app.MapPut("produtos/{produtoId:guid}",
             [SwaggerOperation(Summary = "Altera produto")]
-            ([SwaggerParameter("Id do produto")] Guid id, [FromBody] AlteraProdutoRequest request, IAlteraProdutoAdapter adapter) =>
+            ([SwaggerParameter("Id do produto")] Guid produtoId, [FromBody] AlteraProdutoRequest request, IAlteraProdutoAdapter adapter) =>
             {
-                return adapter.Alterar(id, request);
+                return adapter.Alterar(produtoId, request);
             }).WithTags("Produtos");
 
-            app.MapDelete("produtos/{id:guid}",
+            app.MapDelete("produtos/{produtoId:guid}",
             [SwaggerOperation(Summary = "Inativa produto")]
-            ([SwaggerParameter("Id do produto")] Guid id, IInativaProdutoAdapter adapter) =>
+            ([SwaggerParameter("Id do produto")] Guid produtoId, IInativaProdutoAdapter adapter) =>
             {
-                return adapter.Inativar(id);
+                return adapter.Inativar(produtoId);
             }).WithTags("Produtos");
 
             app.MapPost("produtos",
@@ -139,16 +139,16 @@ namespace FourSix.WebApi.Modules
                 return adapter.Inserir(request);
             }).WithTags("Produtos");
 
-            app.MapGet("produtos/{id:guid}",
+            app.MapGet("produtos/{produtoId:guid}",
             [SwaggerOperation(Summary = "Obtém o produto")]
-            ([SwaggerParameter("Id do produto")] Guid id, IObtemProdutoAdapter adapter) =>
+            ([SwaggerParameter("Id do produto")] Guid produtoId, IObtemProdutoAdapter adapter) =>
             {
-                return adapter.Obter(id);
+                return adapter.Obter(produtoId);
             }).WithTags("Produtos");
 
             app.MapGet("produtos/{categoria}",
             [SwaggerOperation(Summary = "Obtém o produto por categoria")]
-            ([SwaggerParameter("Categoria do produto")] EnumCategoriaProduto categoria, IObtemProdutosPorCategoriaAdapter adapter) =>
+            ([SwaggerParameter("Categoria do produto<br><br>Lanche = 1<br>Acompanhamento = 2<br>Sobremesa = 3<br>Bebida = 4")] EnumCategoriaProduto categoria, IObtemProdutosPorCategoriaAdapter adapter) =>
             {
                 return adapter.Obter(categoria);
             }).WithTags("Produtos");

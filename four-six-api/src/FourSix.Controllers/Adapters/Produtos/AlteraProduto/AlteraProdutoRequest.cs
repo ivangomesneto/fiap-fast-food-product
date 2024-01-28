@@ -3,7 +3,6 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace FourSix.Controllers.Adapters.Produtos.AlteraProduto
 {
-    [SwaggerSchema(Required = new[] { "cpf", "nomeCompleto", "email" })]
     public class AlteraProdutoRequest
     {
         /// <summary>

@@ -1,11 +1,9 @@
-using FourSix.Controllers.Adapters.Pedidos.NovoPedido;
-using FourSix.Controllers.Adapters.Pedidos.ObtemPedidosPorStatus;
 using FourSix.Controllers.Gateways.DataAccess;
-using FourSix.Domain.Entities.PedidoAggregate;
 using FourSix.WebApi.Modules;
 using FourSix.WebApi.Modules.Commons;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +19,19 @@ builder.Services.AddUseCases();
 builder.Services.AddCustomControllers();
 builder.Services.AddCustomCors();
 builder.Services.AddSwaggerConfig();
+
+builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =>
+{
+    options.SerializerOptions.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
+});
+builder.Services.Configure<Microsoft.AspNetCore.Mvc.JsonOptions>(options =>
+{
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
+});
+builder.Services.AddMvc().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
+});
 
 var app = builder.Build();
 
@@ -50,3 +61,16 @@ app.AddRoutesMaps();
 app.MapControllers();
 
 app.Run();
+
+//public class validEnumConverter : System.Text.Json.Serialization.JsonConverter
+//{
+//    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+//    {
+//        if (!Enum.IsDefined(objectType, reader.Value))
+//        {
+//            throw new ArgumentException("Invalid enum value");
+//        }
+
+//        return base.ReadJson(reader, objectType, existingValue, serializer);
+//    }
+//}

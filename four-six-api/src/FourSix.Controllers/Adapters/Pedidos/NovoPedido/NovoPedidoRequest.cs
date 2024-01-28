@@ -15,7 +15,7 @@ namespace FourSix.Controllers.Adapters.Pedidos.NovoPedido
         /// <summary>
         /// Id do Cliente
         /// </summary>
-        /// <example>9b084d56-9d07-4060-87f2-9e053af42189</example>
+        /// <example>717b2fb9-4bbe-4a8c-8574-7808cd652e0b</example>
         [SwaggerSchema(Nullable = true)]
         public Guid? ClienteId { get; set; }
 
