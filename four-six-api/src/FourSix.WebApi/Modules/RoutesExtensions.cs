@@ -1,11 +1,8 @@
 ﻿using FourSix.Controllers.Adapters.Clientes.NovoCliente;
 using FourSix.Controllers.Adapters.Clientes.ObtemCliente;
+using FourSix.Controllers.Adapters.Pagamentos.AlteraStatusPagamento;
 using FourSix.Controllers.Adapters.Pagamentos.BuscaPagamento;
-using FourSix.Controllers.Adapters.Pagamentos.CancelaPagamento;
 using FourSix.Controllers.Adapters.Pagamentos.GeraPagamento;
-using FourSix.Controllers.Adapters.Pagamentos.NegaPagamento;
-using FourSix.Controllers.Adapters.Pagamentos.RealizaPagamento;
-using FourSix.Controllers.Adapters.Pagamentos.WebhookPagamento;
 using FourSix.Controllers.Adapters.Pedidos.AlteraStatusPedido;
 using FourSix.Controllers.Adapters.Pedidos.CancelaPedido;
 using FourSix.Controllers.Adapters.Pedidos.NovoPedido;
@@ -20,7 +17,6 @@ using FourSix.Controllers.Adapters.Produtos.ObtemProdutos;
 using FourSix.Controllers.Adapters.Produtos.ObtemProdutosPorCategoria;
 using FourSix.Domain.Entities.PedidoAggregate;
 using FourSix.Domain.Entities.ProdutoAggregate;
-using FourSix.UseCases.UseCases.Pagamentos.WebhookPagamento;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -54,7 +50,7 @@ namespace FourSix.WebApi.Modules
             [SwaggerOperation(Summary = "Obtém lista de pedido")]
             (IObtemPedidosAdapter adapter) =>
             {
-             return adapter.Listar();
+                return adapter.Listar();
             }).WithTags("Pedidos");
 
             app.MapGet("pedidos/{statusId}",
@@ -96,20 +92,6 @@ namespace FourSix.WebApi.Modules
 
             #region [ Pagamentos ]
 
-            app.MapPut("pagamentos/{pagamentoId:Guid}/cancelamentos",
-            [SwaggerOperation(Summary = "Cancela pagamento")]
-            ([SwaggerParameter("Dados do pagamento")][FromRoute] Guid pagamentoId, ICancelaPagamentoAdapter adapter) =>
-            {
-                return adapter.Cancelar(pagamentoId);
-            }).WithTags("Pagamentos");
-
-            app.MapPut("pagamentos/{pagamentoId:Guid}/negacoes",
-            [SwaggerOperation(Summary = "Nega pagamento")]
-            ([SwaggerParameter("Dados do pagamento")][FromRoute] Guid pagamentoId, INegaPagamentoAdapter adapter) =>
-            {
-                return adapter.Negar(pagamentoId);
-            }).WithTags("Pagamentos");
-
             app.MapPost("pagamentos",
             [SwaggerOperation(Summary = "Gera novo pagamento")]
             ([SwaggerParameter("Dados do pagamento")][FromBody] GeraPagamentoRequest request, IGeraPagamentoAdapter adapter) =>
@@ -117,19 +99,12 @@ namespace FourSix.WebApi.Modules
                 return adapter.Gerar(request);
             }).WithTags("Pagamentos");
 
-            app.MapPut("pagamentos/efetivacoes",
-            [SwaggerOperation(Summary = "Efetiva pagamento pendente")]
-            ([SwaggerParameter("Dados do pagamento")][FromBody] RealizaPagamentoRequest request, IRealizaPagamentoAdapter adapter) =>
-            {
-                return adapter.Efetivar(request);
-            }).WithTags("Pagamentos");
-
-            app.MapPut("pagamentos/webhook/{pagamentoId:Guid}",
+            app.MapPut("pagamentos/{pagamentoId:Guid}/status/",
             [SwaggerOperation(Summary = "Processa o retorno de pagamento")]
-            ([SwaggerParameter("Id do pagamento")] Guid pagamentoId, 
-            [SwaggerParameter("Dados do pagamento")][FromBody] WebHookPagamentRequest request, IWebhookPagamentoAdapter adapter) =>
+            ([SwaggerParameter("Id do pagamento")] Guid pagamentoId,
+            [SwaggerParameter("Dados do pagamento")][FromBody] AlteraStatusPagamentRequest request, IAlteraStatusPagamentoAdapter adapter) =>
             {
-              return adapter.process(request, pagamentoId);
+                return adapter.AlterarStatus(request, pagamentoId);
             }).WithTags("Pagamentos");
 
             app.MapGet("pagamentos/{pagamentoId:Guid}",

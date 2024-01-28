@@ -13,8 +13,7 @@ namespace FourSix.UseCases.UseCases.Pagamentos.BuscaPagamento
             _pagamentoRepository = pagamentoRepository;
         }
 
-        public Task<Pagamento> Execute(Guid pedidoId) =>
-            BuscaPagamento(pedidoId);
+        public Task<Pagamento> Execute(Guid pedidoId) => BuscaPagamento(pedidoId);
 
         private async Task<Pagamento> BuscaPagamento(Guid pagamentoId)
         {
