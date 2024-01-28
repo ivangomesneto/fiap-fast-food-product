@@ -14,8 +14,8 @@ namespace FourSix.UseCases.UseCases.Pedidos.AlteraStatusPedido
             IUnitOfWork unitOfWork,
             IPedidoCheckoutRepository pedidoStatusRepository)
         {
-            this._pedidoRepository = pedidoRepository;
-            this._unitOfWork = unitOfWork;
+            _pedidoRepository = pedidoRepository;
+            _unitOfWork = unitOfWork;
             _pedidoStatusRepository = pedidoStatusRepository;
         }
 
@@ -23,7 +23,7 @@ namespace FourSix.UseCases.UseCases.Pedidos.AlteraStatusPedido
 
         private async Task<Pedido> AlterarStatusPedido(Guid pedidoId, EnumStatusPedido statusId, DateTime dataStatus)
         {
-            var pedido = this._pedidoRepository.Listar(q => q.Id == pedidoId).FirstOrDefault(); ;
+            var pedido = _pedidoRepository.Listar(q => q.Id == pedidoId).FirstOrDefault(); ;
 
             if (pedido == null)
             {
@@ -35,16 +35,16 @@ namespace FourSix.UseCases.UseCases.Pedidos.AlteraStatusPedido
 
             var novaSequencia = _pedidoStatusRepository.Listar(l => l.PedidoId == pedidoId).Max(l => l.Sequencia) + 1;
 
-            await this._pedidoStatusRepository
+            await _pedidoStatusRepository
                  .Incluir(new PedidoCheckout(pedidoId, novaSequencia, statusId, dataStatus))
                  .ConfigureAwait(false);
 
-            await this._unitOfWork
+            await _unitOfWork
                 .Save()
                 .ConfigureAwait(false);
 
             //Busca com os dados completos
-            pedido = this._pedidoRepository.Listar(q => q.Id == pedidoId).FirstOrDefault();
+            pedido = _pedidoRepository.Listar(q => q.Id == pedidoId).FirstOrDefault();
 
             return pedido;
         }

@@ -9,14 +9,14 @@ namespace FourSix.UseCases.UseCases.Pedidos.ObtemPedidosPorStatus
 
         public ObtemPedidosPorStatusUseCase(IPedidoRepository pedidoRepository)
         {
-            this._pedidoRepository = pedidoRepository;
+            _pedidoRepository = pedidoRepository;
         }
 
         public Task<ICollection<Pedido>> Execute(EnumStatusPedido statusId) => ListarPedidos(statusId);
 
         private async Task<ICollection<Pedido>> ListarPedidos(EnumStatusPedido statusId)
         {
-            var pedidos = this._pedidoRepository.Listar(q => q.StatusId == statusId).ToList();
+            var pedidos = _pedidoRepository.Listar(q => q.StatusId == statusId).ToList();
 
             return pedidos;
         }

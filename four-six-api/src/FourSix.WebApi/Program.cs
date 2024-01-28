@@ -1,4 +1,5 @@
 using FourSix.Controllers.Gateways.DataAccess;
+using FourSix.Controllers.Middlewares;
 using FourSix.WebApi.Modules;
 using FourSix.WebApi.Modules.Commons;
 using Microsoft.EntityFrameworkCore;
@@ -54,6 +55,8 @@ if (app.Environment.IsDevelopment())
                     });
 }
 
+app.UseMiddleware<CustomHttpContextMiddleware>();
+
 app.UseAuthorization();
 
 app.AddRoutesMaps();
@@ -61,16 +64,3 @@ app.AddRoutesMaps();
 app.MapControllers();
 
 app.Run();
-
-//public class validEnumConverter : System.Text.Json.Serialization.JsonConverter
-//{
-//    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-//    {
-//        if (!Enum.IsDefined(objectType, reader.Value))
-//        {
-//            throw new ArgumentException("Invalid enum value");
-//        }
-
-//        return base.ReadJson(reader, objectType, existingValue, serializer);
-//    }
-//}

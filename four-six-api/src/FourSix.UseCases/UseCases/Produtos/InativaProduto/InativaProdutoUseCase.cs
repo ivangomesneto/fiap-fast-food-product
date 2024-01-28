@@ -12,15 +12,15 @@ namespace FourSix.UseCases.UseCases.Produtos.InativaProduto
             IProdutoRepository produtoRepository,
             IUnitOfWork unitOfWork)
         {
-            this._produtoRepository = produtoRepository;
-            this._unitOfWork = unitOfWork;
+            _produtoRepository = produtoRepository;
+            _unitOfWork = unitOfWork;
         }
 
-        public Task<Produto> Execute(Guid produtoId) => this.ExcluirProduto(produtoId);
+        public Task<Produto> Execute(Guid produtoId) => ExcluirProduto(produtoId);
 
         private async Task<Produto> ExcluirProduto(Guid produtoId)
         {
-            var produto = this._produtoRepository
+            var produto = _produtoRepository
                 .Obter(produtoId);
 
             if (produto == null)
@@ -30,15 +30,15 @@ namespace FourSix.UseCases.UseCases.Produtos.InativaProduto
 
             produto.InativarProduto();
 
-            await this._produtoRepository
+            await _produtoRepository
                  .Alterar(produto)
                  .ConfigureAwait(false);
 
-            await this._unitOfWork
+            await _unitOfWork
                 .Save()
                 .ConfigureAwait(false);
 
-            produto = this._produtoRepository.Listar(q => q.Id == produtoId).FirstOrDefault();
+            produto = _produtoRepository.Listar(q => q.Id == produtoId).FirstOrDefault();
 
             return produto;
         }

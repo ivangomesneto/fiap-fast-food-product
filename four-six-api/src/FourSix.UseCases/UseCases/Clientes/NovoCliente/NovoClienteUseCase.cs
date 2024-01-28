@@ -12,13 +12,13 @@ namespace FourSix.UseCases.UseCases.Clientes.NovoCliente
             IClienteRepository clienteRepository,
             IUnitOfWork unitOfWork)
         {
-            this._clienteRepository = clienteRepository;
-            this._unitOfWork = unitOfWork;
+            _clienteRepository = clienteRepository;
+            _unitOfWork = unitOfWork;
         }
 
         /// <inheritdoc />
         public Task<Cliente> Execute(string cpf, string nomeCompleto, string email) =>
-            this.InserirCliente(
+            InserirCliente(
                 new Cliente(Guid.NewGuid(),
                 cpf,
                 nomeCompleto,
@@ -26,16 +26,16 @@ namespace FourSix.UseCases.UseCases.Clientes.NovoCliente
 
         private async Task<Cliente> InserirCliente(Cliente cliente)
         {
-            if (this._clienteRepository.Listar(q => q.Cpf == cliente.Cpf).Any())
+            if (_clienteRepository.Listar(q => q.Cpf == cliente.Cpf).Any())
             {
                 throw new Exception("Cliente já existe");
             }
 
-            await this._clienteRepository
+            await _clienteRepository
                  .Incluir(cliente)
                  .ConfigureAwait(false);
 
-            await this._unitOfWork
+            await _unitOfWork
                 .Save()
                 .ConfigureAwait(false);
 

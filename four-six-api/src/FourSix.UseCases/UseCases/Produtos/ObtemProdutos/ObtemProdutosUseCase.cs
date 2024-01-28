@@ -9,14 +9,14 @@ namespace FourSix.UseCases.UseCases.Produtos.ObtemProdutos
 
         public ObtemProdutosUseCase(IProdutoRepository produtoRepository)
         {
-            this._produtoRepository = produtoRepository;
+            _produtoRepository = produtoRepository;
         }
 
-        public Task<ICollection<Produto>> Execute() => this.ObtemProdutos();
+        public Task<ICollection<Produto>> Execute() => ObtemProdutos();
 
         private async Task<ICollection<Produto>> ObtemProdutos()
         {
-            var produtos = this._produtoRepository
+            var produtos = _produtoRepository
                 .Listar()
                 .Where(q => q.Ativo).ToList();
 

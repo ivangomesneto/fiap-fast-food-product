@@ -16,8 +16,13 @@ namespace FourSix.UseCases.UseCases.Pedidos.ObtemStatusPagamentoPedido
 
         private async Task<StatusPagamento> ObterStatusPagamento(Guid pedidoId)
         {
-            var statusPagamento = this._pagamentoRepository.ObterPagamentosPorPedido(pedidoId)
+            var statusPagamento = _pagamentoRepository.ObterPagamentosPorPedido(pedidoId)
                 .OrderByDescending(o => o.DataAtualizacao).Select(s => s.Status).FirstOrDefault();
+
+            if (statusPagamento == null)
+            {
+                throw new Exception("Pagamento não encontrado");
+            }
 
             return statusPagamento;
         }

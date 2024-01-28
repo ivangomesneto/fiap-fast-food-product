@@ -9,14 +9,14 @@ namespace FourSix.UseCases.UseCases.Produtos.ObtemProdutoPorCategoria
 
         public ObtemProdutosPorCategoriaUseCase(IProdutoRepository produtoRepository)
         {
-            this._produtoRepository = produtoRepository;
+            _produtoRepository = produtoRepository;
         }
 
-        public Task<ICollection<Produto>> Execute(EnumCategoriaProduto categoria) => this.ObterProdutoPorCategoria(categoria);
+        public Task<ICollection<Produto>> Execute(EnumCategoriaProduto categoria) => ObterProdutoPorCategoria(categoria);
 
         private async Task<ICollection<Produto>> ObterProdutoPorCategoria(EnumCategoriaProduto categoria)
         {
-            var produtos = this._produtoRepository
+            var produtos = _produtoRepository
                   .Listar().Where(x => x.Categoria == categoria
                   && x.Ativo).ToList();
 

@@ -10,15 +10,15 @@ namespace FourSix.UseCases.UseCases.Pedidos.ObtemPedidos
 
         public ObtemPedidosUseCase(IPedidoRepository pedidoRepository)
         {
-            this._pedidoRepository = pedidoRepository;
+            _pedidoRepository = pedidoRepository;
         }
 
         public Task<ICollection<Pedido>> Execute() => ListarPedidos();
 
         private async Task<ICollection<Pedido>> ListarPedidos()
         {
-            var pedidos = this._pedidoRepository.Listar(x => x.StatusId != EnumStatusPedido.Finalizado)
-                .OrderBy(x => x.StatusId).OrderBy(x => x.DataPedido).ToList();
+            var pedidos = _pedidoRepository.Listar(x => x.StatusId != EnumStatusPedido.Finalizado)
+                .OrderByDescending(x => x.StatusId).OrderBy(x => x.DataPedido).ToList();
 
             return pedidos;
         }

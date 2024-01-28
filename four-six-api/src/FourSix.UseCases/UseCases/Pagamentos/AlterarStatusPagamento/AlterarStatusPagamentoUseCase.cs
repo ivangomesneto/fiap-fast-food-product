@@ -19,7 +19,6 @@ namespace FourSix.UseCases.UseCases.Pagamentos.AlterarStatusPagamento
 
         public Task<Pagamento> Execute(Guid pagamentoId, EnumStatusPagamento statusId) => AlterarStatus(pagamentoId, statusId);
 
-
         private async Task<Pagamento> AlterarStatus(Guid pagamentoId, EnumStatusPagamento statusId, decimal? valorPago = null)
         {
             var pagamento = _pagamentoRepository.Obter(pagamentoId);
@@ -35,6 +34,5 @@ namespace FourSix.UseCases.UseCases.Pagamentos.AlterarStatusPagamento
 
             return pagamento;
         }
-
     }
 }

@@ -12,12 +12,12 @@ namespace FourSix.UseCases.UseCases.Produtos.NovoProduto
             IProdutoRepository produtoRepository,
             IUnitOfWork unitOfWork)
         {
-            this._produtoRepository = produtoRepository;
-            this._unitOfWork = unitOfWork;
+            _produtoRepository = produtoRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public Task<Produto> Execute(string nome, string descricao, EnumCategoriaProduto categoria, decimal preco) =>
-            this.InserirProduto(new Produto(Guid.NewGuid(),
+            InserirProduto(new Produto(Guid.NewGuid(),
                 nome,
                 descricao,
                 categoria,
@@ -26,18 +26,18 @@ namespace FourSix.UseCases.UseCases.Produtos.NovoProduto
 
         private async Task<Produto> InserirProduto(Produto produto)
         {
-            if (this._produtoRepository
+            if (_produtoRepository
                 .Listar(q => q.Nome == produto.Nome
                 && q.Categoria == produto.Categoria).Any())
             {
                 throw new Exception("Produto já existe com esse nome e categoria");
             }
 
-            await this._produtoRepository
+            await _produtoRepository
                  .Incluir(produto)
                  .ConfigureAwait(false);
 
-            await this._unitOfWork
+            await _unitOfWork
                 .Save()
                 .ConfigureAwait(false);
 

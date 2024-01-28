@@ -9,17 +9,16 @@ namespace FourSix.UseCases.UseCases.Produtos.ObtemProduto
 
         public ObtemProdutoUseCase(IProdutoRepository produtoRepository)
         {
-            this._produtoRepository = produtoRepository;
+            _produtoRepository = produtoRepository;
         }
 
-        public Task<Produto> Execute(Guid id) => this.ObterProduto(id);
+        public Task<Produto> Execute(Guid id) => ObterProduto(id);
 
         private async Task<Produto> ObterProduto(Guid id)
         {
-            var produto = this._produtoRepository
-                  .Listar().Where(x => x.Id == id).FirstOrDefault();
+            var produto = _produtoRepository.Obter(id);
 
-            if (produto != null)
+            if (produto == null)
             {
                 throw new Exception("Produto não encontrado");
             }

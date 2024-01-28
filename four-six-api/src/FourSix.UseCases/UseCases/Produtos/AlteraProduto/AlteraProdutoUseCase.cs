@@ -13,12 +13,12 @@ namespace FourSix.UseCases.UseCases.Produtos.AlteraProduto
             IProdutoRepository produtoRepository,
             IUnitOfWork unitOfWork)
         {
-            this._produtoRepository = produtoRepository;
-            this._unitOfWork = unitOfWork;
+            _produtoRepository = produtoRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public Task<Produto> Execute(Guid produtoId, string nome, string descricao, EnumCategoriaProduto categoria, decimal preco) =>
-            this.AlterarProduto(
+            AlterarProduto(
                 new Produto(produtoId,
                     nome,
                     descricao,
@@ -28,22 +28,22 @@ namespace FourSix.UseCases.UseCases.Produtos.AlteraProduto
 
         private async Task<Produto> AlterarProduto(Produto produto)
         {
-            if (this._produtoRepository
-                .Listar(q => q.Nome == produto.Nome
+            if (_produtoRepository
+                .Listar(q => q.Id != produto.Id && q.Nome == produto.Nome
                 && q.Categoria == produto.Categoria).Any())
             {
                 throw new Exception("Produto já existe com esse nome e categoria");
             }
 
-            await this._produtoRepository
+            await _produtoRepository
                  .Alterar(produto)
                  .ConfigureAwait(false);
 
-            await this._unitOfWork
+            await _unitOfWork
                 .Save()
             .ConfigureAwait(false);
 
-            produto = this._produtoRepository.Listar(q => q.Id == produto.Id).FirstOrDefault();
+            produto = _produtoRepository.Listar(q => q.Id == produto.Id).FirstOrDefault();
 
             return produto;
         }

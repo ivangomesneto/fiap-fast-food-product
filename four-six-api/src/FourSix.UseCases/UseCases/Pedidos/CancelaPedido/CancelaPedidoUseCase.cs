@@ -14,16 +14,16 @@ namespace FourSix.UseCases.UseCases.Pedidos.CancelaPedido
             IUnitOfWork unitOfWork,
             IPedidoCheckoutRepository pedidoStatusRepository)
         {
-            this._pedidoRepository = pedidoRepository;
-            this._unitOfWork = unitOfWork;
+            _pedidoRepository = pedidoRepository;
+            _unitOfWork = unitOfWork;
             _pedidoStatusRepository = pedidoStatusRepository;
         }
 
-        public Task<Pedido> Execute(Guid pedidoId, DateTime dataCancelamento) => this.CancelarPedido(pedidoId, dataCancelamento);
+        public Task<Pedido> Execute(Guid pedidoId, DateTime dataCancelamento) => CancelarPedido(pedidoId, dataCancelamento);
 
         private async Task<Pedido> CancelarPedido(Guid pedidoId, DateTime dataCancelamento)
         {
-            var pedido = this._pedidoRepository.Listar(q => q.Id == pedidoId).FirstOrDefault();
+            var pedido = _pedidoRepository.Listar(q => q.Id == pedidoId).FirstOrDefault();
 
             if (pedido == null)
             {
@@ -32,15 +32,18 @@ namespace FourSix.UseCases.UseCases.Pedidos.CancelaPedido
 
             var novaSequencia = _pedidoStatusRepository.Listar(l => l.PedidoId == pedidoId).Max(l => l.Sequencia) + 1;
 
-            await this._pedidoStatusRepository
+            pedido.AlterarStatus(EnumStatusPedido.Cancelado);
+            await _pedidoRepository.Alterar(pedido);
+
+            await _pedidoStatusRepository
                  .Incluir(new PedidoCheckout(pedidoId, novaSequencia, EnumStatusPedido.Cancelado, dataCancelamento))
                  .ConfigureAwait(false);
 
-            await this._unitOfWork
+            await _unitOfWork
                 .Save()
                 .ConfigureAwait(false);
 
-            pedido = this._pedidoRepository.Listar(q => q.Id == pedidoId).FirstOrDefault();
+            pedido = _pedidoRepository.Listar(q => q.Id == pedidoId).FirstOrDefault();
 
             return pedido;
         }

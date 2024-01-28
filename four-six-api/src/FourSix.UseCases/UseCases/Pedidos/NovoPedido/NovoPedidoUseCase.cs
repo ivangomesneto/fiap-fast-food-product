@@ -16,8 +16,8 @@ namespace FourSix.UseCases.UseCases.Pedidos.NovoPedido
             IPedidoItemRepository pedidoItemRepository,
             IPedidoCheckoutRepository pedidoCheckoutRepository)
         {
-            this._pedidoRepository = pedidoRepository;
-            this._unitOfWork = unitOfWork;
+            _pedidoRepository = pedidoRepository;
+            _unitOfWork = unitOfWork;
             _pedidoItemRepository = pedidoItemRepository;
             _pedidoCheckoutRepository = pedidoCheckoutRepository;
         }
@@ -26,7 +26,7 @@ namespace FourSix.UseCases.UseCases.Pedidos.NovoPedido
         {
             var id = Guid.NewGuid();
 
-            var pedido = await this.InserirPedido(
+            var pedido = await InserirPedido(
                 new Pedido(id,
                 dataPedido,
                 clienteId,
@@ -38,17 +38,17 @@ namespace FourSix.UseCases.UseCases.Pedidos.NovoPedido
 
         private async Task<Pedido> InserirPedido(Pedido pedido)
         {
-            if (this._pedidoRepository
+            if (_pedidoRepository
                 .Listar(q => q.NumeroPedido == pedido.NumeroPedido).Any())
             {
                 throw new Exception("Pedido já existe");
             }
 
-            await this._pedidoRepository
+            await _pedidoRepository
                  .Incluir(pedido)
                  .ConfigureAwait(false);
 
-            await this._unitOfWork
+            await _unitOfWork
                 .Save()
                 .ConfigureAwait(false);
 

@@ -9,14 +9,14 @@ namespace FourSix.UseCases.UseCases.Clientes.ObtemCliente
 
         public ObtemClienteUseCase(IClienteRepository clienteRepository)
         {
-            this._clienteRepository = clienteRepository;
+            _clienteRepository = clienteRepository;
         }
 
-        public Task<Cliente> Execute(string cpf) => this.ObterCliente(cpf);
+        public Task<Cliente> Execute(string cpf) => ObterCliente(cpf);
 
         private async Task<Cliente> ObterCliente(string cpf)
         {
-            var cliente = this._clienteRepository
+            var cliente = _clienteRepository
                 .Listar(q => q.Cpf == cpf).FirstOrDefault();
 
             if (cliente == null)
