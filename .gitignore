@@ -287,3 +287,6 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 .DS_Store
+
+# Aulas
+four-six-api/apoio

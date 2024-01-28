@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\**" />
+    <Compile Remove="UseCases\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <EmbeddedResource Remove="UseCases\**" />
+    <None Remove="Services\**" />
+    <None Remove="UseCases\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\FourSix.Domain\FourSix.Domain.csproj" />
   </ItemGroup>
 

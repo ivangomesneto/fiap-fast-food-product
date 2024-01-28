@@ -2,10 +2,10 @@
 {
     public enum EnumCategoriaProduto
     {
-        Lanche,
-        Acompanhamento,
-        Sobremesa,
-        Bebida
+        Lanche = 1,
+        Acompanhamento = 2,
+        Sobremesa = 3,
+        Bebida = 4
     }
 
     public class Produto : BaseEntity, IAggregateRoot, IBaseEntity

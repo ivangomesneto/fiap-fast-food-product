@@ -17,6 +17,7 @@ namespace FourSix.Domain.Entities.PagamentoAggregate
             Desconto = desconto;
             ValorTotal = valorTotal;
             ValorPago = valorPago;
+            DataAtualizacao = DateTime.Now;
         }
 
         public Guid PedidoId { get; }
@@ -26,20 +27,21 @@ namespace FourSix.Domain.Entities.PagamentoAggregate
         public decimal Desconto { get; }
         public decimal ValorTotal { get; }
         public decimal ValorPago { get; private set; }
+        public DateTime DataAtualizacao { get; private set; }
 
         public Pedido Pedido { get; set; }
         public StatusPagamento Status { get; set; }
 
-        public void Pagar(decimal valorPago)
+        public void AtualizarStatus(EnumStatusPagamento status, decimal? valorPago = null)
         {
-            ValorPago = valorPago;
-            StatusId = EnumStatusPagamento.Pago;
+            ValorPago = valorPago ?? 0;
+            StatusId = status;
+            DataAtualizacao = DateTime.Now;
         }
-
-        public void Cancelar()
+        public void AtualizarStatus(EnumStatusPagamento status)
         {
-            ValorPago = 0;
-            StatusId = EnumStatusPagamento.Cancelado;
+            StatusId = status;
+            DataAtualizacao = DateTime.Now;
         }
     }
 }

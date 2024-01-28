@@ -1,7 +1,10 @@
-using FourSix.Infrastructure.DataAccess;
+using FourSix.Controllers.Gateways.DataAccess;
+using FourSix.Controllers.Middlewares;
 using FourSix.WebApi.Modules;
 using FourSix.WebApi.Modules.Commons;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,13 +14,25 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddAdapters();
 builder.Services.AddSQLServer();
 builder.Services.AddUseCases();
 builder.Services.AddCustomControllers();
 builder.Services.AddCustomCors();
 builder.Services.AddSwaggerConfig();
 
+builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =>
+{
+    options.SerializerOptions.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
+});
+builder.Services.Configure<Microsoft.AspNetCore.Mvc.JsonOptions>(options =>
+{
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
+});
+builder.Services.AddMvc().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
+});
 
 var app = builder.Build();
 
@@ -40,7 +55,11 @@ if (app.Environment.IsDevelopment())
                     });
 }
 
+app.UseMiddleware<CustomHttpContextMiddleware>();
+
 app.UseAuthorization();
+
+app.AddRoutesMaps();
 
 app.MapControllers();
 

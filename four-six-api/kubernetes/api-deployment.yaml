@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: foursix-deployment
+  labels:
+    app: foursix-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: foursix-deployment
+  template:
+    metadata:
+      labels:
+        app: foursix-deployment
+    spec:
+      containers:
+      - name: c-foursix-deployment
+        image: damffranco/four-six-api:latest
+        ports:
+        - containerPort: 80
