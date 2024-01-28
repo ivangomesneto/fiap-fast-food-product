@@ -8,8 +8,13 @@ namespace FourSix.Controllers.Adapters.Pagamentos.AlteraStatusPagamento
     {
         /// <summary>
         /// Novo status do pagamento
+        /// 
+        /// AguardandoPagamento = 1
+        /// Pago = 2
+        /// Cancelado = 3
+        /// Negado = 4
         /// </summary>
-        /// <example>Pago</example>
+        /// <example>2</example>
         public EnumStatusPagamento StatusId { get; set; }
 
         /// <summary>

@@ -100,7 +100,7 @@ namespace FourSix.WebApi.Modules
             }).WithTags("Pagamentos");
 
             app.MapPut("pagamentos/{pagamentoId:Guid}/status",
-            [SwaggerOperation(Summary = "Processa o retorno de pagamento")]
+            [SwaggerOperation(Summary = "Altera o status do pagamento")]
             ([SwaggerParameter("Id do pagamento")] Guid pagamentoId,
             [SwaggerParameter("Dados do pagamento")][FromBody] AlteraStatusPagamentRequest request, IAlteraStatusPagamentoAdapter adapter) =>
             {

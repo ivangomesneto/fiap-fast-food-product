@@ -8,7 +8,7 @@ namespace FourSix.Controllers.Adapters.Pagamentos.GeraPagamento
         /// <summary>
         /// Id do pedido
         /// </summary>
-        /// <example>c37b8f54-9a67-45c9-90b3-1f34641578d8</example>
+        /// <example>78e3b8d0-be9a-4407-9304-c61788797808</example>
         [SwaggerSchema(Nullable = false)]
         public Guid PedidoId { get; set; }
 

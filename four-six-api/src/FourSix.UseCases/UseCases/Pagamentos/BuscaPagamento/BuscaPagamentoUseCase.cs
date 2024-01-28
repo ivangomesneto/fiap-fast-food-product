@@ -19,6 +19,11 @@ namespace FourSix.UseCases.UseCases.Pagamentos.BuscaPagamento
         {
             var pagamento = _pagamentoRepository.Obter(pagamentoId);
 
+            if (pagamento == null)
+            {
+                throw new Exception("Pagamento não encontrado");
+            }
+
             return pagamento;
         }
     }

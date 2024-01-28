@@ -17,6 +17,7 @@ namespace FourSix.Domain.Entities.PagamentoAggregate
             Desconto = desconto;
             ValorTotal = valorTotal;
             ValorPago = valorPago;
+            DataAtualizacao = DateTime.Now;
         }
 
         public Guid PedidoId { get; }

@@ -24,6 +24,11 @@ namespace FourSix.UseCases.UseCases.Pagamentos.AlterarStatusPagamento
         {
             var pagamento = _pagamentoRepository.Obter(pagamentoId);
 
+            if (pagamento == null)
+            {
+                throw new Exception("Pagamento não encontrado");
+            }
+
             pagamento.AtualizarStatus(statusId, valorPago);
 
             await _unitOfWork.Save();

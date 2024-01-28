@@ -16,12 +16,13 @@ namespace FourSix.Controllers.ViewModels
             ValorPago = pagamento.ValorPago;
         }
         public Guid Id { get; }
-        public Guid PedidoId { get; set; }
-        public string CodigoQR { get; set; }
-        public EnumStatusPagamento StatusId { get; set; }
-        public decimal ValorPedido { get; set; }
-        public decimal Desconto { get; set; }
-        public decimal ValorTotal { get; set; }
-        public decimal ValorPago { get; set; }
+        public Guid PedidoId { get; }
+        public string CodigoQR { get; }
+        public EnumStatusPagamento StatusId { get; }
+        public decimal ValorPedido { get; }
+        public decimal Desconto { get; }
+        public decimal ValorTotal { get; }
+        public decimal ValorPago { get; }
+        public DateTime DataAtualizacao { get; set; }
     }
 }
