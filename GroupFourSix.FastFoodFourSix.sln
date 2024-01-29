@@ -14,6 +14,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{1E753DAB-1CE6-40F1-810E-D7F85F54F9FA}"
 	ProjectSection(SolutionItems) = preProject
 		four-six-api\docker-compose.yml = four-six-api\docker-compose.yml
+		four-six-api\Dockerfile = four-six-api\Dockerfile
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "kubernetes", "kubernetes", "{4E039F95-FADF-4984-B0CD-493A2D6BAE8A}"
@@ -34,7 +35,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "kubernetes", "kubernetes", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FourSix.UseCases", "four-six-api\src\FourSix.UseCases\FourSix.UseCases.csproj", "{60ECA226-561E-4D50-9CBC-2363AB1F9ED0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FourSix.Controllers", "four-six-api\src\FourSix.Controllers\FourSix.Controllers.csproj", "{E30523BC-7B15-4E7D-BBBA-92B717EC2A45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FourSix.Controllers", "four-six-api\src\FourSix.Controllers\FourSix.Controllers.csproj", "{E30523BC-7B15-4E7D-BBBA-92B717EC2A45}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
