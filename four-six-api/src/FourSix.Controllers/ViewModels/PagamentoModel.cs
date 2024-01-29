@@ -14,6 +14,7 @@ namespace FourSix.Controllers.ViewModels
             Desconto = pagamento.Desconto;
             ValorTotal = pagamento.ValorTotal;
             ValorPago = pagamento.ValorPago;
+            DataAtualizacao = pagamento.DataAtualizacao;
         }
         public Guid Id { get; }
         public Guid PedidoId { get; }
