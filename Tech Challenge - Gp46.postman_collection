@@ -331,7 +331,7 @@
 				"method": "PUT",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5293/Pedidos/78E3B8D0-BE9A-4407-9304-C61788797808/status/4",
+					"raw": "http://localhost:5293/Pedidos/4c7e2b4f-4b50-4354-9b16-1fb4adfcc8ba/status/4",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -339,7 +339,7 @@
 					"port": "5293",
 					"path": [
 						"Pedidos",
-						"78E3B8D0-BE9A-4407-9304-C61788797808",
+						"4c7e2b4f-4b50-4354-9b16-1fb4adfcc8ba",
 						"status",
 						"4"
 					]
@@ -373,7 +373,7 @@
 				"method": "PUT",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5293/Pedidos/78E3B8D0-BE9A-4407-9304-C61788797808/status/5",
+					"raw": "http://localhost:5293/Pedidos/4c7e2b4f-4b50-4354-9b16-1fb4adfcc8ba/status/5",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -381,7 +381,7 @@
 					"port": "5293",
 					"path": [
 						"Pedidos",
-						"78E3B8D0-BE9A-4407-9304-C61788797808",
+						"4c7e2b4f-4b50-4354-9b16-1fb4adfcc8ba",
 						"status",
 						"5"
 					]
@@ -415,7 +415,7 @@
 				"method": "PUT",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5293/Pedidos/78E3B8D0-BE9A-4407-9304-C61788797808/status/6",
+					"raw": "http://localhost:5293/Pedidos/4c7e2b4f-4b50-4354-9b16-1fb4adfcc8ba/status/6",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -423,7 +423,7 @@
 					"port": "5293",
 					"path": [
 						"Pedidos",
-						"78E3B8D0-BE9A-4407-9304-C61788797808",
+						"4c7e2b4f-4b50-4354-9b16-1fb4adfcc8ba",
 						"status",
 						"6"
 					]
@@ -494,7 +494,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5293/Produtos/63c776f5-4539-478e-a17a-54d3a1c2d3ee",
+					"raw": "http://localhost:5293/Produtos/673832a8-9cc8-4287-ab00-36a20585b368",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -502,7 +502,7 @@
 					"port": "5293",
 					"path": [
 						"Produtos",
-						"63c776f5-4539-478e-a17a-54d3a1c2d3ee"
+						"673832a8-9cc8-4287-ab00-36a20585b368"
 					]
 				}
 			},
@@ -531,17 +531,8 @@
 		{
 			"name": "#22 - Pagamento Por Id",
 			"request": {
-				"method": "PUT",
+				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"statusId\": 1,\r\n  \"valorPago\": 0\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
 					"raw": "http://localhost:5293/pagamentos/4370277C-E9EB-49F4-976E-08DC1D385CCD",
 					"protocol": "http",
@@ -572,7 +563,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"pedidoId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"dataCancelamento\": \"2024-01-29T22:08:08.187Z\"\r\n}",
+					"raw": "{\r\n  \"pedidoId\": \"4c7e2b4f-4b50-4354-9b16-1fb4adfcc8ba\",\r\n  \"dataCancelamento\": \"2024-01-30T22:08:08.187Z\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
