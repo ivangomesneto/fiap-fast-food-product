@@ -19,13 +19,16 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "kubernetes", "kubernetes", "{4E039F95-FADF-4984-B0CD-493A2D6BAE8A}"
 	ProjectSection(SolutionItems) = preProject
 		four-six-api\kubernetes\api-deployment.yaml = four-six-api\kubernetes\api-deployment.yaml
+		four-six-api\kubernetes\api-hpa.yaml = four-six-api\kubernetes\api-hpa.yaml
 		four-six-api\kubernetes\api-pod.yaml = four-six-api\kubernetes\api-pod.yaml
 		four-six-api\kubernetes\api-service.yaml = four-six-api\kubernetes\api-service.yaml
+		four-six-api\kubernetes\metrics.yaml = four-six-api\kubernetes\metrics.yaml
 		four-six-api\kubernetes\pv-claim.yaml = four-six-api\kubernetes\pv-claim.yaml
 		four-six-api\kubernetes\pv-volume.yaml = four-six-api\kubernetes\pv-volume.yaml
 		four-six-api\kubernetes\sqlserver-deployment.yaml = four-six-api\kubernetes\sqlserver-deployment.yaml
 		four-six-api\kubernetes\sqlserver-pod.yaml = four-six-api\kubernetes\sqlserver-pod.yaml
 		four-six-api\kubernetes\sqlserver-service.yaml = four-six-api\kubernetes\sqlserver-service.yaml
+		four-six-api\kubernetes\stress.ps1 = four-six-api\kubernetes\stress.ps1
 		four-six-api\kubernetes\_comandos.txt = four-six-api\kubernetes\_comandos.txt
 	EndProjectSection
 EndProject
