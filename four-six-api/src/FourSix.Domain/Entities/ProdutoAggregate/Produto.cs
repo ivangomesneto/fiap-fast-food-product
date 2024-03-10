@@ -21,10 +21,10 @@
             Ativo = ativo;
         }
 
-        public string Nome { get; }
-        public string Descricao { get; }
-        public EnumCategoriaProduto Categoria { get; }
-        public decimal Preco { get; }
+        public string Nome { get; private set; }
+        public string Descricao { get; private set; }
+        public EnumCategoriaProduto Categoria { get; private set; }
+        public decimal Preco { get; private set; }
         public bool Ativo { get; private set; }
 
         public void InativarProduto()
