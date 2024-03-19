@@ -43,7 +43,7 @@ jobs:
         context: ./four-six-api
         file: ./four-six-api/Dockerfile
         push: true
-        tags: manojs10/foursix:latest
+        tags: damffranco/four-six-api:latest
 
 
         
