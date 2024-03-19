@@ -19,6 +19,7 @@ using FourSix.Domain.Entities.PedidoAggregate;
 using FourSix.Domain.Entities.ProdutoAggregate;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using System.Security.Claims;
 
 namespace FourSix.WebApi.Modules
 {
@@ -51,7 +52,7 @@ namespace FourSix.WebApi.Modules
             (IObtemPedidosAdapter adapter) =>
             {
                 return adapter.Listar();
-            }).WithTags("Pedidos");
+            }).WithTags("Pedidos").RequireAuthorization().AllowAnonymous();
 
             app.MapGet("pedidos/{statusId}",
             [SwaggerOperation(Summary = "Obtém lista de pedido por status")]
