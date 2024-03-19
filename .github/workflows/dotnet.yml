@@ -44,4 +44,7 @@ jobs:
         file: ./four-six-api/Dockerfile
         push: true
         tags: manojs10/foursix:latest
+
+
+        
   
