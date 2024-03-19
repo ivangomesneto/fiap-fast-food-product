@@ -7,19 +7,16 @@
 </p>
 
 # Descrição do Projeto
-A FourSix Solutions é um conjunto de APIs desenvolvido para resolver os desafios enfrentados pelo Restaurante FourSix FastFood. Com o objetivo de ampliar seu alcance e melhorar o atendimento ao cliente, foi concebida uma solução de autoatendimento, onde os clientes podem fazer seus pedidos por meio de totens. Esses pedidos são então encaminhados automaticamente para o preparo, proporcionando uma gestão eficiente do fluxo de atendimento de ponta a ponta. Além disso, a solução abrange a administração de clientes e pagamentos, garantindo uma experiência completa e integrada desde a solicitação do pedido até sua conclusão.
+A FourSix Auth é API responsável pelo gerenciamento de autenticação do usuário na FourSix FastFood
 
 # Arquitetura do Projeto
 <p align="center">
-   <img src="https://github.com/Schwaaan/fiap-fast-food/assets/11160318/432f823e-7a3b-47ed-879f-b4507232f235"/>
+   <img src="https://github.com/Schwaaan/fiap-fast-food/assets/11160318/acdbca2c-a7de-433d-ac02-f3bd05aa1495"/>
 </p>
 
-# Video de Apresentação do Projeto
-[![Apresentacao](https://img.youtube.com/vi/VAvbk4zQk-k/0.jpg)](https://www.youtube.com/watch?v=VAvbk4zQk-k)
-
 ## Ferramentas utilizadas
-| <a href="https://learn.microsoft.com/pt-br/dotnet/" target="_blank"> <img src="https://github.com/Schwaaan/fiap-fast-food/assets/11160318/2d89d325-9f3d-4920-b496-dfdc9ff5ded7" alt=".netCore" height="50" /></a> | <a href="https://learn.microsoft.com/pt-br/sql/?view=sql-server-ver16" target="_blank"><img src="https://github.com/Schwaaan/fiap-fast-food/assets/11160318/4585295d-5064-421e-9652-a5dd1f38622b" alt=".netCore"  height="50"/></a> | <a href="https://docs.docker.com/manuals/" target="_blank"> <img src="https://github.com/Schwaaan/fiap-fast-food/assets/11160318/238b190a-67b1-4002-9d1d-23fe34e2bc7f" alt=".netCore" height="50"/></a> | <a href="https://kubernetes.io/pt-br/docs/home/" target="_blank"> <img src="https://github.com/Schwaaan/fiap-fast-food/assets/11160318/30c37852-b6ff-414a-9b59-0b4f5b5d499a" alt=".netCore" height="50"/></a>
-| :---: | :---: | :---: | :---:
+| <a href="https://learn.microsoft.com/pt-br/dotnet/" target="_blank"> <img src="https://github.com/Schwaaan/fiap-fast-food/assets/11160318/2d89d325-9f3d-4920-b496-dfdc9ff5ded7" alt=".netCore" height="50" /></a> | <a href="https://docs.aws.amazon.com/lambda/" target="_blank"><img src="https://github.com/Schwaaan/fiap-fast-food/assets/11160318/d30d9e2e-ff2a-4516-bdd0-a287a7326fc5" alt=".netCore"  height="50"/></a> | <a href="https://docs.aws.amazon.com/cognito/" target="_blank"> <img src="https://github.com/Schwaaan/fiap-fast-food/assets/11160318/3a59c0db-b4f0-45bc-93d9-72f3489c00d8" alt=".netCore" height="50"/></a> 
+| :---: | :---: | :---: 
 ## Acesso ao projeto
 
 Você pode [acessar o código fonte do projeto](https://github.com/Schwaaan/fiap-fast-food) ou [baixá-lo](https://github.com/Schwaaan/fiap-fast-food/archive/refs/heads/main.zip).
@@ -27,24 +24,7 @@ Você pode [acessar o código fonte do projeto](https://github.com/Schwaaan/fiap
 ## Abrir e rodar o projeto
 
 Após baixar o projeto
-1. Acesse dentro do repositorio o seguinte diretorio
-...\four-six-api\kubernetes
-
-2. Abra o terminal e execute o seguinte comando
-kubectl apply -f pv-claim.yaml,sqlserver-deployment.yaml,sqlserver-service.yaml
-
-3. Abra o projeto no Visual Studio e execute a Aplicação FourSix.WebApi
-
-## Como subir o Kubernetes
-
-Após baixar o projeto
-1. Acesse dentro do repositorio o seguinte diretorio
-...\four-six-api\kubernetes
-
-2. Abra o terminal e execute o seguinte comando
-kubectl apply -f pv-claim.yaml,sqlserver-deployment.yaml,sqlserver-service.yaml,api-deployment.yaml,api-service.yaml,api-hpa.yaml,metrics.yaml
-
-3. A URL da API é http://localhost:30001/swagger/index.html
+1. Abra o projeto no Visual Studio e execute a Aplicação FourSix.Lambda.Authentication
 
 ## Desenvolvedores
 
