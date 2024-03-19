@@ -50,11 +50,7 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
-        aws-region: us-east-1    
-    - name: Configure kubectl
-      uses: azure/kubectl@v1
-      with:
-        version: 'latest'
+        aws-region: us-east-1
     - name: Deploy to EKS
       run: | 
           aws eks --region us-east-1 update-kubeconfig --name cluster01
