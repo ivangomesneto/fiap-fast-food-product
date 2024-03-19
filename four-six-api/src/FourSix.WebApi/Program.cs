@@ -18,7 +18,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAdapters();
-builder.Services.AddSQLServer();
+builder.Services.AddDatabase();
 builder.Services.AddUseCases();
 builder.Services.AddCustomControllers();
 builder.Services.AddCustomCors();
@@ -71,6 +71,7 @@ if (app.Environment.IsDevelopment())
                     {
                         var swaggerEndpoint = $"/swagger/v1/swagger.json";
                         options.SwaggerEndpoint(swaggerEndpoint, "v1");
+                        options.DisplayRequestDuration();
                     });
 }
 

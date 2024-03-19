@@ -32,22 +32,17 @@ namespace FourSix.Controllers.Gateways.Repositories
             await _context.Set<T>().AddAsync(entidade);
         }
 
-        public async Task Alterar(T entidade)
+        public virtual async Task Alterar(T entidade)
         {
             _context.Entry(entidade).State = EntityState.Modified;
         }
 
-        public async Task Excluir(C id)
+        public virtual async Task Excluir(C id)
         {
             var entity = Obter(id);
             //var entity = await _context.Set<T>().FirstOrDefaultAsync(n => n.Id == id);
             EntityEntry entityEntry = _context.Entry(entity);
             entityEntry.State = EntityState.Deleted;
-        }
-
-        public Task<int> Salvar()
-        {
-            return _context.SaveChangesAsync();
         }
     }
 

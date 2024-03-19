@@ -19,10 +19,8 @@ namespace FourSix.Controllers.Gateways.DataAccess
         public DbSet<Pagamento> Pagamentos { get; set; }
         public DbSet<StatusPagamento> StatusPagamentos { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(ReadDefaultConnectionStringFromAppSettings());
-        }
+        public Context(DbContextOptions<Context> options) : base(options)
+        { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -37,20 +35,6 @@ namespace FourSix.Controllers.Gateways.DataAccess
             modelBuilder.ApplyConfiguration(new StatusPedidoConfiguration());
             modelBuilder.ApplyConfiguration(new StatusPagamentoConfiguration());
             SeedData.Seed(modelBuilder);
-        }
-
-        private static string ReadDefaultConnectionStringFromAppSettings()
-        {
-            string envName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-
-            IConfigurationRoot configuration = new ConfigurationBuilder()
-                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory()))
-                .AddJsonFile("appsettings.json", false)
-                .AddJsonFile($"appsettings.{envName}.json", true)
-                .AddEnvironmentVariables()
-                .Build();
-            string connectionString = configuration.GetValue<string>("PersistenceModule:DefaultConnection");
-            return connectionString;
         }
     }
 }
