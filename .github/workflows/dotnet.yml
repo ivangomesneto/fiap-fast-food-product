@@ -55,7 +55,7 @@ jobs:
       run: | 
           aws eks --region us-east-1 update-kubeconfig --name cluster01
           kubectl apply -f four-six-api/kubernetes/api-deployment.yaml 
-          kubect apply -f four-six-api/kubernetes/api-service.yaml
+          kubectl apply -f four-six-api/kubernetes/api-service.yaml
 
         
   
