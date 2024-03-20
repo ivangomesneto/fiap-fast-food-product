@@ -18,7 +18,7 @@ namespace FourSix.WebApi.Modules.Commons
                 {
                     Version = fvi.ProductVersion,
                     Title = "Four Six API",
-                    Description = $"API de integração Four Six",
+                    Description = $"API de integração Four Six 3",
                     Contact = new OpenApiContact
                     {
                         Name = "TI FourSix - Grupo 46"
