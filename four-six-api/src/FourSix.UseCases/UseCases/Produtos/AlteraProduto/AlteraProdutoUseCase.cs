@@ -1,5 +1,4 @@
-﻿using FourSix.Domain.Entities.PedidoAggregate;
-using FourSix.Domain.Entities.ProdutoAggregate;
+﻿using FourSix.Domain.Entities.ProdutoAggregate;
 using FourSix.UseCases.Interfaces;
 
 namespace FourSix.UseCases.UseCases.Produtos.AlteraProduto

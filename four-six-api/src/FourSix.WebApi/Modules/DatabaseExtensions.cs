@@ -53,13 +53,8 @@ namespace FourSix.WebApi.Modules
             );
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<IProdutoRepository, ProdutoCacheRepository>();
             services.AddScoped<ProdutoRepository>();
-            services.AddScoped<IPedidoRepository, PedidoRepository>();
-            services.AddScoped<IPedidoItemRepository, PedidoItemRepository>();
-            services.AddScoped<IPedidoCheckoutRepository, PedidoStatusRepository>();
-            services.AddScoped<IPagamentoRepository, PagamentoRepository>();
             services.AddScoped<DbContext, Context>();
 
             return services;
